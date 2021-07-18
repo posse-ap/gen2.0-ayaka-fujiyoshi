@@ -1,0 +1,48 @@
+/* 下２つは問題文の見た目 */
+h3 {
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+h3:after {
+    display: block;
+    margin-top: 10px;
+    width: 120px;
+    height: 2px;
+    background-color: #00ab36;
+    content: '';
+}
+
+/* 問題の選択肢ブロックの見た目 */
+.option{ 
+    margin: 6px;
+    padding-left: 14px; 
+    border:1px solid #ebebeb; 
+    width:600px; 
+    height: 48px; 
+    font-weight: bold; 
+    background-color: #ffffff; 
+    box-shadow: 0px 1.5px 1.5px #e6e6e6; 
+    line-height: 48px;
+}
+
+/* リストの黒丸を消す */
+ul{
+    list-style: none;
+}
+
+/* 正解の時のブロックの見た目 */
+.answerBox{
+    margin: 6px;
+    padding-left: 14px; 
+    border:1px solid #287DFF; 
+    color:#ffffff;
+    width:600px; 
+    height: 48px; 
+    font-weight: bold; 
+    background-color: #287DFF; 
+    box-shadow: 0px 1.5px 1.5px #e6e6e6; 
+    line-height: 48px;   
+}
