@@ -13,9 +13,15 @@
       <img src=https://d1khcm40x1j0f.cloudfront.net/quiz/34d20397a2a506fe2c1ee636dc011a07.png alt="高輪の写真" width="100%">
       
       <ul>
+        
         <li class="option" id = 'answerChoice1-1'>たかわ</li>
-        <li class="option" id = 'answerChoice1-2' onclick=displayAnswer>たかなわ</li>
+        <li class="option" id = 'answerChoice1-2' input type="button" value="button" onclick="buttonClick()">たかなわ</li>
         <li class="option" id = 'answerChoice1-3'>こうわ</li>
+        
+        <div id="answerDisplay" class="firstIsInvisible">
+          <li><span>正解！</span></li>
+          <li>正解は「たかなわ」です！</li>
+        </div>
       </ul>
       
     <h3 span class="subtitle">2.この地名はなんて読む？</h3>
@@ -89,7 +95,7 @@
         <li class="option">こしゃく</li>
       </ul>
     
-    <script src="index.js"></scrip>
+    <script src="index.js"></script>
 
 </body>
 </html>
