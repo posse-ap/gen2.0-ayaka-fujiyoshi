@@ -75,6 +75,7 @@ loop.innerHTML = main;
 //引数を代入するので、変数を代入できるletで宣言する
 function clickSelectedButton(questionNumber, optionNumberOfQuestions, answerNumber) {
 	
+	//引数と文字列は分ける
 	let buttonOfOptionNumber1 = document.getElementById('answerChoice_'+ questionNumber + '_0');
 	let buttonOfOptionNumber2 = document.getElementById('answerChoice_'+ questionNumber + '_1');
 	let buttonOfOptionNumber3 = document.getElementById('answerChoice_'+ questionNumber + '_2');
