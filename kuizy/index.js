@@ -1,7 +1,7 @@
 'use strict';
 
 //問題の選択肢と写真の配列を作る
-let optionGroups = [
+const optionGroups = [
 ['たかなわ', 'たかわ', 'こうわ'],
 ['かめいど', 'かめど', 'かめと'],
 ['こうじまち', 'かゆまち', 'おかとまち'],
@@ -12,7 +12,7 @@ let optionGroups = [
 ['おかちまち', 'みとちょう', 'ごしろちょう'],
 ['ししぼね', 'ろっこつ', 'しこね'],
 ['こぐれ', 'こばく', 'こしゃく'],
-];
+].map(shuffle);
 
 let questionPhotos = [
 ['https://d1khcm40x1j0f.cloudfront.net/quiz/34d20397a2a506fe2c1ee636dc011a07.png'],
@@ -26,6 +26,19 @@ let questionPhotos = [
 ['https://d1khcm40x1j0f.cloudfront.net/words/8cad76c39c43e2b651041c6d812ea26e.png'],
 ['https://d1khcm40x1j0f.cloudfront.net/words/34508ddb0789ee73471b9f17977e7c9c.png'],
 ];
+
+//フィッシャー・イェーツのシャッフル
+//範囲を狭めながら、最後の要素とランダムに選んだ要素を入れ替えていく
+function shuffle(arr){ 
+	for (let i = arr.length - 1; i > 0; i--){
+		const j = Math.floor(Math.random() * (i + 1));
+		[arr[j],arr[i]] = [arr[i],arr[j]];
+	}
+	return arr;
+}
+
+// console.log(optionGroups);
+
 
 /*
 let question1 = optionGroups[0];
