@@ -62,7 +62,8 @@ for(let i = 0; i<optionGroups.length; i++){
 
 	// let question = optionGroups[i]
 	// console.log(question)
-	main+=`<h3>${i+1}.この地名はなんて読む？</h3>`
+	main+=`<div class='mainWrapper'>`
+	     +`<h3>${i+1}.この地名はなんて読む？</h3>`
          +`<img src= "${questionPhotos[i]}"  alt='問題${i+1}の写真' width=auto`
          +`<ul>`
          +`<li class='buttonOfOptionNumber1' id = 'answerChoice_${i}_0' input type='button' value='button' onclick="clickSelectedButton(${i},0,1)">${optionGroups[i][0]}</li>`
@@ -77,6 +78,7 @@ for(let i = 0; i<optionGroups.length; i++){
          +`<li>正解は ${optionGroups[i][0]} です！</li>`
          +`</div>`
          +`</ul>`
+		 +`</div>`
 		//  console.log(`answerChoice(${i},0,1)`);
 
 loop.innerHTML = main;

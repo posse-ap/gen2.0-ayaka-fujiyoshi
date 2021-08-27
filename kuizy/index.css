@@ -1,3 +1,27 @@
+/* ページ全体中央揃え */
+body h2,div {
+    margin: 0;
+    padding: 0;
+}
+
+.title{
+    width: auto;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    max-width: 650px;
+    font-size: 19px;
+    line-height: 27px;
+    font-weight: 700;
+}
+
+.mainWrapper {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 650px;
+    padding-top: 60px;
+}
+
 /* 下２つは問題文の見た目 */
 h3 {
     font-size: 17px;
