@@ -29,6 +29,7 @@ let questionPhotos = [
 
 //フィッシャー・イェーツのシャッフル
 //範囲を狭めながら、最後の要素とランダムに選んだ要素を入れ替えていく
+//配列のコピーを作成してそれをシャッフルしたい
 const optionGroupsCopy = optionGroups.slice();
 const optionGroupsAfter = optionGroupsCopy.map(function shuffle(arr){ 
 	for (let i = arr.length - 1; i > 0; i--){
