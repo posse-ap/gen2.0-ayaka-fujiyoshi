@@ -1,13 +1,13 @@
 /* ページ全体中央揃え */
-body h2,div {
+body {
     margin: 0;
     padding: 0;
-}
+   }
 
 .title{
     width: auto;
     margin: auto;
-    margin-top: 15px;
+    margin-top: 60px;
     margin-bottom: 15px;
     max-width: 650px;
     font-size: 19px;
@@ -20,6 +20,61 @@ body h2,div {
     margin: 0 auto;
     max-width: 650px;
     padding-top: 60px;
+}
+
+/* ヘッダーの見た目 */
+header {
+    display: flex;
+    position:fixed;
+    top: 0;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    letter-spacing: .04em;
+    justify-content: center;
+    align-items: center;
+}
+
+header h4 {
+    display: block;
+    margin-left: 10px;
+    color: #25ABD8;
+    font-size: 26px;
+}
+
+header a {
+    text-decoration: none;
+    color: #25ABD8;
+    font-weight: bold;
+    font-family: 'Hiragino Kaku Gothic ProN',-apple-system,BlinkMacSystemFont,'Hiragino Sans','游ゴシック Medium',meiryo,sans-serif;
+    cursor: pointer;
+}
+
+header ul {
+    display: flex;
+}
+
+header li {
+    margin: 0 0 0 15px;
+}
+
+.headerQuizCreateButton{
+    display: block;
+    background-color: #f49000;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 25px;
+    letter-spacing: .04em;
+}
+
+.headerSearchButton{
+    display: block;
+    background-color: #031831;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 25px;
 }
 
 /* 下２つは問題文の見た目 */
