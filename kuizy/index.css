@@ -33,6 +33,7 @@ header {
     letter-spacing: .04em;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
 }
 
 header h4 {
@@ -108,7 +109,7 @@ h3:after {
     list-style: none;/* リストの黒丸を消す */
 }
 
-.buttonOfOptionNumber1{ 
+.buttonOfOptionNumber{ 
     margin: 8px;
     padding-left: 14px; 
     border:1px solid #ebebeb; 
@@ -121,7 +122,7 @@ h3:after {
     list-style: none;/* リストの黒丸を消す */
 }
 
-.buttonOfOptionNumber2{ 
+/* .buttonOfOptionNumber2{ 
     margin: 8px;
     padding-left: 14px; 
     border:1px solid #ebebeb; 
@@ -131,7 +132,7 @@ h3:after {
     background-color: #ffffff; 
     box-shadow: 0 1.5px 1.5px #e6e6e6; 
     line-height: 50px;
-    list-style: none;/* リストの黒丸を消す */
+    list-style: none;/* リストの黒丸を消す 
 }
 
 .buttonOfOptionNumber3{ 
@@ -144,78 +145,12 @@ h3:after {
     background-color: #ffffff; 
     box-shadow: 0 1.5px 1.5px #e6e6e6; 
     line-height: 50px;
-    list-style: none;/* リストの黒丸を消す */
-}
-
-/* リストの黒丸を消す
-ul{
-    list-style: none;
+    list-style: none;/* リストの黒丸を消す 
 } */
 
-/* 正解の時のブロックの見た目 */
-/* .answerBox{
-    margin: 6px;
-    padding-left: 14px; 
-    border:1px solid #287dff; 
-    color:#ffffff;
-    width:600px; 
-    height: 48px; 
-    font-weight: bold; 
-    background-color: #287dff; 
-    box-shadow: 0 1.5px 1.5px #e6e6e6; 
-    line-height: 48px;   
-} */
 
-.firstIsInvisible{
-    display: none;
-    margin: 6px;
-    padding-left: 14px; 
-    border:1px solid #f5f5f5; 
-    width:600px; 
-    height: 95px; 
-    background-color: #f5f5f5; 
-    box-shadow: 0 1.5px 1.5px #e6e6e6; 
-    line-height: 48px;   
-    list-style: none;/* リストの黒丸を消す */
-}
-    
-.firstIsInvisible span{
-    font-weight: bold;
-    border-bottom: solid 4px #287dff;
-  }
-      
 
-/* 不正解の時のブロックの見た目 */
-/* .incorrectAnswerBox{
-    margin: 6px;
-    padding-left: 14px; 
-    border:1px solid #ff5128; 
-    color:#ffffff;
-    width:600px; 
-    height: 48px; 
-    font-weight: bold; 
-    background-color: #ff5128; 
-    box-shadow: 0 1.5px 1.5px #e6e6e6; 
-    line-height: 48px;   
-} */
 
-.incorrectFirstIsInvisible{
-    display: none;
-    margin: 6px;
-    padding-left: 14px; 
-    border:1px solid #f5f5f5; 
-    width:600px; 
-    height: 95px; 
-    background-color: #f5f5f5; 
-    box-shadow: 0 1.5px 1.5px #e6e6e6; 
-    line-height: 48px;   
-    list-style: none;/* リストの黒丸を消す */
-}
-    
-.incorrectFirstIsInvisible span{
-    font-weight: bold;
-    border-bottom: solid 4px #ff5128;
-  }
 
 
 /* リストの黒丸を消す */
@@ -236,8 +171,21 @@ ul{
     box-shadow: 0px 1.5px 1.5px #e6e6e6; 
     line-height: 48px;   
 }
+/* 不正解の時のブロックの見た目 */
+.incorrectAnswerBox{
+    margin: 6px;
+    padding-left: 14px; 
+    border:1px solid #ff5128; 
+    color:#ffffff;
+    width:600px; 
+    height: 48px; 
+    font-weight: bold; 
+    background-color: #ff5128; 
+    box-shadow: 0px 1.5px 1.5px #e6e6e6; 
+    line-height: 48px;   
+}
 
-.firstIsInvisible{
+/* .firstIsInvisible{
     margin: 6px;
     padding-left: 14px; 
     border:1px solid #f5f5f5; 
@@ -248,9 +196,47 @@ ul{
     line-height: 48px;   
 }
 
-/* 正解！だけ変更点 */
+/* 正解！だけ変更点 
 .firstIsInvisible span{
     font-weight: bold;
     border-bottom: solid 2px #287dff;
- }
+ } */
+
+
+
+ .firstIsInvisible{
+    display: none;
+    margin: 6px;
+    padding-left: 14px; 
+    border:1px solid #f5f5f5; 
+    width:600px; 
+    height: 95px; 
+    background-color: #f5f5f5; 
+    box-shadow: 0 1.5px 1.5px #e6e6e6; 
+    line-height: 48px;   
+    list-style: none;/* リストの黒丸を消す */
+}
+    
+.firstIsInvisible span{
+    font-weight: bold;
+    border-bottom: solid 4px #287dff;
+}
+
+.incorrectFirstIsInvisible{
+    display: none;
+    margin: 6px;
+    padding-left: 14px; 
+    border:1px solid #f5f5f5; 
+    width:600px; 
+    height: 95px; 
+    background-color: #f5f5f5; 
+    box-shadow: 0 1.5px 1.5px #e6e6e6; 
+    line-height: 48px;   
+    list-style: none;/* リストの黒丸を消す */
+}
+    
+.incorrectFirstIsInvisible span{
+    font-weight: bold;
+    border-bottom: solid 4px #ff5128;
+}
 

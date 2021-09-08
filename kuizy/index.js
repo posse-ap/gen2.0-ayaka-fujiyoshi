@@ -14,6 +14,8 @@ const optionGroups = [
 ['こぐれ', 'こばく', 'こしゃく'],
 ];
 
+const answerGroups = ["たかなわ","かめいど","こうじまち","おなりもん","とどろき","しゃくじい","ぞうしき","おかちまち","ししぼね","こぐれ"]
+
 let questionPhotos = [
 ['https://d1khcm40x1j0f.cloudfront.net/quiz/34d20397a2a506fe2c1ee636dc011a07.png'],
 ['https://d1khcm40x1j0f.cloudfront.net/quiz/512b8146e7661821c45dbb8fefedf731.png'],
@@ -30,14 +32,41 @@ let questionPhotos = [
 //フィッシャー・イェーツのシャッフル
 //範囲を狭めながら、最後の要素とランダムに選んだ要素を入れ替えていく
 //配列のコピーを作成してそれをシャッフルしたい
-const optionGroupsCopy = optionGroups.slice();
-const optionGroupsAfter = optionGroupsCopy.map(function shuffle(arr){ 
-	for (let i = arr.length - 1; i > 0; i--){
-		const j = Math.floor(Math.random() * (i + 1));
-		[arr[j],arr[i]] = [arr[i],arr[j]];
+//const optionGroupsCopy = Array.from (optionGroups,
+//  function shuffle(arr){ 
+//	for (let i = arr.length - 1; i > 0; i--){
+//		const j = Math.floor(Math.random() * (i + 1));
+//		[arr[j],arr[i]] = [arr[i],arr[j]];
+//	}
+//	return arr;
+//}
+
+
+//const optionGroupsAfter = shuffle([...optionGroups]);
+//console.log(optionGroupsAfter);
+////console.log([optionGroupsCopy]);
+
+
+// const optionGroupsCopy = optionGroups.slice();
+//  const optionGroupsCopy = optionGroups.map(function shuffle(arr){ 
+//  	for (let i = arr.length - 1; i > 0; i--){
+//  		const j = Math.floor(Math.random() * (i + 1));
+//  		[arr[j],arr[i]] = [arr[i],arr[j]];
+//  	}
+//  	return arr;
+//  })
+//[[[[1,4,5],6],3],2]
+
+function shuffle(arr){ 
+	for (let k = arr.length - 1; k > 0; k--){
+		const j = Math.floor(Math.random() * (k + 1));
+		[arr[j],arr[k]] = [arr[k],arr[j]];
 	}
 	return arr;
-})
+}
+optionGroups.map(shuffle);
+//console.log([optionGroups]);
+
 
 //const optionGroupsCopy = [...optionGroups].map(function shuffle(arr){ 
 //	for (let i = arr.length - 1; i > 0; i--){
@@ -58,9 +87,26 @@ const optionGroupsAfter = optionGroupsCopy.map(function shuffle(arr){
 // 	return optionGroupsCopy
 // }
 
-console.log([optionGroupsAfter]);
-console.log([optionGroupsCopy]);
-console.log([optionGroups]);
+// console.log([optionGroupsAfter]);
+
+// function shuffle(arr){ 
+// 	for (let i = arr.length - 1; i > 0; i--){
+// 		const j = Math.floor(Math.random() * (i + 1));
+// 		[arr[j],arr[i]] = [arr[i],arr[j]];
+// 	}
+// 	return arr;
+// }
+
+// const shuffledOptions = shuffle([...optionGroups]);
+// shuffledOptions.forEach(choice => {
+// 	const li = document.createElement('li');
+// 	li.textContent = choice;
+// 	li.addEventListener('click',() => {})
+// 	choices.appendChild(li);
+// });
+
+//console.log([optionGroupsCopy]);
+//console.log([optionGroups]);
 // console.log(optionGroupsCopy);
 /*
 let question1 = optionGroups[0];
@@ -86,16 +132,16 @@ for(let i = 0; i<optionGroups.length; i++){
 	     +`<h3>${i+1}.この地名はなんて読む？</h3>`
          +`<img src= "${questionPhotos[i]}"  alt='問題${i+1}の写真' width=auto`
          +`<ul>`
-         +`<li class='buttonOfOptionNumber1' id = 'answerChoice_${i}_0_1' input type='button' value='button' onclick="clickSelectedButton(${i},0,1)">${optionGroups[i][0]}</li>`
-         +`<li class='buttonOfOptionNumber2' id = 'answerChoice_${i}_1_0' input type='button' value='button' onclick="clickSelectedButton(${i},1,0)">${optionGroups[i][1]}</li>`
-         +`<li class='buttonOfOptionNumber3' id = 'answerChoice_${i}_2_0' input type='button' value='button' onclick="clickSelectedButton(${i},2,0)">${optionGroups[i][2]}</li>`
+         +`<li class='buttonOfOptionNumber' id = 'answerChoice_${i}_0' input type='button' value='button' onclick="clickSelectedButton(${i},0)">${optionGroups[i][0]}</li>`
+         +`<li class='buttonOfOptionNumber' id = 'answerChoice_${i}_1' input type='button' value='button' onclick="clickSelectedButton(${i},1)">${optionGroups[i][1]}</li>`
+         +`<li class='buttonOfOptionNumber' id = 'answerChoice_${i}_2' input type='button' value='button' onclick="clickSelectedButton(${i},2)">${optionGroups[i][2]}</li>`
          +`<div id='answerDisplay${[i]}' class='firstIsInvisible'>`
          +`<li><span>正解！</span></li>`
-         +`<li>正解は ${optionGroups[i][0]} です！</li>`
+         +`<li>正解は ${answerGroups[i]} です！</li>`
          +`</div>`
          +`<div id='incorrectAnswerDisplay${[i]}' class='incorrectFirstIsInvisible'>`
          +`<li><span>不正解！</span></li>`
-         +`<li>正解は ${optionGroups[i][0]} です！</li>`
+         +`<li>正解は ${answerGroups[i]} です！</li>`
          +`</div>`
          +`</ul>`
 		 +`</div>`
@@ -108,78 +154,110 @@ loop.innerHTML = main;
 //以下で各設問のボタンクリックによって（）内の引数を呼び出す
 //for文が終わっているのでid名に${i}をつけられない。代わりに引数で表す。引数の左端が${i}を対応しているので表すことができる。
 //引数を代入するので、変数を代入できるletで宣言する
-function clickSelectedButton(questionNumber, optionNumberOfQuestions, answerNumber) {
+function clickSelectedButton(questionNumber, optionNumberOfQuestions) {
 	
 	//引数と文字列は分ける
-	let buttonOfOptionNumber1 = document.getElementById('answerChoice_'+ questionNumber + '_0_1');
-	let buttonOfOptionNumber2 = document.getElementById('answerChoice_'+ questionNumber + '_1_0');
-	let buttonOfOptionNumber3 = document.getElementById('answerChoice_'+ questionNumber + '_2_0');
-	let answerDisplayBox = document.getElementById('answerDisplay' + questionNumber);
-	let incorrectAnswerDisplayBox = document.getElementById('incorrectAnswerDisplay' + questionNumber);
+	//ボタンの表示
+	let buttonOfOptionNumber = document.getElementById('answerChoice_'+ questionNumber +'_'+ optionNumberOfQuestions);
+	//クリックしたらとりあえず全て赤にする
+	buttonOfOptionNumber.classList.add('incorrectAnswerBox');
+
+	for (let d = 0; d < 3; d++) {
+		if (optionGroups[questionNumber][d] === answerGroups[questionNumber]) {
+			let trueChoice = document.getElementById('answerChoice_'+ questionNumber +'_'+ d);
+			trueChoice.classList.add('answerBox');
+			trueChoice.classList.remove('incorrectAnswerBox');
+		}
+	}
+
+	//下の正解不正解のボックスの表示
+	if (optionGroups[questionNumber][optionNumberOfQuestions] === answerGroups[questionNumber]) {
+		document.getElementById('answerDisplay'+ questionNumber).style.display = 'block';
+	} else {
+		document.getElementById('incorrectAnswerDisplay'+ questionNumber).style.display = 'block';
+	}
+
+	document.getElementById('answerChoice_'+ questionNumber +'_0').style.pointerEvents = 'none';
+	document.getElementById('answerChoice_'+ questionNumber +'_1').style.pointerEvents = 'none';
+	document.getElementById('answerChoice_'+ questionNumber +'_2').style.pointerEvents = 'none';
+}
+
+
+
+
+
+
+	
 // console.log(answerDisplayBox);
 
-if (optionNumberOfQuestions === 0) {
-	if (answerNumber === 1) {
-		//正解ボタンの見た目の変化
-		buttonOfOptionNumber1.style.background = '#287dff';
-		buttonOfOptionNumber1.style.color = '#ffffff';
-		buttonOfOptionNumber1.style.border = '#287dff';
+// if (optionNumberOfQuestions === 0) {
+// 	if (answerNumber === questionNumber) {
+// 		////正解ボタンの見た目の変化
+// 		//document.getElementById(`answerChoice_${i}_0_${i}`).classList.add('correctAnswerButton')
+// 		////答えを表示する
+// 		//document.getElementById(`answerChoice_${i}_0_${i}`) .classList.add('answerBox');
+
+
+// 		//正解ボタンの見た目の変化
+// 		buttonOfOptionNumber1.style.background = '#287dff';
+// 		buttonOfOptionNumber1.style.color = '#ffffff';
+// 		buttonOfOptionNumber1.style.border = '#287dff';
    
-		//答えを表示する
-		answerDisplayBox.style = 'display: block';
-		incorrectAnswerDisplayBox.style = 'display: none';
-   } else if (answerNumber === 0) {
-	   //不正解ボタンの見た目の変化
-	   buttonOfOptionNumber1.style.background = '#ff5128';
-	   buttonOfOptionNumber1.style.color = '#ffffff';
-	   buttonOfOptionNumber1.style.border = '#ff5128';
+// 		//答えを表示する
+// 		answerDisplayBox.style = 'display: block';
+// 		incorrectAnswerDisplayBox.style = 'display: none';
+//    } else if (answerNumber === questionNumber+1) {
+// 	   //不正解ボタンの見た目の変化
+// 	   buttonOfOptionNumber1.style.background = '#ff5128';
+// 	   buttonOfOptionNumber1.style.color = '#ffffff';
+// 	   buttonOfOptionNumber1.style.border = '#ff5128';
    
-	   //答えを表示する
-	   answerDisplayBox.style = 'display: none';
-	   incorrectAnswerDisplayBox.style = 'display: block';
-   }
-} else if (optionNumberOfQuestions === 1) {
-	if (answerNumber === 1) {
-		//正解ボタンの見た目の変化
-		buttonOfOptionNumber2.style.background = '#287dff';
-		buttonOfOptionNumber2.style.color = '#ffffff';
-		buttonOfOptionNumber2.style.border = '#287dff';
+// 	   //答えを表示する
+// 	   answerDisplayBox.style = 'display: none';
+// 	   incorrectAnswerDisplayBox.style = 'display: block';
+//    }
+// } else if (optionNumberOfQuestions === 1) {
+// 	if (answerNumber === questionNumber) {
+// 		//正解ボタンの見た目の変化
+// 		buttonOfOptionNumber2.style.background = '#287dff';
+// 		buttonOfOptionNumber2.style.color = '#ffffff';
+// 		buttonOfOptionNumber2.style.border = '#287dff';
    
-		//答えを表示する
-		answerDisplayBox.style = 'display: block';
-		incorrectAnswerDisplayBox.style = 'display: none';
-   } else if (answerNumber === 0) {
-	   //不正解ボタンの見た目の変化
-	   buttonOfOptionNumber2.style.background = '#ff5128';
-	   buttonOfOptionNumber2.style.color = '#ffffff';
-	   buttonOfOptionNumber2.style.border = '#ff5128';
+// 		//答えを表示する
+// 		answerDisplayBox.style = 'display: block';
+// 		incorrectAnswerDisplayBox.style = 'display: none';
+//    } else if (answerNumber === questionNumber+1) {
+// 	   //不正解ボタンの見た目の変化
+// 	   buttonOfOptionNumber2.style.background = '#ff5128';
+// 	   buttonOfOptionNumber2.style.color = '#ffffff';
+// 	   buttonOfOptionNumber2.style.border = '#ff5128';
    
-	   //答えを表示する
-	   answerDisplayBox.style = 'display: none';
-	   incorrectAnswerDisplayBox.style = 'display: block';
-   }
-} else if (optionNumberOfQuestions === 2) {
-	if (answerNumber === 1) {
-		//正解ボタンの見た目の変化
-		buttonOfOptionNumber3.style.background = '#287dff';
-		buttonOfOptionNumber3.style.color = '#ffffff';
-		buttonOfOptionNumber3.style.border = '#287dff';
+// 	   //答えを表示する
+// 	   answerDisplayBox.style = 'display: none';
+// 	   incorrectAnswerDisplayBox.style = 'display: block';
+//    }
+// } else if (optionNumberOfQuestions === 2) {
+// 	if (answerNumber === questionNumber) {
+// 		//正解ボタンの見た目の変化
+// 		buttonOfOptionNumber3.style.background = '#287dff';
+// 		buttonOfOptionNumber3.style.color = '#ffffff';
+// 		buttonOfOptionNumber3.style.border = '#287dff';
    
-		//答えを表示する
-		answerDisplayBox.style = 'display: block';
-		incorrectAnswerDisplayBox.style = 'display: none';
-   } else if (answerNumber === 0) {
-	   //不正解ボタンの見た目の変化
-	   buttonOfOptionNumber3.style.background = '#ff5128';
-	   buttonOfOptionNumber3.style.color = '#ffffff';
-	   buttonOfOptionNumber3.style.border = '#ff5128';
+// 		//答えを表示する
+// 		answerDisplayBox.style = 'display: block';
+// 		incorrectAnswerDisplayBox.style = 'display: none';
+//    } else if (answerNumber === questionNumber+1) {
+// 	   //不正解ボタンの見た目の変化
+// 	   buttonOfOptionNumber3.style.background = '#ff5128';
+// 	   buttonOfOptionNumber3.style.color = '#ffffff';
+// 	   buttonOfOptionNumber3.style.border = '#ff5128';
    
-	   //答えを表示する
-	   answerDisplayBox.style = 'display: none';
-	   incorrectAnswerDisplayBox.style = 'display: block';
-   }
-}
-}
+// 	   //答えを表示する
+// 	   answerDisplayBox.style = 'display: none';
+// 	   incorrectAnswerDisplayBox.style = 'display: block';
+//    }
+// }
+// }
 
 //if (answerNumber === 1) {
 //	 //正解ボタンの見た目の変化
@@ -201,36 +279,36 @@ if (optionNumberOfQuestions === 0) {
 //	incorrectAnswerDisplayBox.style = 'display: block';
 //}
 
-//if (optionNumberOfQuestions === 0) {
-//	//正解ボタンの見た目の変化
-//	buttonOfOptionNumber1.style.background = '#287dff';
-//	buttonOfOptionNumber1.style.color = '#ffffff';
-//	buttonOfOptionNumber1.style.border = '#287dff';
-//
-//	//答えを表示する
-//	answerDisplayBox.style = 'display: block';
-//	incorrectAnswerDisplayBox.style = 'display: none';
-//
-//} else if (optionNumberOfQuestions === 1) {
-//	//不正解ボタン１の見た目の変化
-//	buttonOfOptionNumber2.style.background = '#ff5128';
-//	buttonOfOptionNumber2.style.color = '#ffffff';
-//	buttonOfOptionNumber2.style.border = '#ff5128';
-//
-//	//答えを表示する
-//	answerDisplayBox.style = 'display: none';
-//	incorrectAnswerDisplayBox.style = 'display: block';
-//
-//} else if (optionNumberOfQuestions === 2) {
-//	//不正解ボタン２の見た目の変化
-//	buttonOfOptionNumber3.style.background = '#ff5128';
-//	buttonOfOptionNumber3.style.color = '#ffffff';
-//	buttonOfOptionNumber3.style.border = '#ff5128';
-//
-//	//答えを表示する
-//	answerDisplayBox.style = 'display: none';
-//	incorrectAnswerDisplayBox.style = 'display: block';
-//}
+// if (optionNumberOfQuestions === 0) {
+// 	//正解ボタンの見た目の変化
+// 	buttonOfOptionNumber1.style.background = '#287dff';
+// 	buttonOfOptionNumber1.style.color = '#ffffff';
+// 	buttonOfOptionNumber1.style.border = '#287dff';
+
+// 	//答えを表示する
+// 	answerDisplayBox.style = 'display: block';
+// 	incorrectAnswerDisplayBox.style = 'display: none';
+
+// } else if (optionNumberOfQuestions === 1) {
+// 	//不正解ボタン１の見た目の変化
+// 	buttonOfOptionNumber2.style.background = '#ff5128';
+// 	buttonOfOptionNumber2.style.color = '#ffffff';
+// 	buttonOfOptionNumber2.style.border = '#ff5128';
+
+// 	//答えを表示する
+// 	answerDisplayBox.style = 'display: none';
+// 	incorrectAnswerDisplayBox.style = 'display: block';
+
+// } else if (optionNumberOfQuestions === 2) {
+// 	//不正解ボタン２の見た目の変化
+// 	buttonOfOptionNumber3.style.background = '#ff5128';
+// 	buttonOfOptionNumber3.style.color = '#ffffff';
+// 	buttonOfOptionNumber3.style.border = '#ff5128';
+
+// 	//答えを表示する
+// 	answerDisplayBox.style = 'display: none';
+// 	incorrectAnswerDisplayBox.style = 'display: block';
+// }
 
 
 // //正解の場合
