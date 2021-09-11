@@ -7,7 +7,7 @@ body {
 .title{
     width: auto;
     margin: auto;
-    margin-top: 60px;
+    margin-top: 160px;
     margin-bottom: 15px;
     max-width: 650px;
     font-size: 19px;
@@ -25,40 +25,69 @@ body {
 /* ヘッダーの見た目 */
 header {
     display: flex;
+    width: 100%;
+    letter-spacing: .04em;
+    background-color: #fff;
+    align-items: center;
     position:fixed;
     top: 0;
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    letter-spacing: .04em;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
+    height: 50px;
 }
+
+.headerWrapper{
+    display: flex;
+    height: 40px;
+    align-items: center;
+    max-width: 650px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* header{
+    /* position: relative; 
+    left: inherit;
+    text-align: center;
+    align-items: center;
+} */
 
 header h4 {
-    display: block;
-    margin-left: 10px;
-    color: #25ABD8;
+    /* top: 2px; */
+    /* height: 25px; */
+    /* float: left; */
+    text-align: center;
+    margin-left: 25px;
+    margin-right: auto;
+    /* color: #25ABD8; */
     font-size: 26px;
+    font-family: "Hiragino Kaku Gothic ProN", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "游ゴシック Medium", meiryo, sans-serif;
 }
 
-header a {
+header a{
     text-decoration: none;
     color: #25ABD8;
     font-weight: bold;
-    font-family: 'Hiragino Kaku Gothic ProN',-apple-system,BlinkMacSystemFont,'Hiragino Sans','游ゴシック Medium',meiryo,sans-serif;
+    /* font-family: 'Hiragino Kaku Gothic ProN',-apple-system,BlinkMacSystemFont,'Hiragino Sans','游ゴシック Medium',meiryo,sans-serif; */
     cursor: pointer;
 }
 
-header ul {
+/* header ul .headerButtons {
+    float: right;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+} */
+header nav{
+    margin: 0 0 10px;
 }
 
 header li {
-    margin: 0 0 0 15px;
+    margin: 0 10px 0 10px;
+    float: left;
+    /* align-items: center; */
 }
 
+/* クイズ・診断を作るのボタン */
 .headerQuizCreateButton{
     display: block;
     background-color: #f49000;
@@ -67,15 +96,90 @@ header li {
     font-size: 11px;
     line-height: 25px;
     letter-spacing: .04em;
+    width: auto;
+    /* text-align: center; */
+    justify-content: center;
+    display: table-cell; /* IE8から使用可能 */
+    padding: 0 5px 0 5px;
+    vertical-align: middle;
+}
+
+/* 検索のボタン */
+.headerButtons .searchImg{
+    display: left;
+    top: 2px;
 }
 
 .headerSearchButton{
-    display: block;
+    display: flex;
     background-color: #031831;
     color: #fff;
     border-radius: 3px;
     font-size: 11px;
     line-height: 25px;
+    padding: 0 5px 0 5px;
+}
+
+.headerSearchButton img{
+    margin-top: 5px;
+    margin-right: 5px;
+    
+}
+
+/* サブメニュー */
+.menu{
+    display: block
+}
+.menu img{
+    display: block;
+    height: 30px;
+    border: 0;
+}
+.subMenu{
+    display: none;
+    /* position: relative; */
+    max-width: 650px;
+    margin-top: 600px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background: rgba(156, 153, 153, 0.3);
+}
+.subMenu nav{
+    width: 60%;
+    height: 100%;
+    max-width: 650px;
+    background-color: #fff;
+}
+.subMenu ul{
+    list-style: none;
+    height: 100%;
+    overflow-y: auto;
+}
+.subMenu ul li{
+    box-sizing: border-box;
+    margin: 0 15px;
+    display: block;
+    border-bottom: 1px solid #ddd;
+}
+.subMenu ul li a{
+    text-decoration: none;
+    color: #333;
+    font-size: .9rem;
+    line-height: 46px;
+}
+
+.subMenuFooter p{
+    line-height: 58px;
+    font-size: .7rem;
+    text-align: center;
+}
+.menu:hover .subMenu{
+    display: inline-block;
 }
 
 /* 下２つは問題文の見た目 */
