@@ -183,6 +183,32 @@ function clickSelectedButton(questionNumber, optionNumberOfQuestions) {
 }
 
 
+//サイドメニューの開閉
+// function subMenu(){
+// 	let focus = document.getElementById('subMenu');
+// 	if (focus.style.display ='none') {
+// 		focus.style.display = 'block';		
+// 	}else{
+// 		focus.style.display = 'none';
+// 	}
+
+// 	// if (focus.style.display ='block') {
+// 	// 	focus.style.display = 'none';		
+// 	// }else{
+// 	// 	focus.style.display = 'block';
+// 	// }
+// }
+function hamburger() {
+  //document.getElementById('line1').classList.toggle('line_1');
+  //document.getElementById('line2').classList.toggle('line_2');
+  //document.getElementById('line3').classList.toggle('line_3');
+  document.getElementById('menu').classList.toggle('in');
+}
+document.getElementById('hamburger').addEventListener('click' , function () {
+  hamburger();
+} );
+
+
 
 
 

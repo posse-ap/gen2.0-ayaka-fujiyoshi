@@ -42,6 +42,9 @@ header {
     width: 100%;
     margin: 0 auto;
 }
+.headerWrapper img{
+    position: relative;
+}
 
 /* header{
     /* position: relative; 
@@ -55,7 +58,7 @@ header h4 {
     /* height: 25px; */
     /* float: left; */
     text-align: center;
-    margin-left: 25px;
+    margin-left: 30px;
     margin-right: auto;
     /* color: #25ABD8; */
     font-size: 26px;
@@ -77,12 +80,12 @@ header a{
     align-items: center;
     margin-right: 5px;
 } */
-header nav{
+/* header nav{
     margin: 0 0 10px;
-}
+} */
 
 header li {
-    margin: 0 10px 0 10px;
+    margin: 0 10px 0 5px;
     float: left;
     /* align-items: center; */
 }
@@ -101,7 +104,7 @@ header li {
     justify-content: center;
     display: table-cell; /* IE8から使用可能 */
     padding: 0 5px 0 5px;
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
 
 /* 検索のボタン */
@@ -127,36 +130,34 @@ header li {
 }
 
 /* サブメニュー */
-.menu{
-    display: block
-}
-.menu img{
+.menuWrapper{
     display: block;
-    height: 30px;
-    border: 0;
-}
-.subMenu{
-    display: none;
-    /* position: relative; */
+    width: 100%;
+    margin: 0 auto;
     max-width: 650px;
-    margin-top: 600px;
-    top: 0;
+    align-items: center;
+    margin-top: 0;
+    position: absolute;
+    max-width: 650px;
+    /* margin-top: 200px; */
+    top: 45px;
     right: 0;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    left: -160%;
+    width: 160%;
+    height: 100vh;
     z-index: 3;
     background: rgba(156, 153, 153, 0.3);
 }
-.subMenu nav{
-    width: 60%;
-    height: 100%;
+.subMenu{
+    width: 40%;
+    height: 100vh;
     max-width: 650px;
     background-color: #fff;
 }
 .subMenu ul{
     list-style: none;
+    margin: 0 auto;
     height: 100%;
     overflow-y: auto;
 }
@@ -165,6 +166,7 @@ header li {
     margin: 0 15px;
     display: block;
     border-bottom: 1px solid #ddd;
+    width: 100%;
 }
 .subMenu ul li a{
     text-decoration: none;
@@ -178,9 +180,56 @@ header li {
     font-size: .7rem;
     text-align: center;
 }
-.menu:hover .subMenu{
+/* .menu:hover .subMenu{
     display: inline-block;
-}
+} */
+#hamburger {
+    display: block;
+    position: absolute;
+    /* top: 0px;
+    left: 10px; */
+    width: 25px;
+    height: 22px;
+    cursor: pointer;
+    transition: 1s;
+  }
+  .inner_line {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 25px;
+    height: 3px;
+    background-color: #000000;
+    transition: 1s;
+    border-radius: 4px;
+  }
+  #line1 {
+    top: 0;
+  }
+  #line2 {
+    top: 10px;
+  }
+  #line3 {
+    bottom: 0px;
+  }
+  .in{
+    transform: translateX(135%);
+  }
+  /* .line_1,.line_2,.line_3{
+    background: #000000;
+  }
+  .line_1 {
+    transform: translateY(20px) rotate(-45deg);
+    top: 0;
+  }
+  .line_2 {
+    opacity: 0;
+  }
+  .line_3 {
+    transform: translateY(-20px) rotate(45deg);
+    bottom: 0;
+  } */
+
 
 /* 下２つは問題文の見た目 */
 h3 {

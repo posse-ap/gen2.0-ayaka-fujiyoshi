@@ -10,12 +10,10 @@
 <body>
   <header>
     <div class="headerWrapper">
-      <!-- <div class="menu">
-        <img src="https://pbs.twimg.com/media/E-72rYRVIAsHLD2?format=webp&name=tiny" alt="メニューバー">
-        <div class="subMenu">
-          <nav>
+      <div class="menu">
+        <div id="menu" class="menuWrapper">
+          <nav id="nav" class="subMenu">
           <ul>
-            <li><img src="https://pbs.twimg.com/media/E-72rYRVIAsHLD2?format=webp&name=tiny" alt="メニューバー"></li>
             <li><a href="https://kuizy.net/auth/signup">ログイン</a></li>
             <li><a href="https://kuizy.net/quiz">クイズ</a></li>
             <li><a href="https://kuizy.net/analysis">診断</a></li>
@@ -33,9 +31,17 @@
           </ul>
           </nav>
         </div>
-      </div> -->
+      </div>
       
-              <img src="https://pbs.twimg.com/media/E-72rYRVIAsHLD2?format=webp&name=tiny" alt="メニューバー">
+              <!-- <img src="https://pbs.twimg.com/media/E-72rYRVIAsHLD2?format=webp&name=tiny" alt="メニューバー" onclick="subMenu()"> -->
+      
+
+
+              <div id="hamburger">
+                <span class="inner_line" id="line1"></span>
+                <span class="inner_line" id="line2"></span>
+                <span class="inner_line" id="line3"></span>
+              </div>
               <h4 class="homePageLink">
                 <a href="https://kuizy.net/">kuisy</a>
               </h4>
@@ -55,12 +61,10 @@
   </header>
 
 
-  <div class="menu">
-    <img src="https://pbs.twimg.com/media/E-72rYRVIAsHLD2?format=webp&name=tiny" alt="メニューバー">
-    <div class="subMenu">
+  <!-- <div class="menuWrapper">
+    <div class="subMenu" id="subMenu">
       <nav>
       <ul>
-        <li><img src="https://pbs.twimg.com/media/E-72rYRVIAsHLD2?format=webp&name=tiny" alt="メニューバー"></li>
         <li><a href="https://kuizy.net/auth/signup">ログイン</a></li>
         <li><a href="https://kuizy.net/quiz">クイズ</a></li>
         <li><a href="https://kuizy.net/analysis">診断</a></li>
@@ -78,7 +82,7 @@
       </ul>
       </nav>
     </div>
-  </div>
+  </div> -->
 
   <h2 class='title'>ガチで東京の人しか解けない！ #東京の難読地名クイズ</h2>
     <!-- <h3>1.この地名はなんて読む？</h3>
