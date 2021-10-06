@@ -1,0 +1,87 @@
+/* ページ全体 */
+.main{
+    margin: 0;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 600px;
+}
+
+/* 問題表示 */
+.questions h1{
+    font-size: 18px;
+    display: inline-block;
+    background: linear-gradient(transparent 70%, #f7ff4e 70%);
+    padding: 0;
+}
+
+.questions img{
+    width: 100%;
+}
+
+.questions ul {
+    margin: 0 auto;
+    list-style: none;
+}
+
+.questions ul .selectionAnswerList {
+    display: flex;
+    box-shadow: 1px 1px 3px rgba(100, 100, 100, 0.2);
+    font-weight: bold;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    cursor: pointer;
+    align-items: center;
+}
+
+/* 回答後の選択肢（不正解） */
+.wrongAnswerButton{
+    display: flex;
+    box-shadow: 1px 1px 3px rgba(100, 100, 100, 0.2);
+    font-weight: bold;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    cursor: pointer;
+    align-items: center;
+    background-color: #fd6647;
+    color: #fff;
+}
+
+/* 回答後の選択肢（正解） */
+.correctAnswerButton{
+    display: flex;
+    box-shadow: 1px 1px 3px rgba(100, 100, 100, 0.2);
+    font-weight: bold;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    cursor: pointer;
+    align-items: center;
+    background-color: #cbd5d8;
+    color: #fff;
+}
+
+/* 回答後に表示 答えボックス */
+.answerBox{
+    display: block;
+    width: 100%;
+    height: 80px;
+    font-weight: bold;
+    padding-left: 15px;
+    box-shadow: 1px 1px 3px gray;
+    margin-bottom: 30px;
+}
+
+/* 回答後に表示 答えボックス（正解） */
+.correctAnswerBox{
+    background: linear-gradient(transparent 70%, #08b3f0 70%);
+}
+
+/* 回答後に表示 答えボックス（不正解） */
+.wrongAnswerBox{
+    background: linear-gradient(transparent 70%, #fd6647 70%);
+}
