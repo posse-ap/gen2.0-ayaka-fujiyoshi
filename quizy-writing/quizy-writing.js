@@ -18,16 +18,17 @@ function check(questions_id, selection_id, validAnswer_id){
 
     let answerBox = document.getElementById('answerBox_' + questions_id);
     let answerText = document.getElementById('answerText_' + questions_id);
+    // answerBox.style.display = 'block';
     if (selection_id == validAnswer_id) {
-        answerText.className= 'correctAnswerBox';
-        answerText.innerText= '正解！';      
+        answerText.className = 'correctAnswerBox';
+        answerText.innerText = '正解！';
     } else {
-        answerText.className= 'wrongAnswerBox';
-        answerText.innerText= '不正解！';
+        answerText.className = 'wrongAnswerBox';
+        answerText.innerText = '不正解！';
     }
     answerBox.style.display = 'block';
-
 }
+
 //問題表示の設定
 function createQuestion(questions_id, selectionList, validAnswer_id){
     let contents =  `<div class="questions">`
@@ -43,7 +44,7 @@ function createQuestion(questions_id, selectionList, validAnswer_id){
     });
     
         contents += `<li id="answerBox_${questions_id}" class="answerBox">`
-                 +  `<span id="answerText_${questions_id}}"></span><br>`
+                 +  `<span id="answerText_${questions_id}"></span><br>`
                  +  `<span>正解は「${selectionList[validAnswer_id]}」です！</span>`
                  +  `</li>`
                  +  `</ul>`
