@@ -31,7 +31,7 @@ li{
   right: 0;
   align-items: center;
   background-color: #fff;
-  z-index: 1000;
+  z-index: 999;
 }
 .header__inner{
   display: flex;
@@ -212,14 +212,15 @@ li{
 .modal-wrapper .modal-window {
   box-sizing: border-box;
   display: inline-block;
-  z-index: 20;
+  z-index: 1010;
   position: relative;
-  width: 70%;
-  max-width: 800px;  /* 600 */
-  padding: 30px 30px 30px;  /* 30px 30px 15px; */
+  width: 900px;
+  height: 500px;
+  /*max-width: 600px;  /* 600 */
+  padding: 30px 0 30px;  /* 30px 30px 15px; */
   border-radius: 2px;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 0 30px rgba(0, 0, 0, .6);
   vertical-align: middle
 }
@@ -229,7 +230,7 @@ li{
   text-align: left
 }
 .modal-overlay {
-  z-index: 10;
+  z-index: 1000;
   position: absolute;
   top: 0;
   right: 0;
@@ -264,13 +265,18 @@ li{
 }
 .main__left__ver__modal{
   width: 50%;
+  padding-left: 56px;
 }
 .main__right__ver__modal{
   width: 50%;
+  padding-right: 56px;
 }
 
 .contact__form__item__date{
   margin-bottom: 10px;
+}
+.contact__form__item__date input{
+  margin-top: 5px;
 }
 .contact__form__item dd {
   margin: 0  0 10px;
@@ -278,39 +284,33 @@ li{
 }
 .main__left__ver__modal .contact__form__item dd label{
   background-color: #e9e4dd;
-  /* margin: 10px; */
-  /* padding: 2px; */
+  padding: 2px;
   border-radius: 5px;
 }
 .contact__form__item dd label input{
   margin: 12px;
 }
-/* .contact__form__item dd label + .contact__form__item dd label{
-  margin: 2px 0 2px;
-} */
-
-/* .main__right__ver__modal dd input{
-  background-color: #e9e4dd;
-  box-shadow: transparent;
-  width: 50%;
-} */
 .contact__form__item input[type=text]{
   background-color: #e9e4dd;
   border: transparent;
   height: 20px;
-  width: 90%;
+  width: 394px;
   border-radius: 5px;
 }
 .contact__form__item textarea[type=text]{
   background-color: #e9e4dd;
   border: transparent;
-  width: 90%;
+  width: 394px;
   height: 150px;
   border-radius: 5px;
 }
 .contact__form__footer {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 40px;
+}
+a{
+  text-decoration: none;
+  color: #000;
 }
 
 /* calender */
@@ -339,27 +339,101 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }  /* ここまででカレンダーロゴマーク消去 */
 
 /* チェックボックスの見た目 */
-input[type="checkbox"]{
-  appearance: none;
-  position: absolute;
+label input[type="checkbox"] ~ i.fa.fa-square-o{
+  color: #c8c8c8;    display: inline;
 }
-input[type="checkbox"]::before {
-  position: absolute;
-  left: 0;
-  display: block;
-  border: 1px solid orange; /*外側は正方形 */
-  content: '';
-  width: 16px;
-  height: 16px;
+label input[type="checkbox"] ~ i.fa.fa-check-square-o{
+  display: none;
 }
-input[type="checkbox"]::after {
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  display: block;
-  border-right: 1px solid orange; /*右と*/
-  border-bottom: 1px solid orange; /*下だけにborder*/
-  content: '';
-  width: 5px; /*長方形を作る*/
-  height: 10px;
+label input[type="checkbox"]:checked ~ i.fa.fa-square-o{
+  display: none;
+}
+label input[type="checkbox"]:checked ~ i.fa.fa-check-square-o{
+  color: #7AA3CC;    display: inline;
+}
+label:hover input[type="checkbox"] ~ i.fa {
+color: #7AA3CC;
+}
+div[data-toggle="buttons"] label.active{
+  color: #7AA3CC;
+}
+div[data-toggle="buttons"] label {
+display: inline-block;
+padding: 6px 12px;
+margin-bottom: 0;
+font-size: 14px;
+font-weight: normal;
+line-height: 2em;
+text-align: left;
+white-space: nowrap;
+vertical-align: top;
+cursor: pointer;
+background-color: none;
+border: 0px solid #c8c8c8;
+border-radius: 3px;
+color: #c8c8c8;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+-o-user-select: none;
+user-select: none;
+}
+div[data-toggle="buttons"] label:hover {
+color: #7AA3CC;
+}
+div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+
+/* modal__loading */
+.loader-wrap {
+	position: fixed;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 900px;
+    height: 500px;
+    /* background: #000; */
+}
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+.loader {
+  margin: 60px auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid #8ccfee;
+  border-bottom: 1.1em solid #58bedd;
+  border-left: 1.1em solid #04a1df;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

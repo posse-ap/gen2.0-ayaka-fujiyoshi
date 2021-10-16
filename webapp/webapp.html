@@ -60,29 +60,30 @@
               <section class="main__left__ver__modal">
                 <form action="/" name="contactForm" class="contact__form">
                   <dl class="contact__form__list">
-                    <div class="contact__form__item">
-                      <label for="study__date" class="contact__form__item__date">学習日</label><br>
+                    <div class="contact__form__item contact__form__item__date">
+                      <label for="study__date">学習日</label><br>
                       <input type="date" name="study__date" id="study__date">
+                      <!-- <input type="text" name="study__date" id="study__date"> -->
                     </div>
                     <div class="contact__form__item">
                       <dt>学習コンテンツ（複数選択可）</dt>
-                      <dd>
-                        <label><input type="checkbox" name="study__contents" value="N予備校">N予備校</label>
-                        <label><input type="checkbox" name="study__contents" value="ドットインストール">ドットインストール</label><br>
-                        <label><input type="checkbox" name="study__contents" value="POSSE課題">POSSE課題</label>
+                      <dd data-toggle="buttons">
+                        <label class="btn active"><input type="checkbox" name="study__contents" value="N予備校" checked><i class="fa fa-square-o fa-2x"></i>N予備校</label>
+                        <label class="btn "><input type="checkbox" name="study__contents" value="ドットインストール"><i class="fa fa-square-o fa-2x"></i>ドットインストール</label><br>
+                        <label class="btn "><input type="checkbox" name="study__contents" value="POSSE課題"><i class="fa fa-square-o fa-2x"></i>POSSE課題</label>
                       </dd>
                     </div>
                     <div class="contact__form__item">
                       <dt>学習言語（複数選択可）</dt>
-                      <dd>
-                        <label><input type="checkbox" name="study__language" value="HTML">HTML</label>
-                        <label><input type="checkbox" name="study__language" value="css">css</label>
-                        <label><input type="checkbox" name="study__language" value="JavaScript">JavaScript</label><br>
-                        <label><input type="checkbox" name="study__language" value="PHP">PHP</label>
-                        <label><input type="checkbox" name="study__language" value="Laravel">Laravel</label>
-                        <label><input type="checkbox" name="study__language" value="SQL">SQL</label>
-                        <label><input type="checkbox" name="study__language" value="SHELL">SHELL</label>
-                        <label><input type="checkbox" name="study__language" value="情報システム基礎知識（その他）">情報システム基礎知識（その他）</label>
+                      <dd data-toggle="buttons">
+                        <label class="btn active"><input type="checkbox" name="study__language" value="HTML" checked><i class="fa fa-square-o fa-2x"></i>HTML</label>
+                        <label class="btn "><input type="checkbox" name="study__language" value="css"><i class="fa fa-square-o fa-2x"></i>css</label>
+                        <label class="btn "><input type="checkbox" name="study__language" value="JavaScript"><i class="fa fa-square-o fa-2x"></i>JavaScript</label><br>
+                        <label class="btn "><input type="checkbox" name="study__language" value="PHP"><i class="fa fa-square-o fa-2x"></i>PHP</label>
+                        <label class="btn "><input type="checkbox" name="study__language" value="Laravel"><i class="fa fa-square-o fa-2x"></i>Laravel</label>
+                        <label class="btn "><input type="checkbox" name="study__language" value="SQL"><i class="fa fa-square-o fa-2x"></i>SQL</label>
+                        <label class="btn "><input type="checkbox" name="study__language" value="SHELL"><i class="fa fa-square-o fa-2x"></i>SHELL</label><br>
+                        <label class="btn "><input type="checkbox" name="study__language" value="情報システム基礎知識（その他）"><i class="fa fa-square-o fa-2x"></i>情報システム基礎知識（その他）</label>
                       </dd>
                     </div>
                   </dl>
@@ -101,8 +102,11 @@
                       <dd><textarea id="content" type="text" name="content"></textarea></dd>
                     </div>
                     <div class="contact__form__item">
-                      <dd>
-                        <label><input type="checkbox" name="study__twitter" value="twitter">Twitterにシェアする</label>
+                      <dd data-toggle="buttons">
+                        <label class="btn active">
+                          <input type="checkbox" name="study__twitter" value="twitter" checked><i class="fa fa-square-o fa-2x"></i>
+                          <a href="" class="contact__form__twitter">Twitterにシェアする</a>
+                        </label>
                       </dd>
                     </div>
                   </dl>                      
@@ -111,9 +115,21 @@
               
             </div> 
             <div class="contact__form__footer">
-              <button class="header__sending__button"><a href="#">記録・投稿</a></button>
+              <button class="header__sending__button"><a href="#modal__loading">記録・投稿</a></button>
             </div>   
           </main>
+        </div>
+        <a href="#!" class="modal-close">×</a>
+      </div>
+    </div>
+
+    <div class="modal-wrapper" id="modal__loading">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal-window">
+        <div class="modal-content">
+          <div class="loader-wrap">
+            <div class="loader">Loading...</div>
+          </div>          
         </div>
         <a href="#!" class="modal-close">×</a>
       </div>
