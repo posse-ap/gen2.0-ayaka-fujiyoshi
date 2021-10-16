@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="webapp.css">
+  <title>Posse app</title>
+</head>
+<body>
+  <div class="footer__fixed">
+    <header class="header">
+      <div class="inner header__inner">
+        <img class="posse__logo" src="https://posse.anti-pattern.co.jp/img/posseLogo.png" alt="posseLogo">
+        <p class="header__date">4th week</p>
+        <button class="header__sending__button"><a href="#modal">記録・投稿</a></button>
+      </div>    
+    </header>
+    <main>
+      <div class="inner main__inner">
+        <section class="main__left">
+          <div>
+            <ul class="main__study__number">
+              <li class="main__study__item">
+                <p class="main__study__item__title">Today</p>
+                <p class="main__study__item__number">3</p>
+                <p class="main__study__item__unit">hour</p>
+              </li>
+              <li class="main__study__item">
+                <p class="main__study__item__title">Month</p>
+                <p class="main__study__item__number">120</p>
+                <p class="main__study__item__unit">hour</p>
+              </li>
+              <li class="main__study__item">
+                <p class="main__study__item__title">Total</p>
+                <p class="main__study__item__number">1348</p>
+                <p class="main__study__item__unit">hour</p>
+              </li>
+            </ul>
+          </div>
+          <div class="inner main__bar__graph"></div>
+  
+        </section>
+        <section class="main__right">
+          <ul class="main__pie__chart__inner">
+            <li class="main__pie__chart__item"></li>
+            <li class="main__pie__chart__item"></li>
+          </ul>
+    
+        </section>
+      </div>    
+    </main>
+
+    <div class="modal-wrapper" id="modal">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal-window">
+        <div class="modal-content">
+          <main>
+            <div class="inner main__inner__ver__modal">
+              <section class="main__left__ver__modal">
+                <form action="/" name="contactForm" class="contact__form">
+                  <dl class="contact__form__list">
+                    <div class="contact__form__item">
+                      <label for="study__date" class="contact__form__item__date">学習日</label><br>
+                      <input type="date" name="study__date" id="study__date">
+                    </div>
+                    <div class="contact__form__item">
+                      <dt>学習コンテンツ（複数選択可）</dt>
+                      <dd>
+                        <label><input type="checkbox" name="study__contents" value="N予備校">N予備校</label>
+                        <label><input type="checkbox" name="study__contents" value="ドットインストール">ドットインストール</label><br>
+                        <label><input type="checkbox" name="study__contents" value="POSSE課題">POSSE課題</label>
+                      </dd>
+                    </div>
+                    <div class="contact__form__item">
+                      <dt>学習言語（複数選択可）</dt>
+                      <dd>
+                        <label><input type="checkbox" name="study__language" value="HTML">HTML</label>
+                        <label><input type="checkbox" name="study__language" value="css">css</label>
+                        <label><input type="checkbox" name="study__language" value="JavaScript">JavaScript</label><br>
+                        <label><input type="checkbox" name="study__language" value="PHP">PHP</label>
+                        <label><input type="checkbox" name="study__language" value="Laravel">Laravel</label>
+                        <label><input type="checkbox" name="study__language" value="SQL">SQL</label>
+                        <label><input type="checkbox" name="study__language" value="SHELL">SHELL</label>
+                        <label><input type="checkbox" name="study__language" value="情報システム基礎知識（その他）">情報システム基礎知識（その他）</label>
+                      </dd>
+                    </div>
+                  </dl>
+                </form>        
+              </section>
+              <section class="main__right__ver__modal">
+                <form action="/" name="contactForm" class="contact__form">
+                  <dl class="contact__form__list">
+                    <div class="contact__form__item">
+                      <dt><label for="study__hour">学習時間</label></dt>
+                      <dd><input id="study__hour" type="text" name="study__hour"></dd>
+                    </div>
+                  
+                    <div class="contact__form__item">
+                      <dt><label for="content">Twitter用コメント</label></dt>
+                      <dd><textarea id="content" type="text" name="content"></textarea></dd>
+                    </div>
+                    <div class="contact__form__item">
+                      <dd>
+                        <label><input type="checkbox" name="study__twitter" value="twitter">Twitterにシェアする</label>
+                      </dd>
+                    </div>
+                  </dl>                      
+                </form> 
+              </section>
+              
+            </div> 
+            <div class="contact__form__footer">
+              <button class="header__sending__button"><a href="#">記録・投稿</a></button>
+            </div>   
+          </main>
+        </div>
+        <a href="#!" class="modal-close">×</a>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <div class="Arrow-Left"></div>
+      <p>2020年 10月</p>
+      <div class="Arrow-Right"></div>
+    </footer>
+  </div>
+  
+  
+</body>
+</html>
