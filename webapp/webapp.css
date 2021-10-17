@@ -437,3 +437,53 @@ box-shadow: none;
     transform: rotate(360deg);
   }
 }
+
+/* 記録・投稿完了画面 */
+.circle__wrap{
+	position: fixed;
+	/* display: flex; */
+    align-items: center;
+    justify-content: center;
+    width: 900px;
+    height: 250px;
+    /* background: #000; */
+}
+.circle {
+  background-color:rgb(168, 240, 86);
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+}
+.check__mark{
+  content: '';
+  width: 30px;
+  height: 15px;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  /* transform: translate(-50%, -50%); */
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: rotate(-45deg);
+}
+.circle__above{
+  color: rgb(168, 240, 86);
+  font-size: 15px;
+  /* position: absolute;
+  top: -10%; */
+}
+.modal-wrapper .modal-window .modal-content-circle {
+  /* max-height: 80vh;
+  overflow-y: auto; */
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 900px;
+  height: 500px;
+}
+.circle__wrap p{
+  margin: 0;
+  padding: 0;
+}

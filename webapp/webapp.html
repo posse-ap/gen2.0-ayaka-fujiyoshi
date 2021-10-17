@@ -8,7 +8,10 @@
   <title>Posse app</title>
 </head>
 <body>
+  <!-- トップ画面 -->
   <div class="footer__fixed">
+
+    <!-- ヘッダー -->
     <header class="header">
       <div class="inner header__inner">
         <img class="posse__logo" src="https://posse.anti-pattern.co.jp/img/posseLogo.png" alt="posseLogo">
@@ -16,9 +19,12 @@
         <button class="header__sending__button"><a href="#modal">記録・投稿</a></button>
       </div>    
     </header>
+
+    <!-- メイン -->
     <main>
       <div class="inner main__inner">
         <section class="main__left">
+          <!-- 学習時間 -->
           <div>
             <ul class="main__study__number">
               <li class="main__study__item">
@@ -38,12 +44,15 @@
               </li>
             </ul>
           </div>
+          <!-- 学習時間 棒グラフ -->
           <div class="inner main__bar__graph"></div>
   
         </section>
         <section class="main__right">
           <ul class="main__pie__chart__inner">
+            <!-- 学習言語 円グラフ -->
             <li class="main__pie__chart__item"></li>
+            <!-- 学習コンテンツ 円グラフ -->
             <li class="main__pie__chart__item"></li>
           </ul>
     
@@ -51,6 +60,7 @@
       </div>    
     </main>
 
+    <!-- モーダル画面 -->
     <div class="modal-wrapper" id="modal">
       <a href="#!" class="modal-overlay"></a>
       <div class="modal-window">
@@ -123,6 +133,7 @@
       </div>
     </div>
 
+    <!-- ローディング画面
     <div class="modal-wrapper" id="modal__loading">
       <a href="#!" class="modal-overlay"></a>
       <div class="modal-window">
@@ -133,8 +144,27 @@
         </div>
         <a href="#!" class="modal-close">×</a>
       </div>
+    </div> -->
+
+    <!-- 記録・投稿完了画面 -->
+    <div class="modal-wrapper" id="modal__loading">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal-window">
+        <div class="modal-content-circle">
+          <div class="circle__wrap">
+            <p class="circle__above">AWESOME!</p>
+            <span class="circle">
+              <div class="check__mark"></div> 
+            </span>
+            <p>記録・投稿</p><br>
+            <p>完了しました</p>
+          </div>        
+        </div>
+        <a href="#!" class="modal-close">×</a>
+      </div>
     </div>
     
+    <!-- フッター -->
     <footer class="footer">
       <div class="Arrow-Left"></div>
       <p>2020年 10月</p>
