@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="webapp.css">
   <title>Posse app</title>
 </head>
@@ -27,20 +28,20 @@
           <!-- 学習時間 -->
           <div>
             <ul class="main__study__number">
-              <li class="main__study__item">
-                <p class="main__study__item__title">Today</p>
-                <p class="main__study__item__number">3</p>
-                <p class="main__study__item__unit">hour</p>
+              <li class="main__study__item first__item">
+                <div class="main__study__item__title">Today</div>
+                <div class="main__study__item__number">3</div>
+                <div class="main__study__item__unit">hour</div>
               </li>
               <li class="main__study__item">
-                <p class="main__study__item__title">Month</p>
-                <p class="main__study__item__number">120</p>
-                <p class="main__study__item__unit">hour</p>
+                <div class="main__study__item__title">Month</div>
+                <div class="main__study__item__number">120</div>
+                <div class="main__study__item__unit">hour</div>
               </li>
-              <li class="main__study__item">
-                <p class="main__study__item__title">Total</p>
-                <p class="main__study__item__number">1348</p>
-                <p class="main__study__item__unit">hour</p>
+              <li class="main__study__item last__item">
+                <div class="main__study__item__title">Total</div>
+                <div class="main__study__item__number">1348</div>
+                <div class="main__study__item__unit">hour</div>
               </li>
             </ul>
           </div>
@@ -51,9 +52,9 @@
         <section class="main__right">
           <ul class="main__pie__chart__inner">
             <!-- 学習言語 円グラフ -->
-            <li class="main__pie__chart__item"></li>
+            <li class="main__pie__chart__item left__item"></li>
             <!-- 学習コンテンツ 円グラフ -->
-            <li class="main__pie__chart__item"></li>
+            <li class="main__pie__chart__item right__item"></li>
           </ul>
     
         </section>
@@ -65,18 +66,52 @@
       <a href="#!" class="modal-overlay"></a>
       <div class="modal-window">
         <div class="modal-content">
-          <main>
+          <main id="modal__main">
             <div class="inner main__inner__ver__modal">
               <section class="main__left__ver__modal">
                 <form action="/" name="contactForm" class="contact__form">
                   <dl class="contact__form__list">
-                    <div class="contact__form__item contact__form__item__date">
-                      <label for="study__date">学習日</label><br>
-                      <input type="date" name="study__date" id="study__date">
-                      <!-- <input type="text" name="study__date" id="study__date"> -->
+                    <div class="contact__form__item contact__form__item__date item__title">
+                      <div  id="appendTo">
+                        <label for="study__date">学習日</label><br>
+                        <!-- <div id="appendTo">ここに表示</div> -->
+                        <!-- <div id="calender__display">ここに表示</div> -->
+                        <input type="text" name="study__date" id="study__date">
+                      </div>                  
                     </div>
+                      <!-- <button class="calender__modal__button"><a href="#modal__loading">表示</a></button> -->
+
+                      <!-- カレンダー画面 -->
+                      <!-- <div class="modal-wrapper" id="modal__calender">
+                        <a href="#!" class="modal-overlay"></a>
+                        <div class="modal-window">
+                          <div class="modal-content">
+                            <div>aaaaaaaaaaaaaaaaaaaaaa</div>
+                            <p id="calender__display">ここにカレンダー表示</p>
+                            <button></button>
+                          </div>
+                          <a href="#!" class="modal-close">×</a>
+                        </div>
+                      </div> -->
+                      <!-- ここまでカレンダー画面 -->
+                    
+            
+                    <!-- <div class="modal-wrapper-calender" id="modal__calender">
+                      <a href="#!" class="modal-overlay-calender"></a>
+                      <div class="modal-window-calender">
+                        <div class="modal-content-calender">
+                          <div>aaaaaaaaaaaaaaaaaaaaaa</div>
+                          <p id="calender__display">ここにカレンダー表示</p>
+                          <button></button>
+                        </div>
+                        <a href="#!" class="modal-close">×</a>
+                      </div>
+                    </div> -->
+                    
+
+
                     <div class="contact__form__item">
-                      <dt>学習コンテンツ（複数選択可）</dt>
+                      <dt class="item__title">学習コンテンツ（複数選択可）</dt>
                       <dd data-toggle="buttons">
                         <label class="btn active"><input type="checkbox" name="study__contents" value="N予備校" checked><i class="fa fa-square-o fa-2x"></i>N予備校</label>
                         <label class="btn "><input type="checkbox" name="study__contents" value="ドットインストール"><i class="fa fa-square-o fa-2x"></i>ドットインストール</label><br>
@@ -84,7 +119,7 @@
                       </dd>
                     </div>
                     <div class="contact__form__item">
-                      <dt>学習言語（複数選択可）</dt>
+                      <dt class="item__title">学習言語（複数選択可）</dt>
                       <dd data-toggle="buttons">
                         <label class="btn active"><input type="checkbox" name="study__language" value="HTML" checked><i class="fa fa-square-o fa-2x"></i>HTML</label>
                         <label class="btn "><input type="checkbox" name="study__language" value="css"><i class="fa fa-square-o fa-2x"></i>css</label>
@@ -103,19 +138,19 @@
                 <form action="/" name="contactForm" class="contact__form">
                   <dl class="contact__form__list">
                     <div class="contact__form__item">
-                      <dt><label for="study__hour">学習時間</label></dt>
+                      <dt class="item__title"><label for="study__hour">学習時間</label></dt>
                       <dd><input id="study__hour" type="text" name="study__hour"></dd>
                     </div>
                   
                     <div class="contact__form__item">
-                      <dt><label for="content">Twitter用コメント</label></dt>
+                      <dt class="item__title"><label for="content">Twitter用コメント</label></dt>
                       <dd><textarea id="content" type="text" name="content"></textarea></dd>
                     </div>
                     <div class="contact__form__item">
                       <dd data-toggle="buttons">
                         <label class="btn active">
                           <input type="checkbox" name="study__twitter" value="twitter" checked><i class="fa fa-square-o fa-2x"></i>
-                          <a href="" class="contact__form__twitter">Twitterにシェアする</a>
+                          <a href="" class="contact__form__twitter" class="item__title">Twitterにシェアする</a>
                         </label>
                       </dd>
                     </div>
@@ -125,11 +160,20 @@
               
             </div> 
             <div class="contact__form__footer">
-              <button class="header__sending__button"><a href="#modal__loading">記録・投稿</a></button>
+              <button class="header__sending__button__modal"><a href="#modal__loading">記録・投稿</a></button>
             </div>   
+            <!-- カレンダー画面の中に表示される決定ボタン 下一行-->
+            <button id="determination__button" class="calender__modal__determination__button"><a href="#modal">決定</a></button>
+          
+            <div class="close__button__wrap">
+              <span class="circle__background">
+                <a href="#!" class="modal-close">×</a>
+              </span>
+            </div>
           </main>
         </div>
-        <a href="#!" class="modal-close">×</a>
+        
+        
       </div>
     </div>
 
@@ -156,13 +200,49 @@
             <span class="circle">
               <div class="check__mark"></div> 
             </span>
-            <p>記録・投稿</p><br>
-            <p>完了しました</p>
+            <div class="circle__explain">記録・投稿</div>
+            <div class="circle__explain">完了しました</div>
           </div>        
+        </div>
+        <div class="close__button__wrap">
+          <span class="circle__background">
+            <a href="#!" class="modal-close modal-close__responsive">×</a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-wrapper" id="modal__calender">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal-window">
+        <div class="modal-content">
+          <div>aaaaaaaaaaaaaaaaaaaaaa</div>
+          <p id="calender__display">ここにカレンダー表示</p>
+          <!-- <button></button> -->
         </div>
         <a href="#!" class="modal-close">×</a>
       </div>
     </div>
+    <!-- <div class="modal-wrapper" id="modal__calender">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal-window">
+        <div class="modal-content-circle">
+          <div class="circle__wrap">
+            <p class="circle__above">AWESOME!</p>
+            <span class="circle">
+              <div class="check__mark"></div> 
+            </span>
+            <div class="circle__explain">記録・投稿</div>
+            <div class="circle__explain">完了しました</div>
+          </div>        
+        </div>
+        <div class="close__button__wrap">
+          <span class="circle__background">
+            <a href="#!" class="modal-close modal-close__responsive">×</a>
+          </span>
+        </div>
+      </div>
+    </div> -->
     
     <!-- フッター -->
     <footer class="footer">
@@ -170,8 +250,10 @@
       <p>2020年 10月</p>
       <div class="Arrow-Right"></div>
     </footer>
+    <button class="header__sending__button__responsive"><a href="#modal">記録・投稿</a></button>
   </div>
   
-  
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="webapp.js"></script>
 </body>
 </html>

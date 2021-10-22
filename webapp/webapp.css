@@ -1,5 +1,8 @@
+html{
+  font-size: 1vw;
+}
 body{
-  background-color: #e6e3e3;
+  background-color: #f5f5f8;
 }
 p{
   margin: 0;
@@ -38,27 +41,27 @@ li{
   align-items: center;
   justify-content: center;
   height: 100%;
-  margin: 0 30px 0;
+  margin: 0 3rem 0;
 }
 .posse__logo{
-  height: 32px;
+  height: 3.2rem;
   /* margin-left: 10px; */
   background-size: cover;
 }
 .header__date{
-  font-size: 15px;
-  color: rgb(12, 154, 211);
-  margin-left: 20px;
+  font-size: 1.5rem;
+  color: #97b9d1;
+  margin-left: 2rem;
 }
 .header__sending__button{
-  background: linear-gradient(to right, #4169e1, #87cefa);
+  background: linear-gradient(to right, #0f71bc, #8bd8f7);
   margin-left: auto;
   /* margin-right: 20px; */
   color: #fff;
-  padding: 5px 40px 5px;
-  border-radius: 30px;
+  padding: 0.5rem 4rem 0.5rem;
+    border-radius: 30rem;
   border-color: transparent;
-  box-shadow: 0 0 18px #87cefa;
+  box-shadow: 0 0 18px #97b9d1;
 }
 
 /* main  */
@@ -71,10 +74,10 @@ li{
   width: 98%;
 }
 .main__left{
-  width: 44%;
+  width: 50%;
 }
 .main__right{
-  width: 44%;
+  width: 50%;
 }
 
 /* main__study__number */
@@ -84,55 +87,56 @@ li{
 }
 .main__study__item{
   text-align: center;
-  
   background-color: #fff;
-  border-radius: 10px;
-  padding: 20px 40px 0;
-  width: 100px;
-  height: 140px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 3rem;
+  padding: 2rem 2rem 1rem;
+  width: 11rem;
+  height: 13.8rem;
+  box-shadow: 0 0.4rem 1.1rem rgb(0 0 0 / 15%);
 }
 .main__study__item + .main__study__item{
-  margin-left: 20px;
+  margin-left: 2rem;
 }
 .main__study__item__title{
-  font-size: 20px;
-  color: #4169e1;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0f71bc;
 }
 .main__study__item__number{
-  font-size: 35px;
+  font-size: 4.5rem;
   font-weight: bold;
 }
 .main__study__item__unit{
-  font-size: 20px;
-  color: #87cefa;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #97b9d1;
 }
 
 /* main__bar__graph */
 .main__bar__graph{
-  width: 580px;
-  height: 320px;
-  margin-top: 20px;
+  width: 50rem;
+  height: 32rem;
+  margin-top: 2rem;
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 3rem;
+  box-shadow: 0 0.4rem 1.1rem rgb(0 0 0 / 15%);
 }
 
 /* main__pie__chart */
 .main__pie__chart__inner{
   display: flex;
   list-style: none;
-  margin-left: 20px;
+  margin-left: 2rem;
 }
 .main__pie__chart__item + .main__pie__chart__item{
-  margin-left: 20px;
+  margin-left: 2rem;
 }
 .main__pie__chart__item{
-  width: 270px;
-  height: 500px;
+  width: 22rem;
+  height: 50rem;
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 3rem;
+  box-shadow: 0 0.4rem 1.1rem rgb(0 0 0 / 15%);
 }
 
 /* footer */
@@ -143,26 +147,30 @@ li{
 }
 .footer {
   margin-top: auto;
-  font-size: 12px;
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 1.2rem;
   display: flex;
   justify-content: center;
 }
 .Arrow-Right {
-  border-top: solid 2px #87cefa;
-  border-right: solid 2px #87cefa;
-  width: 12px;
-  height: 12px;
+  border-top: solid 0.2rem #97b9d1;
+  border-right: solid 0.2rem #97b9d1;
+  width: 1.2rem;
+  height: 1.2rem;
   transform: rotate(45deg);
 }
 .Arrow-Left {
-  border-bottom: solid 2px #4169e1;
-  border-left: solid 2px #4169e1;
-  width: 12px;
-  height: 12px;
+  border-bottom: solid 0.2rem #0f71bc;
+  border-left: solid 0.2rem #0f71bc;
+  width: 1.2rem;
+  height: 1.2rem;
   transform: rotate(45deg);
+}
+.header__sending__button__responsive{
+  display: none;
+
 }
 
 /*モーダルウィンドウを動かしているcss*/
@@ -183,14 +191,14 @@ li{
 }
 
 .modal-wrapper {
-  z-index: 999;
+  z-index: 9999;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 40px 10px;
-  text-align: center
+  padding: 4rem 1rem;
+  text-align: center;
 }
 .modal-wrapper:not(:target) {
   opacity: 0;
@@ -214,19 +222,18 @@ li{
   display: inline-block;
   z-index: 1010;
   position: relative;
-  width: 900px;
-  height: 500px;
+  width: 82rem;
+  height: 44rem;
   /*max-width: 600px;  /* 600 */
-  padding: 30px 0 30px;  /* 30px 30px 15px; */
-  border-radius: 2px;
+  padding: 2rem 0 2rem;  /* 30px 30px 15px; */
   background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, .6);
+  border-radius: 4rem;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, .6);
   vertical-align: middle
 }
 .modal-wrapper .modal-window .modal-content {
   max-height: 80vh;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   text-align: left
 }
 .modal-overlay {
@@ -236,27 +243,55 @@ li{
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, .8)
+  background-color: rgba(85, 84, 84, 0.8);
+  /* background: rgba(85, 84, 84, 0.8); */
+}
+.close__button__wrap{
+	/* position: fixed; */
+	align-items: center;
+  justify-content: center;
+  width: 81rem;
+  /* top: 14rem; */
+}
+.circle__background{
+  z-index: 10;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 3.8rem;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.5rem;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0;
+  background-color:#f5f5f8;
+  display: inline-block;
+  border-radius: 50%;
 }
 .modal-wrapper .modal-close {
   z-index: 20;
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
-  width: 35px;
+  width: 3.5rem;
   color: #95979c !important;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
-  line-height: 35px;
+  line-height: 3.5rem;
   text-align: center;
   text-decoration: none;
-  text-indent: 0
+  text-indent: 0;
 }
 .modal-wrapper .modal-close:hover {
   color: #2b2e38 !important
 }
 
 /* ここからモーダルの中身 */
+.item__title{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
 .main__inner__ver__modal{
   display: flex;
   align-items: center;
@@ -265,78 +300,75 @@ li{
 }
 .main__left__ver__modal{
   width: 50%;
-  padding-left: 56px;
+  padding-left: 4.6rem;
 }
 .main__right__ver__modal{
   width: 50%;
-  padding-right: 56px;
+  padding-right: 4.6rem;
 }
-
+.main__left__ver__modal + .main__right__ver__modal{
+  margin-left: 2rem;
+}
 .contact__form__item__date{
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 .contact__form__item__date input{
-  margin-top: 5px;
+  margin-top: 0.5rem;
 }
 .contact__form__item dd {
-  margin: 0  0 10px;
-  
+  margin: 0  0 1rem;
 }
 .main__left__ver__modal .contact__form__item dd label{
-  background-color: #e9e4dd;
-  padding: 2px;
-  border-radius: 5px;
+  background-color: #f5f5f8;
+  padding: 0.6rem 0.3rem 0.4rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 .contact__form__item dd label input{
-  margin: 12px;
+  margin: 1rem;
 }
 .contact__form__item input[type=text]{
-  background-color: #e9e4dd;
+  background-color: #f5f5f8;
   border: transparent;
-  height: 20px;
-  width: 394px;
-  border-radius: 5px;
+  height: 3rem;
+  width: 35rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem
 }
 .contact__form__item textarea[type=text]{
-  background-color: #e9e4dd;
+  background-color: #f5f5f8;
   border: transparent;
-  width: 394px;
-  height: 150px;
+  width: 35rem;
+  height: 13rem;
   border-radius: 5px;
+  margin-top: 0.5rem
 }
 .contact__form__footer {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 3.5rem;
 }
-a{
+.contact__form__twitter{
   text-decoration: none;
   color: #000;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.header__sending__button__modal a{
+  text-decoration: none;
+  color: #fff;
+}
+.header__sending__button__modal{
+  background: linear-gradient(to right, #0f71bc, #8bd8f7);
+  margin-left: auto;
+  /* margin-right: 20px; */
+  color: #fff;
+  padding: 0.5rem 4rem 0.5rem;
+  border-radius: 30rem;
+  border-color: transparent;
+  box-shadow: 0 0 18px #8bd8f7;
 }
 
-/* calender */
-input[type="date"] {
-  width: 90%;
-  background-color: #e9e4dd;
-  border: transparent;
-  height: 23px;
-  border-radius: 5px;
-}
-input[type="date"]::-webkit-inner-spin-button{
-  -webkit-appearance: none;
-}
-input[type="date"]::-webkit-clear-button{
-  -webkit-appearance: none;
-}  /* ここまでで２つのボタン消去 */
-input[type="date"]{
-  /* width: 200px;  */
-  position: relative;
-}
-input[type=date]::-webkit-calendar-picker-indicator {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-}  /* ここまででカレンダーロゴマーク消去 */
 
 /* チェックボックスの見た目 */
 label input[type="checkbox"] ~ i.fa.fa-square-o{
@@ -390,11 +422,11 @@ box-shadow: none;
 .loader-wrap {
 	position: fixed;
 	display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 900px;
-    height: 500px;
-    /* background: #000; */
+  align-items: center;
+  justify-content: center;
+  width: 82rem;
+  height: 44rem;
+  /* background: #000; */
 }
 .loader,
 .loader:after {
@@ -442,35 +474,35 @@ box-shadow: none;
 .circle__wrap{
 	position: fixed;
 	/* display: flex; */
-    align-items: center;
-    justify-content: center;
-    width: 900px;
-    height: 250px;
-    /* background: #000; */
+  align-items: center;
+  justify-content: center;
+  width: 82rem;
+  height: 25rem;
+  /* background: #000;*/
 }
 .circle {
-  background-color:rgb(168, 240, 86);
-  width: 100px;
-  height: 100px;
+  background-color:#bde360;
+  width: 10rem;
+  height: 10rem;
   display: inline-block;
   border-radius: 50%;
   position: relative;
 }
 .check__mark{
   content: '';
-  width: 30px;
-  height: 15px;
+  width: 3rem;
+  height: 1.5rem;
   position: absolute;
   top: 35%;
   left: 35%;
   /* transform: translate(-50%, -50%); */
-  border-left: 3px solid #fff;
-  border-bottom: 3px solid #fff;
+  border-left: 0.3rem solid #fff;
+  border-bottom: 0.3rem solid #fff;
   transform: rotate(-45deg);
 }
 .circle__above{
-  color: rgb(168, 240, 86);
-  font-size: 15px;
+  color: #bde360;
+  font-size: 1.5rem;
   /* position: absolute;
   top: -10%; */
 }
@@ -480,10 +512,434 @@ box-shadow: none;
   align-items: center;
   justify-content: center;
   display: flex;
-  width: 900px;
-  height: 500px;
+  width: 81rem;
+  height: 47rem;
 }
-.circle__wrap p{
-  margin: 0;
+.circle__wrap .circle__explain{
+  margin: 0.15rem 0 0.15rem;
   padding: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
+
+/* カレンダー画面 */
+.flex__title{
+  display: flex;
+}
+/* #appendTo{
+  margin-left: 20rem;
+} */
+.calender__modal__determination__button{
+  visibility: hidden;
+  background: linear-gradient(to right, #0f71bc, #8bd8f7);
+  color: #fff;
+  padding: 0.5rem 4rem 0.5rem;
+  border-radius: 30rem;
+  border-color: transparent;
+  box-shadow: 0 0 18px #8bd8f7;
+  position: absolute;
+  left: 35.4rem;
+  bottom: 2rem;
+  z-index: 9999;
+}
+.calender__modal__determination__button a{
+  text-decoration: none;
+  color: #fff;
+}
+
+
+@media screen and (max-width:375px){
+  /*画面幅が414pxまでの時 iPhoneX*/
+  /* topPage */
+  .posse__logo{
+    height: 6.5rem;
+  }
+  .main__inner{
+    display: block;
+  }
+  .main__left , .main__right{
+    width: 100%;
+  }
+  .main__study__item{
+    padding: 3.5rem 9.5rem 8.5rem 8rem;
+    height: 14rem;
+  }
+  .main__study__item__title, .main__study__item__unit{
+    font-size: 4rem;
+  }
+  .main__study__item__number{
+    font-size: 6rem;
+  }
+  /* .first__item{
+    margin-left: 4rem;
+  }
+  .last__item{
+    margin-right: 4rem;
+  } */
+  .main__study__item + .main__study__item {
+    margin-left: 4rem;
+  }
+  .main__bar__graph{
+    width: 93rem;
+    height: 40rem;
+    margin: 6.2rem 0.2rem 4.6rem;
+  }
+  .main__pie__chart__inner {
+   margin-left: 0;
+  }
+  .main__pie__chart__item + .main__pie__chart__item {
+    margin-left: 16px;
+  }
+  .main__pie__chart__item{
+    width: 44rem;
+    height: 72rem;
+  }
+  .left__item{
+    margin-left: 0.5rem;
+  }
+  /* .right__item{
+    margin-right: 20px;
+  } */
+  .footer{
+    margin-top: 4rem;
+  }
+  .Arrow-Right {
+    border-top: solid 0.7rem #97b9d1;
+    border-right: solid 0.7rem #97b9d1;
+    width: 3rem;
+    height: 3rem;
+    
+  }
+  .Arrow-Left {
+    border-bottom: solid 0.7rem #0f71bc;
+    border-left: solid 0.7rem #0f71bc;
+    width: 3rem;
+    height: 3rem;
+  }
+  .footer p{
+    font-size: 2.8rem;
+  }
+  .header__inner{
+    justify-content:left;
+  }
+  .header__sending__button{
+    display: none;
+  }
+  .header__sending__button__responsive a {
+    text-decoration: none;
+    color: #fff;
+  }
+  .footer__fixed{
+    position: relative;
+  }
+  
+  .header__sending__button__responsive{
+    display: block;
+    background: linear-gradient(to right, #0f71bc, #8bd8f7);
+    color: #fff;
+    padding: 0.5rem 4rem 0.5rem;
+    border-radius: 30rem;
+    border-color: transparent;
+    box-shadow: 0 0 5.8rem #97b9d1;
+    position: absolute;
+    bottom: 0.2rem;
+    height: 12rem;
+    width: 100%;
+  }
+  /* topPage ここまで */
+  /* モーダルPage */
+   .modal-wrapper .modal-window{
+    width: 100%;
+    height: 700px;
+    margin-top: 14rem;
+  }
+  .main__inner__ver__modal{
+    width: 100%;
+    display: grid;
+    justify-content: start;
+    margin-top: 12rem;
+  }
+  .main__left__ver__modal{
+    width: 98rem;
+    padding-left: 4.6rem;
+    /* height: 65rem; */
+  }
+  .main__right__ver__modal{
+    width: 98rem;
+    padding-right: 0;
+  }
+  .main__left__ver__modal + .main__right__ver__modal {
+    margin-left: 5rem;
+  }
+  /* dd{
+    margin: 1rem 1rem 1rem 1rem;
+  } */
+  .main__left__ver__modal .contact__form__item dd label {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 1rem 1rem 1rem 1rem;
+    font-size: 2.2rem;
+  }
+  .item__title{
+    margin-top: 5rem;
+  }
+  .contact__form__item input[type=text]{
+    width: 90%;
+    height: 10rem;
+    border-radius: 1rem;
+  }
+  .contact__form__item textarea[type=text]{
+    width: 90%;
+    height: 24rem;
+    border-radius: 1rem;
+    margin-bottom: 5rem;
+  }
+  .circle__background{
+    top: 3rem;
+    right: 3rem;
+    width: 6.8rem;
+    height: 6.8rem;
+  }
+  .modal-wrapper .modal-close{
+    top: 1.5rem;
+    font-size: 6rem;
+  }
+  .contact__form__footer{
+    margin-top: 13.5rem;
+    width: 90rem;
+    height: 14rem;
+    font-size: 5rem;
+  }
+  .modal-wrapper .modal-window .modal-content-circle {
+    width: 99rem;
+    height: 170rem;
+  }
+  /* 記録・投稿完了画面 */
+  .circle{
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 3rem;
+  }
+  .circle__wrap .circle__explain{
+    font-size: 4rem;
+    font-weight: bold;
+  }
+  .circle__above{
+    font-size: 3.5rem;
+  }
+  .check__mark{
+    width: 5rem;
+    height: 2.5rem;
+    border-left: 0.7rem solid #fff;
+    border-bottom: 0.7rem solid #fff;    
+  }
+} 
+
+@media screen and (max-width:414px){
+  /*画面幅が414px-767pxまでの時 iPhone 6/7/8 Plus*/
+  /* topPage */
+  .posse__logo{
+    height: 6.5rem;
+  }
+  .main__inner{
+    display: block;
+  }
+  .main__left , .main__right{
+    width: 100%;
+  }
+  .main__study__item{
+    padding: 3.5rem 9.5rem 8.5rem 8rem;
+    height: 14rem;
+  }
+  .main__study__item__title, .main__study__item__unit{
+    font-size: 4rem;
+  }
+  .main__study__item__number{
+    font-size: 6rem;
+  }
+  /* .first__item{
+    margin-left: 4rem;
+  }
+  .last__item{
+    margin-right: 4rem;
+  } */
+  .main__study__item + .main__study__item {
+    margin-left: 4rem;
+  }
+  .main__bar__graph{
+    width: 93rem;
+    height: 40rem;
+    margin: 6.2rem 0.2rem 4.6rem;
+  }
+  .main__pie__chart__inner {
+   margin-left: 0;
+  }
+  .main__pie__chart__item + .main__pie__chart__item {
+    margin-left: 16px;
+  }
+  .main__pie__chart__item{
+    width: 44rem;
+    height: 72rem;
+  }
+  .left__item{
+    margin-left: 0.5rem;
+  }
+  /* .right__item{
+    margin-right: 20px;
+  } */
+  .footer{
+    margin-top: 4rem;
+  }
+  .Arrow-Right {
+    border-top: solid 0.7rem #97b9d1;
+    border-right: solid 0.7rem #97b9d1;
+    width: 3rem;
+    height: 3rem;
+    
+  }
+  .Arrow-Left {
+    border-bottom: solid 0.7rem #0f71bc;
+    border-left: solid 0.7rem #0f71bc;
+    width: 3rem;
+    height: 3rem;
+  }
+  .footer p{
+    font-size: 2.8rem;
+  }
+  .header__inner{
+    justify-content:left;
+  }
+  .header__sending__button{
+    display: none;
+  }
+  .header__sending__button__responsive a {
+    text-decoration: none;
+    color: #fff;
+  }
+  .footer__fixed{
+    position: relative;
+  }
+  
+  .header__sending__button__responsive{
+    display: block;
+    background: linear-gradient(to right, #0f71bc, #8bd8f7);
+    color: #fff;
+    padding: 0.5rem 4rem 0.5rem;
+    border-radius: 30rem;
+    border-color: transparent;
+    box-shadow: 0 0 5.8rem #97b9d1;
+    position: absolute;
+    bottom: 0.2rem;
+    height: 12rem;
+    width: 100%;
+  }
+  /* topPage ここまで */
+  /* モーダルPage */
+   .modal-wrapper .modal-window{
+    width: 100%;
+    height: 700px;
+    margin-top: 14rem;
+  }
+  .main__inner__ver__modal{
+    width: 100%;
+    display: grid;
+    justify-content: start;
+    margin-top: 12rem;
+  }
+  .main__left__ver__modal{
+    width: 98rem;
+    padding-left: 4.6rem;
+    /* height: 65rem; */
+  }
+  .main__right__ver__modal{
+    width: 98rem;
+    padding-right: 0;
+  }
+  .main__left__ver__modal + .main__right__ver__modal {
+    margin-left: 5rem;
+  }
+  /* dd{
+    margin: 1rem 1rem 1rem 1rem;
+  } */
+  .main__left__ver__modal .contact__form__item dd label {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 1rem 1rem 1rem 1rem;
+    font-size: 2.2rem;
+  }
+  .item__title{
+    margin-top: 5rem;
+  }
+  .contact__form__item input[type=text]{
+    width: 90%;
+    height: 10rem;
+    border-radius: 1rem;
+  }
+  .contact__form__item textarea[type=text]{
+    width: 90%;
+    height: 24rem;
+    border-radius: 1rem;
+    margin-bottom: 5rem;
+  }
+  .circle__background{
+    top: 3rem;
+    right: 3rem;
+    width: 6.8rem;
+    height: 6.8rem;
+  }
+  .modal-wrapper .modal-close{
+    top: 1.5rem;
+    font-size: 6rem;
+  }
+  .contact__form__footer{
+    margin-top: 13.5rem;
+    width: 90rem;
+    height: 14rem;
+    font-size: 5rem;
+  }
+  .main__study__item{
+    padding: 0.5rem 9.5rem 8.5rem 8rem;
+  }
+  .main__bar__graph{
+    height: 35rem;
+  }
+  .main__pie__chart__item{
+    height: 63rem;
+  }
+  .footer{
+    margin-bottom: 11rem;
+  }
+  .footer p{
+    font-size: 1.8rem;
+  }
+  .Arrow-Left , .Arrow-Right{
+    width: 2rem;
+    height: 2rem;
+  }
+  .header__sending__button__responsive{
+    height: 10rem;
+  }
+  /* 記録・投稿完了画面 */
+  .circle{
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 3rem;
+  }
+  .circle__wrap .circle__explain{
+    font-size: 4rem;
+    font-weight: bold;
+  }
+  .circle__above{
+    font-size: 3.5rem;
+  }
+  .check__mark{
+    width: 5rem;
+    height: 2.5rem;
+    border-left: 0.7rem solid #fff;
+    border-bottom: 0.7rem solid #fff;    
+  }
+}
+
+@media screen and (min-width:768px){
+  /*画面幅が768px以上の時 iPad*/
+
+}
+  
