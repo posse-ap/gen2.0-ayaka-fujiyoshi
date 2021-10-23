@@ -44,12 +44,12 @@ li{
   margin: 0 3rem 0;
 }
 .posse__logo{
-  height: 3.2rem;
+  height: 2.5rem;
   /* margin-left: 10px; */
   background-size: cover;
 }
 .header__date{
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #97b9d1;
   margin-left: 2rem;
 }
@@ -74,10 +74,10 @@ li{
   width: 98%;
 }
 .main__left{
-  width: 50%;
+  width: 47%;
 }
 .main__right{
-  width: 50%;
+  width: 47%;
 }
 
 /* main__study__number */
@@ -89,25 +89,25 @@ li{
   text-align: center;
   background-color: #fff;
   border-radius: 3rem;
-  padding: 2rem 2rem 1rem;
-  width: 11rem;
-  height: 13.8rem;
+  padding: 2rem 0 1rem;
+  width: 100%;
+  height: 11.5rem;
   box-shadow: 0 0.4rem 1.1rem rgb(0 0 0 / 15%);
 }
 .main__study__item + .main__study__item{
   margin-left: 2rem;
 }
 .main__study__item__title{
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: #0f71bc;
 }
 .main__study__item__number{
-  font-size: 4.5rem;
+  font-size: 4.2rem;
   font-weight: bold;
 }
 .main__study__item__unit{
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: #97b9d1;
 }
@@ -115,7 +115,7 @@ li{
 /* main__bar__graph */
 .main__bar__graph{
   width: 50rem;
-  height: 32rem;
+  height: 25rem;
   margin-top: 2rem;
   background-color: #fff;
   border-radius: 3rem;
@@ -133,7 +133,7 @@ li{
 }
 .main__pie__chart__item{
   width: 22rem;
-  height: 50rem;
+  height: 42rem;
   background-color: #fff;
   border-radius: 3rem;
   box-shadow: 0 0.4rem 1.1rem rgb(0 0 0 / 15%);
@@ -150,7 +150,7 @@ li{
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.5rem;
   display: flex;
   justify-content: center;
 }
@@ -222,7 +222,7 @@ li{
   display: inline-block;
   z-index: 1010;
   position: relative;
-  width: 82rem;
+  width: 80rem;
   height: 44rem;
   /*max-width: 600px;  /* 600 */
   padding: 2rem 0 2rem;  /* 30px 30px 15px; */
@@ -317,16 +317,18 @@ li{
 }
 .contact__form__item dd {
   margin: 0  0 1rem;
+  border-radius: 0.5rem;
 }
-.main__left__ver__modal .contact__form__item dd label{
+.main__left__ver__modal .contact__form__item dd label{ /* 選択肢 */
   background-color: #f5f5f8;
-  padding: 0.6rem 0.3rem 0.4rem;
+  padding: 0.6rem 0.4rem 0.6rem;
+  margin: 0.4rem 0 0.4rem;
   border-radius: 0.5rem;
   font-weight: bold;
   font-size: 1.2rem;
 }
-.contact__form__item dd label input{
-  margin: 1rem;
+.contact__form__item dd input{ /* checkbox */
+  margin: 1rem 0.6rem 1rem 1rem;
 }
 .contact__form__item input[type=text]{
   background-color: #f5f5f8;
@@ -340,13 +342,18 @@ li{
   background-color: #f5f5f8;
   border: transparent;
   width: 35rem;
-  height: 13rem;
-  border-radius: 5px;
-  margin-top: 0.5rem
+  height: 17rem;
+  border-radius: 0.5px;
+  margin-top: 0.5rem;
+  position: relative;
+  left: 1rem;
 }
 .contact__form__footer {
   text-align: center;
   margin-top: 3.5rem;
+}
+.twitter__wrapper{
+  border-radius: 5rem;
 }
 .contact__form__twitter{
   text-decoration: none;
@@ -369,54 +376,55 @@ li{
   box-shadow: 0 0 18px #8bd8f7;
 }
 
-
 /* チェックボックスの見た目 */
-label input[type="checkbox"] ~ i.fa.fa-square-o{
-  color: #c8c8c8;    display: inline;
-}
-label input[type="checkbox"] ~ i.fa.fa-check-square-o{
+.self__checkbox input[type="checkbox"]{ /* 元々のチェックボックス（非表示） */
   display: none;
 }
-label input[type="checkbox"]:checked ~ i.fa.fa-square-o{
-  display: none;
+.self__checkbox input[type="checkbox"]+label{ /* チェックボックスの代わりを成すラベル */
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  padding-left: 2.5rem;
+  padding-right: 1rem;
 }
-label input[type="checkbox"]:checked ~ i.fa.fa-check-square-o{
-  color: #7AA3CC;    display: inline;
+.self__checkbox input[type="checkbox"]+label::before{ /* ラベルの左に表示させるボックス〇 */
+  content: "";
+  position: absolute;
+  /* display: block; */
+  box-sizing: border-box;
+  width: 2rem;
+  height: 2rem;
+  margin-top: -1rem;
+  left: 0.2rem;
+  top: 50%;
+  /* border: 1px solid; */
+  border-radius: 50%;
+  border-color: #ccc; /* 枠の色変更 お好きな色を blue #0F71BD */
+  background-color: #ccc; /* 背景の色変更 お好きな色を */   
 }
-label:hover input[type="checkbox"] ~ i.fa {
-color: #7AA3CC;
+.self__checkbox input[type="checkbox"]+label::after{ /* チェックが入った時のレ点 */
+  content: "";
+  position: absolute;
+  /* display: block; */
+  box-sizing: border-box;
+  width: 1.4rem;
+  height: 1rem;
+  margin-top: -0.8rem;
+  top: 50%;
+  left: 0.5rem;
+  transform: rotate(-45deg);
+  border-bottom: 0.2rem solid;
+  border-left: 0.2rem solid;
+  border-color: #fff; /* チェックの色変更 お好きな色を */
 }
-div[data-toggle="buttons"] label.active{
-  color: #7AA3CC;
+.self__checkbox input[type="checkbox"]:checked +label::before{
+  border-color: #0F71BD; /* 枠の色変更 お好きな色を */
+  background-color: #0F71BD; /* 背景の色変更 お好きな色を */   
 }
-div[data-toggle="buttons"] label {
-display: inline-block;
-padding: 6px 12px;
-margin-bottom: 0;
-font-size: 14px;
-font-weight: normal;
-line-height: 2em;
-text-align: left;
-white-space: nowrap;
-vertical-align: top;
-cursor: pointer;
-background-color: none;
-border: 0px solid #c8c8c8;
-border-radius: 3px;
-color: #c8c8c8;
--webkit-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
--o-user-select: none;
-user-select: none;
+.self__checkbox input[type="checkbox"]:checked + label{
+  background-color: #E7F5FF;
 }
-div[data-toggle="buttons"] label:hover {
-color: #7AA3CC;
-}
-div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
--webkit-box-shadow: none;
-box-shadow: none;
-}
+
 
 /* modal__loading */
 .loader-wrap {
@@ -861,7 +869,7 @@ box-shadow: none;
     margin: 1rem 1rem 1rem 1rem;
   } */
   .main__left__ver__modal .contact__form__item dd label {
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 3rem;
     margin: 1rem 1rem 1rem 1rem;
     font-size: 2.2rem;
   }
@@ -938,8 +946,18 @@ box-shadow: none;
   }
 }
 
-@media screen and (min-width:768px){
+@media screen and (max-width:768px){
   /*画面幅が768px以上の時 iPad*/
-
+  .footer__fixed{
+    min-height: 79vh;
+  }
+  #appendTo{
+    left: 16rem;
+    top: -2.9rem;
+  }
+  .calender__modal__determination__button{
+    left: 62.4rem;
+    bottom: 3rem;
+  }
 }
   
