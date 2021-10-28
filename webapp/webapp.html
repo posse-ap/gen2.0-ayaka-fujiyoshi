@@ -46,15 +46,82 @@
             </ul>
           </div>
           <!-- 学習時間 棒グラフ -->
-          <div class="inner main__bar__graph"></div>
+          <div class="inner main__bar__graph">
+            <div id="barChart__div" class="barChart__div__wrapper"></div>
+          </div>
   
         </section>
         <section class="main__right">
           <ul class="main__pie__chart__inner">
             <!-- 学習言語 円グラフ -->
-            <li class="main__pie__chart__item left__item"></li>
+            <li  class="main__pie__chart__item left__item">
+              <div class="main__pie__chart__title">学習言語</div>
+              <div id="pieChart__left" class="pieChart__position"></div>
+              <div class="pie__chart__legend__wrapper">
+                <div class="pie__chart__legend__items">
+                  <div class="pie__chart__circle circle__js">
+                    <div class="pie__chart__language ">JavaScript</div>
+                  </div> 
+                </div>
+                <div class="pie__chart__legend__items">
+                 <div class="pie__chart__circle circle__css">
+                  <div class="pie__chart__language ">css</div>
+                 </div>
+                </div>
+                <div class="pie__chart__legend__items">
+                 <div class="pie__chart__circle circle__php">
+                  <div class="pie__chart__language ">PHP</div>
+                 </div>
+                </div>
+                <div class="pie__chart__legend__items">
+                 <div class="pie__chart__circle circle__html">
+                  <div class="pie__chart__language active">HTML</div>
+                 </div>
+                </div>
+                <div class="pie__chart__legend__items">
+                 <div class="pie__chart__circle circle__laravel">
+                  <div class="pie__chart__language ">Laravel</div>
+                 </div>
+                </div>
+                <div class="pie__chart__legend__items">
+                 <div class="pie__chart__circle circle__sql">
+                  <div class="pie__chart__language ">SQL</div>
+                 </div>
+                </div>
+                <div class="pie__chart__legend__items">
+                 <div class="pie__chart__circle circle__shell">
+                  <div class="pie__chart__language ">SHELL</div>
+                 </div>
+                </div>
+                <div class="pie__chart__legend__items">
+                 <div class="pie__chart__circle circle__system">
+                  <div class="pie__chart__language__system ">情報システム基礎知識（その他）</div>
+                 </div>
+                </div>
+              </div>
+            </li>
             <!-- 学習コンテンツ 円グラフ -->
-            <li class="main__pie__chart__item right__item"></li>
+            <li  class="main__pie__chart__item right__item">
+               <div class="main__pie__chart__title">学習コンテンツ</div>
+               <div id="pieChart__right" class="pieChart__position"></div>
+               <div class="pie__chart__legend__wrapper">
+                <div class="pie__chart__legend__items">
+                  <div class="pie__chart__circle circle__js">
+                    <div class="pie__chart__language ">ドットインストール</div>
+                  </div> 
+                </div>
+                <div class="pie__chart__legend__items">
+                 <div class="pie__chart__circle circle__css">
+                  <div class="pie__chart__language ">N予備校</div>
+                 </div>
+                </div>
+                <div class="pie__chart__legend__items">
+                 <div class="pie__chart__circle circle__php">
+                  <div class="pie__chart__language ">POSSE課題</div>
+                 </div>
+                </div>
+              </div>
+            </li>
           </ul>
     
         </section>
@@ -73,43 +140,11 @@
                   <dl class="contact__form__list">
                     <div class="contact__form__item contact__form__item__date item__title">
                       <div  id="appendTo">
-                        <label for="study__date">学習日</label><br>
-                        <!-- <div id="appendTo">ここに表示</div> -->
-                        <!-- <div id="calender__display">ここに表示</div> -->
+                        <label for="study__date">学習日</label><br>                      
                         <input type="text" name="study__date" id="study__date">
                       </div>                  
                     </div>
-                      <!-- <button class="calender__modal__button"><a href="#modal__loading">表示</a></button> -->
-
-                      <!-- カレンダー画面 -->
-                      <!-- <div class="modal-wrapper" id="modal__calender">
-                        <a href="#!" class="modal-overlay"></a>
-                        <div class="modal-window">
-                          <div class="modal-content">
-                            <div>aaaaaaaaaaaaaaaaaaaaaa</div>
-                            <p id="calender__display">ここにカレンダー表示</p>
-                            <button></button>
-                          </div>
-                          <a href="#!" class="modal-close">×</a>
-                        </div>
-                      </div> -->
-                      <!-- ここまでカレンダー画面 -->
-                    
-            
-                    <!-- <div class="modal-wrapper-calender" id="modal__calender">
-                      <a href="#!" class="modal-overlay-calender"></a>
-                      <div class="modal-window-calender">
-                        <div class="modal-content-calender">
-                          <div>aaaaaaaaaaaaaaaaaaaaaa</div>
-                          <p id="calender__display">ここにカレンダー表示</p>
-                          <button></button>
-                        </div>
-                        <a href="#!" class="modal-close">×</a>
-                      </div>
-                    </div> -->
-                    
-
-
+                                      
                     <div class="contact__form__item">
                       <dt class="item__title">学習コンテンツ（複数選択可）</dt>
                       <dd class="self__checkbox" data-toggle="buttons">
@@ -211,38 +246,6 @@
         </div>
       </div>
     </div>
-
-    <div class="modal-wrapper" id="modal__calender">
-      <a href="#!" class="modal-overlay"></a>
-      <div class="modal-window">
-        <div class="modal-content">
-          <div>aaaaaaaaaaaaaaaaaaaaaa</div>
-          <p id="calender__display">ここにカレンダー表示</p>
-          <!-- <button></button> -->
-        </div>
-        <a href="#!" class="modal-close">×</a>
-      </div>
-    </div>
-    <!-- <div class="modal-wrapper" id="modal__calender">
-      <a href="#!" class="modal-overlay"></a>
-      <div class="modal-window">
-        <div class="modal-content-circle">
-          <div class="circle__wrap">
-            <p class="circle__above">AWESOME!</p>
-            <span class="circle">
-              <div class="check__mark"></div> 
-            </span>
-            <div class="circle__explain">記録・投稿</div>
-            <div class="circle__explain">完了しました</div>
-          </div>        
-        </div>
-        <div class="close__button__wrap">
-          <span class="circle__background">
-            <a href="#!" class="modal-close modal-close__responsive">×</a>
-          </span>
-        </div>
-      </div>
-    </div> -->
     
     <!-- フッター -->
     <footer class="footer">
@@ -254,6 +257,7 @@
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="webapp.js"></script>
 </body>
 </html>

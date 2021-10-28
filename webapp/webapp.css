@@ -121,8 +121,20 @@ li{
   border-radius: 3rem;
   box-shadow: 0 0.4rem 1.1rem rgb(0 0 0 / 15%);
 }
+.barChart__div__wrapper{
+  position: relative;
+  top: 0.9rem;
+  left: 1.5rem;
+}
 
 /* main__pie__chart */
+.main__pie__chart__title{
+  position: relative;
+  top: 1.2rem;
+  left: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
 .main__pie__chart__inner{
   display: flex;
   list-style: none;
@@ -138,6 +150,71 @@ li{
   border-radius: 3rem;
   box-shadow: 0 0.4rem 1.1rem rgb(0 0 0 / 15%);
 }
+.pieChart__position{
+  position: relative;
+  top: 1.5rem;  
+  width: 20rem;
+  height: 27rem;
+}
+.pie__chart__legend__wrapper{
+  position: fixed;
+	/* display: flex; 
+  align-items: center;
+  justify-content: center;*/
+  width: 22rem;
+  height: 12rem;
+}
+.pie__chart__legend__items{
+  width: 4rem;
+  height: 1.5rem;
+}
+.pie__chart__circle {
+  /* background-color:#bde360; */
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  border-radius: 50%;
+  padding: 0;
+  margin:  0 2rem 0;
+  /*position: relative;*/
+}
+.circle__js{
+  background-color:#0042E5;
+}
+.circle__css{
+  background-color:#0070B9;
+}
+.circle__php{
+  background-color:#00BDDB;
+}
+.circle__html{
+  background-color:#B29DEF;
+}
+.circle__laravel{
+  background-color:#6C43E5;
+}
+.circle__sql{
+  background-color:#B29DEF;
+}
+.circle__shell{
+  background-color:#4609E8;
+}
+.circle__system{
+  background-color:#2D00BA;
+}
+.pie__chart__language{
+  margin:  0 2rem 0;
+  padding: 0;
+  width: 9rem;
+  height: 1rem;
+}
+.pie__chart__language__system{
+  margin:  0 2rem 0;
+  padding: 0;
+  width: 15rem;
+  height: 1rem;
+}
+
 
 /* footer */
 .footer__fixed{
@@ -375,6 +452,24 @@ li{
   border-color: transparent;
   box-shadow: 0 0 18px #8bd8f7;
 }
+
+/* calender */
+.custom{
+  color: #0f71bc;
+}
+/* .flatpickr-current-month-mine {
+  display: flex;
+  justify-content: center;
+}
+.cur-year-mine {
+  order: 1
+}
+.cur-month-mine:before  {
+   content: "年 "
+}
+.cur-month-mine {
+  order: 2
+} */
 
 /* チェックボックスの見た目 */
 .self__checkbox input[type="checkbox"]{ /* 元々のチェックボックス（非表示） */
