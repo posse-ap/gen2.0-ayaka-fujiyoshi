@@ -136,7 +136,7 @@
           <main id="modal__main">
             <div class="inner main__inner__ver__modal">
               <section class="main__left__ver__modal">
-                <form action="/" name="contactForm" class="contact__form">
+                <form action="/" name="contactForm1" class="contact__form1">
                   <dl class="contact__form__list">
                     <div class="contact__form__item contact__form__item__date item__title">
                       <div  id="appendTo">
@@ -170,7 +170,7 @@
                 </form>        
               </section>
               <section class="main__right__ver__modal">
-                <form action="/" name="contactForm" class="contact__form">
+                <form action="/" name="contactForm2" class="contact__form2">
                   <dl class="contact__form__list">
                     <div class="contact__form__item">
                       <dt class="item__title"><label for="study__hour">学習時間</label></dt>
@@ -183,8 +183,8 @@
                     </div>
                     <div class="contact__form__item">
                       <dd class="self__checkbox" data-toggle="buttons">
-                        <input type="checkbox" id="study__twitter" value="twitter" checked>
-                        <label for="study__twitter" class="btn active twitter__wrapper" >                          
+                        <input type="checkbox" id="study__twitter" name="twitterButton" value="twitter">
+                        <label for="study__twitter" class="btn twitter__wrapper">
                           <a href="" class="contact__form__twitter item__title">Twitterにシェアする</a>
                         </label>
                       </dd>
@@ -195,7 +195,8 @@
               
             </div> 
             <div class="contact__form__footer">
-              <button class="header__sending__button__modal"><a href="#modal__loading">記録・投稿</a></button>
+              <!-- <button id="record__button" class="header__sending__button__modal"><a href="#modal__determination">記録・投稿</a></button> -->
+              <button id="record__button" class="header__sending__button__modal">記録・投稿</button>
             </div>   
             <!-- カレンダー画面の中に表示される決定ボタン 下一行-->
             <button id="determination__button" class="calender__modal__determination__button"><a href="#modal">決定</a></button>
@@ -212,7 +213,7 @@
       </div>
     </div>
 
-    <!-- ローディング画面
+    <!-- ローディング画面 -->
     <div class="modal-wrapper" id="modal__loading">
       <a href="#!" class="modal-overlay"></a>
       <div class="modal-window">
@@ -221,12 +222,12 @@
             <div class="loader">Loading...</div>
           </div>          
         </div>
-        <a href="#!" class="modal-close">×</a>
+        <!-- <a href="#!" class="modal-close">×</a> -->
       </div>
-    </div> -->
+    </div>
 
     <!-- 記録・投稿完了画面 -->
-    <div class="modal-wrapper" id="modal__loading">
+    <div class="modal-wrapper" id="modal__determination">
       <a href="#!" class="modal-overlay"></a>
       <div class="modal-window">
         <div class="modal-content-circle">
@@ -241,7 +242,7 @@
         </div>
         <div class="close__button__wrap">
           <span class="circle__background">
-            <a href="#!" class="modal-close modal-close__responsive">×</a>
+            <a href="#!" id="modal__determination__close" class="modal-close modal-close__responsive">×</a>
           </span>
         </div>
       </div>

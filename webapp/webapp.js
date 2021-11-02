@@ -229,3 +229,53 @@ function drawPieRightChart() {
   var pieChartRight = new google.visualization.PieChart(document.getElementById('pieChart__right'));
   pieChartRight.draw(pieChartRightData, pieChartRightOptions);
 }
+
+
+/* 
+ * 記録・投稿ボタン 動き
+ */
+
+let twitterCheckBox = document.getElementById('study__twitter');
+/* let determinationButton = document.getElementById('determination__button'); /* 完了ボタンid */
+let recordButton = document.getElementById('record__button'); /* 記録・投稿ボタンid */
+let loadingModal = document.getElementById('modal__loading'); /* ローディング画面id */
+let determinationModal = document.getElementById('modal__determination'); /* 記録・投稿完了画面id */
+let closeDeterminationModal = document.getElementById('modal__determination__close'); /* 記録・投稿完了画面閉じるid */
+
+function buttonClick() {
+  if (twitterCheckBox.checked === true) {
+    // console.log('twitter');
+  } else {
+    // console.log('loading');
+    loadingModal.style.visibility = 'visible';
+    loadingModal.style.opacity= '1';
+    window.setTimeout(function(){
+      loadingModal.style.visibility = 'hidden';
+      loadingModal.style.opacity= '0';
+      determinationModal.style.visibility = 'visible';
+      determinationModal.style.opacity= '1';
+  }, 3000);
+  }
+}
+function closeModal() {
+  determinationModal.style.visibility = 'hidden';
+  determinationModal.style.opacity= '0';
+}
+closeDeterminationModal.addEventListener('click', closeModal);
+
+
+recordButton.addEventListener('click', buttonClick);
+
+
+// if (twitterCheckBox.checked === true) {
+//   function twitter(){
+//     console.log('twitter');
+//   }
+//   recordButton.addEventListener('click', twitter);
+
+// } else {
+//   function loading(){
+//     console.log('loading');    
+//   }
+//   recordButton.addEventListener('click', loading);
+// }
