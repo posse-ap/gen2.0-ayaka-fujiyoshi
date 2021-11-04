@@ -123,8 +123,10 @@ li{
 }
 .barChart__div__wrapper{
   position: relative;
-  top: 0.9rem;
-  left: 1.5rem;
+  top: 0.8rem;
+  left: 0.9rem;
+  width: 43rem;
+  height: 23rem;
 }
 
 /* main__pie__chart */
@@ -152,7 +154,7 @@ li{
 }
 .pieChart__position{
   position: relative;
-  top: 1.5rem;  
+  top: 1.2rem;  
   width: 20rem;
   height: 27rem;
 }
@@ -161,7 +163,7 @@ li{
 	/* display: flex; 
   align-items: center;
   justify-content: center;*/
-  width: 22rem;
+  width: 20rem;
   height: 12rem;
 }
 .pie__chart__legend__items{
@@ -205,7 +207,7 @@ li{
 .pie__chart__language{
   margin:  0 2rem 0;
   padding: 0;
-  width: 9rem;
+  width: 10rem;
   height: 1rem;
 }
 .pie__chart__language__system{
@@ -572,6 +574,10 @@ li{
     transform: rotate(360deg);
   }
 }
+/* Twitterへ飛ぶリンク */
+.twitter__send__href{
+  display: none;
+}
 
 /* 記録・投稿完了画面 */
 .circle__wrap{
@@ -889,6 +895,21 @@ li{
   /* .right__item{
     margin-right: 20px;
   } */
+  .pie__chart__legend__wrapper{
+    width: 44rem;
+    height: 29rem;
+    /* background-color: pink; */
+    top: 124rem;
+  }
+  .pie__chart__legend__items{
+    height: 3.5rem;
+  }
+  .pie__chart__language{
+    width: 22rem;
+  }
+  .pie__chart__language__system{
+    width: 38rem;
+  }
   .footer{
     margin-top: 4rem;
   }
@@ -999,7 +1020,7 @@ li{
     font-size: 5rem;
   }
   .main__study__item{
-    padding: 0.5rem 9.5rem 8.5rem 8rem;
+    padding: 0.5rem 6.5rem 8.5rem 7rem;
   }
   .main__bar__graph{
     height: 35rem;

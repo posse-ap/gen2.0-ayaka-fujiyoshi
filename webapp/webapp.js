@@ -104,15 +104,15 @@ function drawBarChart() {
 
   // Set chart options
   var barChartOptions = {
-    'width':580,
-    'height':320,
+    // 'width':580,
+    // 'height':320,
     'legend':'none',
     //'colors':['#8bd8f7'],
     'colors':['#0f71bc'],
-     hAxis:{  
-       showTextEvery:0,
+     hAxis:{
+       //showTextEvery:0,
       // scaleType:'number',
-      // baselineColor: '#fff',
+      //  baselineColor: 'transparent',
       //maxTextLines:1,
       //maxValue:30,
        textStyle:{ color: '#97b9d1'}, //目盛りの色
@@ -124,7 +124,8 @@ function drawBarChart() {
      vAxis:{
        format:'#h', //単位「ｈ」つける
        gridlines :{count:0},//補助線消す
-       textStyle:{ color: '#97b9d1'} //目盛りの色
+       textStyle:{ color: '#97b9d1'} ,//目盛りの色
+       baselineColor: 'transparent',
      },
      //backgroundColor: '#fcc',
   };
@@ -133,6 +134,8 @@ function drawBarChart() {
   var barChart = new google.visualization.ColumnChart(document.getElementById('barChart__div'));
   barChart.draw(barChartData, barChartOptions);
 }
+
+    
 
 /* 円グラフ */
 /* left 学習言語 */
@@ -161,8 +164,8 @@ function drawPieLeftChart() {
 
   // Set chart options
   var pieChartLeftOptions = {
-                 'width':280,
-                 'height':300,
+                //  'width':280,
+                //  'height':300,
                  'pieHole': 0.4,
                  //'legend':'bottom',
                  legend: {
@@ -179,7 +182,7 @@ function drawPieLeftChart() {
                   6: { color: '#4609E8' },
                   7: { color: '#2D00BA' },
                 },
-                chartArea:{left:50,top:50,width:'65%',height:'70%'}
+                chartArea:{left:30,top:30,width:'80%',height:'70%'}
   };
 
   // Instantiate and draw our chart, passing in some pieChartLeftOptions.
@@ -209,8 +212,8 @@ function drawPieRightChart() {
 
   // Set chart options
   var pieChartRightOptions = {
-                 'width':280,
-                 'height':300,
+                //  'width':280,
+                //  'height':300,
                  'pieHole': 0.4,
                  //'legend':'bottom',
                  legend: {
@@ -222,7 +225,7 @@ function drawPieRightChart() {
                   1: { color: '#0070B9' },
                   2: { color: '#00BDDB' },
                 },
-                chartArea:{left:50,top:50,width:'65%',height:'70%'},
+                chartArea:{left:30,top:30,width:'80%',height:'70%'},
   };
 
   // Instantiate and draw our chart, passing in some pieChartRightOptions.
@@ -230,21 +233,49 @@ function drawPieRightChart() {
   pieChartRight.draw(pieChartRightData, pieChartRightOptions);
 }
 
+// onReSizeイベント
+window.onresize = function(){
+
+  drawBarChart();
+  drawPieLeftChart();
+  drawPieRightChart();
+  
+}
+
+
 
 /* 
  * 記録・投稿ボタン 動き
  */
 
-let twitterCheckBox = document.getElementById('study__twitter');
-/* let determinationButton = document.getElementById('determination__button'); /* 完了ボタンid */
+let twitterCheckBox = document.getElementById('study__twitter'); /* Twitterのチェックボックスid */
 let recordButton = document.getElementById('record__button'); /* 記録・投稿ボタンid */
 let loadingModal = document.getElementById('modal__loading'); /* ローディング画面id */
 let determinationModal = document.getElementById('modal__determination'); /* 記録・投稿完了画面id */
 let closeDeterminationModal = document.getElementById('modal__determination__close'); /* 記録・投稿完了画面閉じるid */
 
+//const twitterContents = document.getElementById('twitter__contents'); /* twitter用コメント欄id */
+//const s = twitterContents.value;
+//let s = document.getElementById("contents").value;
+
+
+
+url = document.location.href;
+
+
 function buttonClick() {
   if (twitterCheckBox.checked === true) {
     // console.log('twitter');
+    // window.open(`https://twitter.com/intent/tweet?=${twitterContentsValue}`, '_blank');
+    // window.open(`https://twitter.com/intent/tweet?=` + twitterContentsValue, '_blank');
+    //console.log(s);
+
+    let twitterContents = document.getElementById('twitter__contents'); /* twitter用コメント欄id */
+    let s = twitterContents.value;
+    // window.open(`https://twitter.com/intent/tweet?=${s}`, '_blank');
+    url = "http://twitter.com/share?url=" + s;
+		window.open(url,"_blank","width=600,height=300");
+    
   } else {
     // console.log('loading');
     loadingModal.style.visibility = 'visible';
@@ -266,16 +297,3 @@ closeDeterminationModal.addEventListener('click', closeModal);
 
 recordButton.addEventListener('click', buttonClick);
 
-
-// if (twitterCheckBox.checked === true) {
-//   function twitter(){
-//     console.log('twitter');
-//   }
-//   recordButton.addEventListener('click', twitter);
-
-// } else {
-//   function loading(){
-//     console.log('loading');    
-//   }
-//   recordButton.addEventListener('click', loading);
-// }
