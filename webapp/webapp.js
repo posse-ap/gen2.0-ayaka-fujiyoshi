@@ -182,7 +182,7 @@ function drawPieLeftChart() {
                   6: { color: '#4609E8' },
                   7: { color: '#2D00BA' },
                 },
-                chartArea:{left:30,top:15,width:'80%',height:'70%'}
+                chartArea:{left:40,top:15,width:'100%',height:'70%'}
   };
 
   // Instantiate and draw our chart, passing in some pieChartLeftOptions.
@@ -225,7 +225,7 @@ function drawPieRightChart() {
                   1: { color: '#0070B9' },
                   2: { color: '#00BDDB' },
                 },
-                chartArea:{left:30,top:15,width:'80%',height:'70%'},
+                chartArea:{left:40,top:15,width:'100%',height:'70%'},
   };
 
   // Instantiate and draw our chart, passing in some pieChartRightOptions.
@@ -261,23 +261,25 @@ let closeDeterminationModal = document.getElementById('modal__determination__clo
 //const s = twitterContents.value;
 //let s = document.getElementById("contents").value;
 
-
-
 url = document.location.href;
-
 
 function buttonClick() {
   if (twitterCheckBox.checked === true) {
     // console.log('twitter');
-    // window.open(`https://twitter.com/intent/tweet?=${twitterContentsValue}`, '_blank');
-    // window.open(`https://twitter.com/intent/tweet?=` + twitterContentsValue, '_blank');
-    //console.log(s);
-
     let twitterContents = document.getElementById('twitter__contents'); /* twitter用コメント欄id */
     let s = twitterContents.value;
-    // window.open(`https://twitter.com/intent/tweet?=${s}`, '_blank');
     url = "http://twitter.com/share?url=" + s;
 		window.open(url,"_blank","width=600,height=300");
+
+    //ローディング画面と完了画面追加
+    loadingModal.style.visibility = 'visible';
+    loadingModal.style.opacity= '1';
+    window.setTimeout(function(){
+      loadingModal.style.visibility = 'hidden';
+      loadingModal.style.opacity= '0';
+      determinationModal.style.visibility = 'visible';
+      determinationModal.style.opacity= '1';
+    }, 3000);
     
   } else {
     // console.log('loading');
@@ -288,7 +290,7 @@ function buttonClick() {
       loadingModal.style.opacity= '0';
       determinationModal.style.visibility = 'visible';
       determinationModal.style.opacity= '1';
-  }, 3000);
+    }, 3000);
   }
 }
 function closeModal() {

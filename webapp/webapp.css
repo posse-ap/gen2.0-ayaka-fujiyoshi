@@ -54,13 +54,14 @@ li{
   margin-left: 2rem;
 }
 .header__sending__button{
-  background: linear-gradient(to right, #0f71bc, #8bd8f7);
+  /* background: linear-gradient(to right, #0f71bc, #8bd8f7); */
+  background-image: linear-gradient( 135deg, #0f71bc 10%, #8bd8f7 100%);;
   margin-left: auto;
   /* margin-right: 20px; */
   color: #fff;
   padding: 0.5rem 4rem 0.5rem;
     border-radius: 30rem;
-  border-color: transparent;
+  border-color: #0f71bc;
   box-shadow: 0 0 18px #97b9d1;
 }
 
@@ -231,6 +232,12 @@ li{
   margin:  0 2rem 0;
   padding: 0;
   width: 15rem;
+  height: 1rem;
+}
+.pie__chart__legend__contents{
+  margin:  0 2rem 0;
+  padding: 0;
+  width: 10rem;
   height: 1rem;
 }
 
@@ -468,7 +475,7 @@ li{
   color: #fff;
   padding: 0.5rem 4rem 0.5rem;
   border-radius: 30rem;
-  border-color: transparent;
+  border-color: #0f71bc;
   box-shadow: 0 0 18px #8bd8f7;
 }
 
@@ -562,6 +569,7 @@ li{
   position: relative;
   text-indent: -9999em;
   border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  /* border-right: 1.1em solid #8ccfee; */
   border-right: 1.1em solid #8ccfee;
   border-bottom: 1.1em solid #58bedd;
   border-left: 1.1em solid #04a1df;
@@ -765,7 +773,7 @@ li{
     color: #fff;
     padding: 0.5rem 4rem 0.5rem;
     border-radius: 30rem;
-    border-color: transparent;
+    border-color: #0f71bc;
     box-shadow: 0 0 5.8rem #97b9d1;
     position: absolute;
     bottom: 0.2rem;
@@ -899,8 +907,13 @@ li{
   .main__pie__chart__inner {
    margin-left: 0;
   }
-  .main__pie__chart__item + .main__pie__chart__item {
-    margin-left: 16px;
+  .pie__chart__legend__items + .pie__chart__legend__items {
+    margin-left: 13rem;
+    margin-bottom: 1rem;
+  }
+  .pie__chart__legend__items2 + .pie__chart__legend__items2 {
+    margin-left: 5.5rem;
+    margin-bottom: 3rem;
   }
   .main__pie__chart__item{
     width: 44rem;
@@ -921,11 +934,15 @@ li{
   .pie__chart__legend__items{
     height: 3.5rem;
   }
-  .pie__chart__language{
+  .pie__chart__legend__contents{
     width: 24rem;
+    margin-bottom: 3rem;
   }
   .pie__chart__language__system{
     width: 38rem;
+  }
+  .pie__chart__legend__items__right {
+    height: 4.5rem;
   }
   .footer{
     margin-top: 4rem;
@@ -966,7 +983,7 @@ li{
     color: #fff;
     padding: 0.5rem 4rem 0.5rem;
     border-radius: 30rem;
-    border-color: transparent;
+    border-color: #0f71bc;
     box-shadow: 0 0 5.8rem #97b9d1;
     position: absolute;
     bottom: 0.2rem;
