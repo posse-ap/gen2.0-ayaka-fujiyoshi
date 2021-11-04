@@ -160,13 +160,30 @@ li{
 }
 .pie__chart__legend__wrapper{
   position: fixed;
-	/* display: flex; 
-  align-items: center;
+  /* display: flex;  */
+	/* align-items: center;
   justify-content: center;*/
   width: 20rem;
   height: 12rem;
 }
+.pie__chart__legend__wrapper__small{
+  display: flex;
+}
 .pie__chart__legend__items{
+  width: 4rem;
+  height: 1.5rem;
+}
+.pie__chart__legend__items + .pie__chart__legend__items{
+  margin-left: 4rem;
+}
+.pie__chart__legend__items2{
+  width: 4rem;
+  height: 1.5rem;
+}
+.pie__chart__legend__items2 + .pie__chart__legend__items2{
+  margin-left: 1.5rem;
+}
+.pie__chart__legend__items__right{
   width: 4rem;
   height: 1.5rem;
 }
@@ -899,13 +916,13 @@ li{
     width: 44rem;
     height: 29rem;
     /* background-color: pink; */
-    top: 124rem;
+    /* top: 124rem; */
   }
   .pie__chart__legend__items{
     height: 3.5rem;
   }
   .pie__chart__language{
-    width: 22rem;
+    width: 24rem;
   }
   .pie__chart__language__system{
     width: 38rem;

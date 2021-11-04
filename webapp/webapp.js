@@ -104,8 +104,8 @@ function drawBarChart() {
 
   // Set chart options
   var barChartOptions = {
-    // 'width':580,
-    // 'height':320,
+    'width':'100%',
+    'height':'100%',
     'legend':'none',
     //'colors':['#8bd8f7'],
     'colors':['#0f71bc'],
@@ -164,8 +164,8 @@ function drawPieLeftChart() {
 
   // Set chart options
   var pieChartLeftOptions = {
-                //  'width':280,
-                //  'height':300,
+                 'width':'100%',
+                 'height':'100%',
                  'pieHole': 0.4,
                  //'legend':'bottom',
                  legend: {
@@ -182,7 +182,7 @@ function drawPieLeftChart() {
                   6: { color: '#4609E8' },
                   7: { color: '#2D00BA' },
                 },
-                chartArea:{left:30,top:30,width:'80%',height:'70%'}
+                chartArea:{left:30,top:15,width:'80%',height:'70%'}
   };
 
   // Instantiate and draw our chart, passing in some pieChartLeftOptions.
@@ -212,8 +212,8 @@ function drawPieRightChart() {
 
   // Set chart options
   var pieChartRightOptions = {
-                //  'width':280,
-                //  'height':300,
+                 'width':'100%',
+                 'height':'100%',
                  'pieHole': 0.4,
                  //'legend':'bottom',
                  legend: {
@@ -225,7 +225,7 @@ function drawPieRightChart() {
                   1: { color: '#0070B9' },
                   2: { color: '#00BDDB' },
                 },
-                chartArea:{left:30,top:30,width:'80%',height:'70%'},
+                chartArea:{left:30,top:15,width:'80%',height:'70%'},
   };
 
   // Instantiate and draw our chart, passing in some pieChartRightOptions.
@@ -233,12 +233,15 @@ function drawPieRightChart() {
   pieChartRight.draw(pieChartRightData, pieChartRightOptions);
 }
 
+
+
 // onReSizeイベント
 window.onresize = function(){
 
   drawBarChart();
   drawPieLeftChart();
   drawPieRightChart();
+  //google.charts.load('current', {'packages':['corechart']});
   
 }
 
