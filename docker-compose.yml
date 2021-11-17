@@ -1,0 +1,11 @@
+version: '3'               #このdocker-compose.ymlファイルの"書式"のバージョン
+services:                  #サービスについて定義する。
+  nginx:                   #nginxについて定義するという宣言。
+    build: ./nginx         #Dockerfileのパス
+    image: app:0.0.2       #イメージ名を指定
+    container_name: "app"  #コンテナ名を指定
+    ports:                 #ポート公開内容を指定する。
+      - "8080:80"          #コンテナ側で80だとホスト側で8080となる。
+    # volumes:               #ホストのフォルダをコンテナに追加する。 ホスト側:コンテナ側
+    #   - ./nginx/conf/default.conf:/etc/nginx/conf.d/default.conf  #コンフィグファイルをコピー
+    #   - ./nginx/kuizy:/usr/share/nginx/html         #ソースをコピー
