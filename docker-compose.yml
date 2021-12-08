@@ -33,8 +33,10 @@ services:                  #サービスについて定義する。
     volumes:
       - ./mysql/data:/var/lib/mysql
     environment:
-      MYSQL_USER: ayakaMysql        # 作業ユーザー名→上記データベースの捜査権限をもつ
-      MYSQL_ROOT_PASSWORD: passward
+      MYSQL_DATABASE: quizy
+      MYSQL_USER: mysql        # 作業ユーザー名→上記データベースの捜査権限をもつ
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassward
 
   # phpmyadmin:
   #   image: phpmyadmin/phpmyadmin:latest
