@@ -24,19 +24,20 @@ services:                  #サービスについて定義する。
         expose:
             - "9000"
         depends_on:
-            - db
- 
-  db:
-    image: mysql:5.7
+            - mysql
+
+  mysql:
+    image: mysql:latest
     ports:
       - 13306:3306
     volumes:
       - ./mysql/data:/var/lib/mysql
-    environment:
-      MYSQL_DATABASE: quizy
-      MYSQL_USER: mysql        # 作業ユーザー名→上記データベースの捜査権限をもつ
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: rootpassward
+      - ./mysql/sql:/docker-entrypoint-initdb.d
+    environment:               # コンテナーに「環境変数」を設定
+      MYSQL_DATABASE: quizy             # 作成するデータベース名
+      MYSQL_USER: mysql                 # 作業ユーザー名→上記データベースの捜査権限をもつ
+      MYSQL_PASSWORD: password          # 作業ユーザーのパスワード
+      MYSQL_ROOT_PASSWORD: rootpassward # rootユーザーのパスワード
 
   # phpmyadmin:
   #   image: phpmyadmin/phpmyadmin:latest
