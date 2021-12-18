@@ -75,18 +75,18 @@ for(let i = 0; i<optionGroups.length; i++){
 	// console.log(question)
 	main+=`<div class='mainWrapper'>`
 	     +`<h3>${i+1}.この地名はなんて読む？</h3>`
-         +`<img src= "${questionPhotos[i]}"  alt='問題${i+1}の写真' width=auto`
+         +`<img src= "${questionPhotos[i]}"  alt='問題${i+1}の写真' width=auto>`
          +`<ul>`
          +`<li class='buttonOfOptionNumber' id = 'answerChoice_${i}_0' input type='button' value='button' onclick="clickSelectedButton(${i},0)">${optionGroups[i][0]}</li>`
          +`<li class='buttonOfOptionNumber' id = 'answerChoice_${i}_1' input type='button' value='button' onclick="clickSelectedButton(${i},1)">${optionGroups[i][1]}</li>`
          +`<li class='buttonOfOptionNumber' id = 'answerChoice_${i}_2' input type='button' value='button' onclick="clickSelectedButton(${i},2)">${optionGroups[i][2]}</li>`
          +`<div id='answerDisplay${[i]}' class='firstIsInvisible'>`
-         +`<li><span>正解！</span></li>`
-         +`<li>正解は ${answerGroups[i]} です！</li>`
+         +`<li><span>正解!</span></li>`
+         +`<li>正解は ${answerGroups[i]} です!</li>`
          +`</div>`
          +`<div id='incorrectAnswerDisplay${[i]}' class='incorrectFirstIsInvisible'>`
-         +`<li><span>不正解！</span></li>`
-         +`<li>正解は ${answerGroups[i]} です！</li>`
+         +`<li><span>不正解!</span></li>`
+         +`<li>正解は ${answerGroups[i]} です!</li>`
          +`</div>`
          +`</ul>`
 		 +`</div>`
