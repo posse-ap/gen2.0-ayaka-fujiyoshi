@@ -24,7 +24,7 @@ body {
 
 /* ヘッダーの見た目 */
 header {
-    display: flex;
+    /* display: flex; */
     width: 100%;
     letter-spacing: .04em;
     background-color: #fff;
@@ -39,7 +39,7 @@ header {
     height: 40px;
     align-items: center;
     max-width: 650px;
-    width: 100%;
+    /* width: 100%; */
     margin: 0 auto;
 }
 .headerWrapper img{
@@ -110,7 +110,7 @@ header li {
 /* 検索のボタン */
 .headerButtons .searchImg{
     display: left;
-    top: 2px;
+    top: 1px;
 }
 
 .headerSearchButton{
