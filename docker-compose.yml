@@ -1,14 +1,14 @@
 version: '3'               #このdocker-compose.ymlファイルの"書式"のバージョン
 services:                  #サービスについて定義する。
   nginx:                   #nginxについて定義するという宣言。
-    build: ./nginx         #Dockerfileのパス
-    image: app:0.0.2       #イメージ名を指定
+    # build: ./nginx         #Dockerfileのパス
+    image: nginx:latest       #イメージ名を指定
     container_name: "app"  #コンテナ名を指定
     ports:                 #ポート公開内容を指定する。
       - "8080:80"          #コンテナ側で80だとホスト側で8080となる。
-    # volumes:               #ホストのフォルダをコンテナに追加する。 ホスト側:コンテナ側
-    #   - ./nginx/conf/default.conf:/etc/nginx/conf.d/default.conf  #コンフィグファイルをコピー
-    #   - ./nginx/kuizy:/usr/share/nginx/html         #ソースをコピー
+    volumes:               #ホストのフォルダをコンテナに追加する。 ホスト側:コンテナ側
+      - ./nginx/conf/default.conf:/etc/nginx/conf.d/default.conf  #コンフィグファイルをコピー
+      - ./nginx/kuizy:/usr/share/nginx/html         #ソースをコピー
     depends_on:
             - php-fpm
 
@@ -17,7 +17,8 @@ services:                  #サービスについて定義する。
             # context: ./php-fpm
             # args:
             #     - PHP_VERSION=${PHP_VERSION}
-        # volumes:
+        volumes:
+              - ./nginx/kuizy:/usr/share/nginx/html         #ソースをコピー
         #     - ./php-fpm/php.ini:/usr/local/php-fpm/php.ini
         #     - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
         # これ消したらエラー起こさずに php version 8.0.13開けた
@@ -28,16 +29,18 @@ services:                  #サービスについて定義する。
 
   mysql:
     image: mysql:latest
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
       - 13306:3306
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/sql:/docker-entrypoint-initdb.d
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     environment:               # コンテナーに「環境変数」を設定
-      MYSQL_DATABASE: quizy             # 作成するデータベース名
+      MYSQL_DATABASE: quiz             # 作成するデータベース名
       MYSQL_USER: mysql                 # 作業ユーザー名→上記データベースの捜査権限をもつ
       MYSQL_PASSWORD: password          # 作業ユーザーのパスワード
-      MYSQL_ROOT_PASSWORD: rootpassward # rootユーザーのパスワード
+      MYSQL_ROOT_PASSWORD: rootpassword # rootユーザーのパスワード
 
   # phpmyadmin:
   #   image: phpmyadmin/phpmyadmin:latest

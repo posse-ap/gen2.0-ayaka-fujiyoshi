@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS quizy;
-CREATE DATABASE quizy;
+DROP DATABASE IF EXISTS quiz;
+CREATE DATABASE quiz;
 
-USE quizy;
+USE quiz;
 
 DROP TABLE IF EXISTS big_questions;
 CREATE TABLE big_questions
