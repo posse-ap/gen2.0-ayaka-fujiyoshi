@@ -19,7 +19,8 @@ try{
 //  $sql_1 = "SELECT * FROM big_questions WHERE id = 1 ";
 
 //  $id = $_GET["name"];
- $id = 1;
+//  $id = 1;
+ $id = filter_input(INPUT_GET, 'id');
  $stmt = $db->prepare("SELECT name FROM big_questions WHERE id= ? ");
  $stmt->bindValue(1,$id);
  $stmt->execute();
