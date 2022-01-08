@@ -16,7 +16,7 @@ INSERT INTO big_questions (id, name) VALUES (1, "東京の難読地名クイズ"
 INSERT INTO big_questions (id, name) VALUES (2, "広島県の難読地名クイズ");
 
 
--- 設問テーブル
+-- 設問テーブル （写真）
 DROP TABLE IF EXISTS questions;
 CREATE TABLE questions
 (
@@ -27,7 +27,7 @@ CREATE TABLE questions
 
 INSERT INTO questions (id, big_question_id, image) VALUES (1, 1, "takanawa.png");
 INSERT INTO questions (id, big_question_id, image) VALUES (2, 1, "kameido.png");
-INSERT INTO questions (id, big_question_id, image) VALUES (3, 2, "muikainada.png");
+INSERT INTO questions (id, big_question_id, image) VALUES (3, 2, "mukainada.png");
 
 
 -- 選択肢テーブル
