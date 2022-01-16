@@ -3,6 +3,7 @@
  $db = new PDO($PDO_DSN,$DB_USERNAME,$DB_PASSWORD,$OPTIONS);
 ?>
 
+<!-- メモ -->
  <div class='mainWrapper'>
  <?php $x = 1; ?>
  <?php $limit = 2; ?>
