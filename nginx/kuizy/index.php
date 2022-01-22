@@ -116,15 +116,41 @@ try{
 
 <div class='mainWrapper'>
    <!-- タイトル↓ -->
-   <!-- <h2 class='title'>#<?php echo $results[0]['big_quiz_name']; ?></h2> -->
-   <?php $x = 1; ?>
+   <h2 class='title'>#<?php echo $results[0]['big_quiz_name']; ?></h2>
+   <!-- <?php $x = 1; ?> -->
+
+   
    <?php foreach ($results as $value): ?>
-      <?php if ($x > 1){?>
          <!-- 設問番号↓ -->
             <h3><?php echo $value['image_id']; ?>.この地名はなんて読む？</h3>
          <!-- 写真↓ -->
             <img src= 'img/<?php echo $value['image_name']; ?>'  alt='問題 <?php echo $inner_value['image_id'] ?>の写真' width=auto>
          <!-- 選択肢↓ -->
+              <?php for ($i=($x-1)*3; $i < $x*3; $i++) { ?>
+                  <ul>
+                    <li class='buttonOfOptionNumber'><?php echo $inner_results[$i]['choice_name'];?></li>
+                  </ul>
+              <?php } ?>
+      <!-- <?php $x++; ?> -->
+   <?php endforeach ?>
+  
+
+</div>
+
+
+
+
+<!-- <div class='mainWrapper'>
+   <!-- タイトル↓ --
+   <!-- <h2 class='title'>#<?php echo $results[0]['big_quiz_name']; ?></h2> -->
+   <?php $x = 1; ?>
+   <?php foreach ($results as $value): ?>
+      <?php if ($x > 1){?>
+         <!-- 設問番号↓ --
+            <h3><?php echo $value['image_id']; ?>.この地名はなんて読む？</h3>
+         <!-- 写真↓ --
+            <img src= 'img/<?php echo $value['image_name']; ?>'  alt='問題 <?php echo $inner_value['image_id'] ?>の写真' width=auto>
+         <!-- 選択肢↓ --
             <?php for ($i=3; $i < 6; $i++) { ?>
                   <ul>
                     <li class='buttonOfOptionNumber'><?php echo $inner_results[$i]['choice_name'];?></li>
@@ -133,13 +159,13 @@ try{
    
    
       <?php } else {?>
-         <!-- タイトル↓ -->
+         <!-- タイトル↓ --
              <h2 class='title'>#<?php echo $value['big_quiz_name']?></h2>
-         <!-- 設問番号↓ -->
+         <!-- 設問番号↓ --
             <h3><?php echo $value['image_id']; ?>.この地名はなんて読む？</h3>
-         <!-- 写真↓ -->
+         <!-- 写真↓ --
             <img src= 'img/<?php echo $value['image_name']; ?>'  alt='問題 <?php echo $inner_value['image_id'] ?>の写真' width=auto>
-         <!-- 選択肢↓ -->
+         <!-- 選択肢↓ --
               <?php for ($i=$x-1; $i < $x*3; $i++) { ?>
                   <ul>
                     <li class='buttonOfOptionNumber'><?php echo $inner_results[$i]['choice_name'];?></li>
@@ -151,31 +177,31 @@ try{
 
 </div>
 
-
+ -->
 
 
    <!-- 試しに -->
-   <th><br></th><th><br></th>
+   <!-- <th><br></th><th><br></th>
       <table>
         <tr>
-          <th>大問テーブルID</th> 
-          <th>大問テーブル名(東京or広島)</th>
-          <th>設問写真ID</th>
-          <th>設問写真名</th>
+          <th>big_quiz_id</th> 
+          <th>big_quiz_name</th>
+          <th>image_id</th>
+          <th>image_name</th>
         </tr>
         <?php foreach ($results as $value): ?>
        <tr>
         <td>
-        <?php echo $value['big_quiz_id'] ?> 
+        <?php echo $value['big_quiz_id']; ?> 
         </td>
         <td>
-         <?php echo $value['big_quiz_name'] ?>
+         <?php echo $value['big_quiz_name']; ?>
         </td>
         <td>
-         <?php echo $value['image_id'] ?>
+         <?php echo $value['image_id']; ?>
         </td>
         <td>
-         <?php echo $value['image_name'] ?>
+         <?php echo $value['image_name']; ?>
         </td>
       </tr>
       <?php endforeach ?>
@@ -183,10 +209,10 @@ try{
       <th><br></th>
 
       <tr>
-          <th>設問写真ID</th> 
-          <th>設問写真名</th>
-          <th>設問</th>
-          <th>正誤判定(0or1)</th>
+          <th>image_id</th> 
+          <th>image_name</th>
+          <th>choice_name</th>
+          <th>choice_valid</th>
       </tr>
       
       <?php foreach ($inner_results as $inner_value): ?>
@@ -205,15 +231,7 @@ try{
         </td>
       </tr>
       <?php endforeach ?>
-
-      
-      <?php foreach ($inner_results as $inner_value): ?>
-       <tr>
-        <td>
-         <?php echo $inner_value['choice_name'] ?>
-        </td>
-      </tr>
-      <?php endforeach ?>
+ -->
 
   
 </body>
