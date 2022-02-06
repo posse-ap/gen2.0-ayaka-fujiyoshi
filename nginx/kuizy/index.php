@@ -32,10 +32,8 @@ try{
   $stmt->bindValue(1,$id);  //第一引数のパラメータID,SQL内の「?」の位置を指定
   $stmt->execute();
   $results = array();
-  
-//   $id_name = $stmt->fetch();
-//   echo "<a href='./index.html'>$value['big_quiz_name']</a>";
   echo 'DB接続成功';
+
   } catch(PDOException $e){
     //エラーの情報が入ったオブジェクトを e で受け取ることができる
       //e には getMessage() というメソッドが定義されている
@@ -54,10 +52,6 @@ try{
       'image_name' =>$row['image_name'],
    );
  }
-//  echo "</br>" . "</br>" .  var_dump($results);
-//  echo $results[0]['big_quiz_name']  . PHP_EOL;
-//  echo $results[1]['big_quiz_name']  . PHP_EOL;
-
 
  //設問・選択テーブルの結合、選択
  $inner_sql = "SELECT
@@ -81,23 +75,6 @@ try{
         'choice_valid' =>$inner_row['choice_valid']
      );
   }
-//   echo $inner_results[0]['choice_name']  . PHP_EOL;
-//   echo $inner_results[1]['choice_name']  . PHP_EOL;
-//   echo $inner_results[2]['choice_name']  . PHP_EOL;
-//   echo $inner_results[3]['choice_name']  . PHP_EOL;
-//   echo $inner_results[4]['choice_name']  . PHP_EOL;
-//   echo $inner_results[5]['choice_name']  . PHP_EOL;
-
-//   for ($i=0; $i < 6; $i++) { 
-//    echo $inner_results[$i]['choice_name']  . PHP_EOL;
-//   }
-//   for ($i=0; $i < 3; $i++) { 
-//    echo $inner_results[$i]['choice_name']  . PHP_EOL;
-//   }
-//   for ($i=3; $i < 6; $i++) { 
-//    echo $inner_results[$i]['choice_name']  . PHP_EOL;
-//   }
-
 ?>
 
 
@@ -138,101 +115,5 @@ try{
 </div>
 
 
-
-
-<!-- <div class='mainWrapper'>
-   <!-- タイトル↓ --
-   <!-- <h2 class='title'>#<?php echo $results[0]['big_quiz_name']; ?></h2> -->
-   <?php $x = 1; ?>
-   <?php foreach ($results as $value): ?>
-      <?php if ($x > 1){?>
-         <!-- 設問番号↓ --
-            <h3><?php echo $value['image_id']; ?>.この地名はなんて読む？</h3>
-         <!-- 写真↓ --
-            <img src= 'img/<?php echo $value['image_name']; ?>'  alt='問題 <?php echo $inner_value['image_id'] ?>の写真' width=auto>
-         <!-- 選択肢↓ --
-            <?php for ($i=3; $i < 6; $i++) { ?>
-                  <ul>
-                    <li class='buttonOfOptionNumber'><?php echo $inner_results[$i]['choice_name'];?></li>
-                  </ul>
-              <?php } ?>
-   
-   
-      <?php } else {?>
-         <!-- タイトル↓ --
-             <h2 class='title'>#<?php echo $value['big_quiz_name']?></h2>
-         <!-- 設問番号↓ --
-            <h3><?php echo $value['image_id']; ?>.この地名はなんて読む？</h3>
-         <!-- 写真↓ --
-            <img src= 'img/<?php echo $value['image_name']; ?>'  alt='問題 <?php echo $inner_value['image_id'] ?>の写真' width=auto>
-         <!-- 選択肢↓ --
-              <?php for ($i=$x-1; $i < $x*3; $i++) { ?>
-                  <ul>
-                    <li class='buttonOfOptionNumber'><?php echo $inner_results[$i]['choice_name'];?></li>
-                  </ul>
-              <?php } ?>
-            <?php } ?>
-      <?php $x++; ?>
-   <?php endforeach ?>
-
-</div>
-
- -->
-
-
-   <!-- 試しに -->
-   <!-- <th><br></th><th><br></th>
-      <table>
-        <tr>
-          <th>big_quiz_id</th> 
-          <th>big_quiz_name</th>
-          <th>image_id</th>
-          <th>image_name</th>
-        </tr>
-        <?php foreach ($results as $value): ?>
-       <tr>
-        <td>
-        <?php echo $value['big_quiz_id']; ?> 
-        </td>
-        <td>
-         <?php echo $value['big_quiz_name']; ?>
-        </td>
-        <td>
-         <?php echo $value['image_id']; ?>
-        </td>
-        <td>
-         <?php echo $value['image_name']; ?>
-        </td>
-      </tr>
-      <?php endforeach ?>
-
-      <th><br></th>
-
-      <tr>
-          <th>image_id</th> 
-          <th>image_name</th>
-          <th>choice_name</th>
-          <th>choice_valid</th>
-      </tr>
-      
-      <?php foreach ($inner_results as $inner_value): ?>
-       <tr>
-        <td>
-         <?php echo $inner_value['image_id'] ?>
-        </td>
-        <td>
-         <?php echo $inner_value['image_name'] ?>
-        </td>
-        <td>
-         <?php echo $inner_value['choice_name'] ?>
-        </td>
-        <td>
-         <?php echo $inner_value['choice_valid'] ?>
-        </td>
-      </tr>
-      <?php endforeach ?>
- -->
-
-  
 </body>
 </html>
