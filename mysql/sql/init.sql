@@ -36,16 +36,17 @@ CREATE TABLE choices
 (
   id            INT(50),
   question_id   INT(50),
+  selection_id   INT(50),
   name      VARCHAR(50),
   valid         INT(50)
 );
 
-INSERT INTO choices (id, question_id, name, valid) VALUES (1, 1, "たかなわ", 1);
-INSERT INTO choices (id, question_id, name, valid) VALUES (2, 1, "たかわ", 0);
-INSERT INTO choices (id, question_id, name, valid) VALUES (3, 1, "こうわ", 0);
-INSERT INTO choices (id, question_id, name, valid) VALUES (4, 2, "かめと", 0);
-INSERT INTO choices (id, question_id, name, valid) VALUES (5, 2, "かめど", 0);
-INSERT INTO choices (id, question_id, name, valid) VALUES (6, 2, "かめいど", 1);
-INSERT INTO choices (id, question_id, name, valid) VALUES (7, 3, "むこうひら", 0);
-INSERT INTO choices (id, question_id, name, valid) VALUES (8, 3, "むきひら", 0);
-INSERT INTO choices (id, question_id, name, valid) VALUES (9, 3, "むかいなだ", 1);
+INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (1, 1, 0, "たかなわ", 1);
+INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (2, 1, 1, "たかわ", 0);
+INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (3, 1, 2, "こうわ", 0);
+INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (4, 2, 0, "かめと", 0);
+INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (5, 2, 1, "かめど", 0);
+INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (6, 2, 2, "かめいど", 1);
+INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (7, 3, 0, "むこうひら", 0);
+INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (8, 3, 1, "むきひら", 0);
+INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (9, 3, 2, "むかいなだ", 1);
