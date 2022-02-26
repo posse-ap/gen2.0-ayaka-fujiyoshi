@@ -92,24 +92,16 @@ try{
   echo $inner_results[5]['selection_id']  . PHP_EOL;
 
 
-//配列をシャッフル
-// if( shuffle($inner_results) ){
-//    //シャッフル成功
-//        //配列からランダムな要素を取得（ここでは出力）
-//        echo $inner_results[0]['choice_name'] . PHP_EOL;
-//        echo $inner_results[1]['choice_name'] . PHP_EOL;
-//        echo $inner_results[2]['choice_name'] . PHP_EOL;
-//        echo $inner_results[3]['choice_name'] . PHP_EOL;
-//        echo $inner_results[4]['choice_name'] . PHP_EOL;
-//        echo $inner_results[5]['choice_name'] . PHP_EOL;
-// }else{
-//    //失敗
-//    echo '失敗';
-// }
-
-$selection_numbers = [0,1,2];
+//配列をシャッフル→選択肢の番号をシャッフルしてシャッフルした値を元に出力
+$selection_numbers = [0,1,2]; //ここで番号を用意
 shuffle($selection_numbers);
 // var_dump($selection_numbers[0]);
+// $y = 1;
+// for ($m=($y-1)*3; $m < $y*3; $m++) { 
+//    $selection_number[$m] = $y*3 + $selection_numbers[0];
+// }
+// $y++;
+
 $selection_number[0] = 0 + $selection_numbers[0];
 $selection_number[1] = 0 + $selection_numbers[1];
 $selection_number[2] = 0 + $selection_numbers[2];
@@ -124,12 +116,12 @@ echo $inner_results[$selection_number[3]]['choice_name']  . PHP_EOL; //かめど
 echo $inner_results[$selection_number[4]]['choice_name']  . PHP_EOL; //かめいど
 echo $inner_results[$selection_number[5]]['choice_name']  . PHP_EOL; //かめと
 
-echo $selection_number[0] . PHP_EOL; //1
-echo $selection_number[1] . PHP_EOL; //2
-echo $selection_number[2] . PHP_EOL; //0
-echo $selection_number[3] . PHP_EOL; //4
-echo $selection_number[4] . PHP_EOL; //5
-echo $selection_number[5] . PHP_EOL; //3
+echo $selection_number[0] . PHP_EOL; //1→たかわ
+echo $selection_number[1] . PHP_EOL; //2→こうわ
+echo $selection_number[2] . PHP_EOL; //0→たかなわ
+echo $selection_number[3] . PHP_EOL; //4→かめど
+echo $selection_number[4] . PHP_EOL; //5→かめいど
+echo $selection_number[5] . PHP_EOL; //3→かめと
 ?>
 
 
@@ -163,9 +155,10 @@ echo $selection_number[5] . PHP_EOL; //3
                   <ul>
                     <li class='buttonOfOptionNumber'><?php echo $inner_results[$selection_number[$i]]['choice_name'];?></li>
                   </ul>
-              <?php } ?>
-              <?php $x++; ?>
+         <?php } ?>
+         <?php $x++; ?>
    <?php endforeach ?>
+
 
 </div>
 
@@ -178,23 +171,25 @@ echo $selection_number[5] . PHP_EOL; //3
           <th>image_id</th>
           <th>image_name</th>
         </tr>
-        <?php foreach ($results as $value): ?>
-       <tr>
-        <td>
-        <?php echo $value['big_quiz_id']; ?> 
-        </td>
-        <td>
-         <?php echo $value['big_quiz_name']; ?>
-        </td>
-        <td>
-         <?php echo $value['image_id']; ?>
-        </td>
-        <td>
-         <?php echo $value['image_name']; ?>
-        </td>
-      </tr>
+       <?php foreach ($results as $value): ?>
+        <tr>
+          <td>
+           <?php echo $value['big_quiz_id']; ?> 
+          </td>
+          <td>
+           <?php echo $value['big_quiz_name']; ?>
+          </td>
+          <td>
+           <?php echo $value['image_id']; ?>
+          </td>
+          <td>
+           <?php echo $value['image_name']; ?>
+          </td>
+        </tr>
       <?php endforeach ?>
+
       <th><br></th>
+
       <tr>
           <th>image_id</th> 
           <th>image_name</th>
@@ -223,6 +218,7 @@ echo $selection_number[5] . PHP_EOL; //3
       </tr>
       <?php endforeach ?>
       <th><br></th> 
+      </table>
       
 
 

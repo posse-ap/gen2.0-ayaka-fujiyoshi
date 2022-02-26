@@ -1,7 +1,4 @@
-<!-- PDOインスタンスを生成 -->
-<!-- ?php
- $db = new PDO($PDO_DSN,$DB_USERNAME,$DB_PASSWORD,$OPTIONS); -->
-
+<!-- PDOインスタンスを生成  -->
 
  <?php foreach ($results as  $index => $value): ?>
   <!-- 設問番号↓ -->
@@ -47,3 +44,20 @@
    <?php endforeach ?>
 
 </div>
+
+
+<?php
+$stmt1 = $pdo->prepare("SELECT * from mix where big_question_id=?");
+$stmt2 = $pdo->prepare("SELECT id from mix where big_question_id=?");
+$stmt3 = $pdo->prepare("SELECT distinct question_id from mix where big_question_id=?");
+$stmt4 = $pdo->prepare("SELECT name from mix where valid=1 and big_question_id=?");
+$stmt5 = $pdo->prepare("SELECT name from mix where valid=0 and big_question_id=?");
+$stmt6 = $pdo->prepare("SELECT distinct image from mix where big_question_id=?");
+$stmt7 = $pdo->prepare("SELECT big_question_name from big_questions where id=?");
+$stmt8 = $pdo->prepare("SELECT place from place where id=?");
+
+   for ($i = 1; $i < 9; $i++) {
+                ${"stmt".$i}->execute([$id]);
+                ${"data" . $i} = ${"stmt" . $i}->fetchAll();
+            };
+?>
