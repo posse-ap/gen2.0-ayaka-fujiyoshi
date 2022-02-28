@@ -61,8 +61,14 @@ $stmt8 = $pdo->prepare("SELECT place from place where id=?");
                 ${"data" . $i} = ${"stmt" . $i}->fetchAll();
             };
 ?>
+<<<<<<< HEAD
 
 
 
 
 <?php    echo $inner_results[$selection_number[$k]]['choice_name']  . PHP_EOL; ?>
+
+<!-- PDOインスタンスを生成 -->
+<?php
+ $db = new PDO($PDO_DSN,$DB_USERNAME,$DB_PASSWORD,$OPTIONS);
+// >>>>>>> 67a8ca0c1d201a4cc830b7bf613e0c967042a105
