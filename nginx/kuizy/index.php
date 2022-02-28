@@ -91,6 +91,20 @@ try{
   echo $inner_results[4]['selection_id']  . PHP_EOL;
   echo $inner_results[5]['selection_id']  . PHP_EOL;
 
+  $correct_array = array();
+  for ($j=0; $j < 6; $j++) { 
+   if ($inner_results[$j]['choice_valid'] === '1'){
+      // echo $inner_results[$j]['choice_name']  . PHP_EOL;
+      echo 'correct!' . PHP_EOL;
+      $correct_array[] = $inner_results[$j]['choice_name'];
+   } else {
+      echo 'false...';
+   }
+  }
+  print_r($correct_array);  // Array ( [0] => たかなわ [1] => かめいど ) 
+  echo $correct_array[0] . PHP_EOL;  //たかなわ
+  echo $correct_array[1] . PHP_EOL;  //かめいど
+
 
 //配列をシャッフル→選択肢の番号をシャッフルしてシャッフルした値を元に出力
 $selection_numbers = [0,1,2]; //ここで番号を用意
@@ -109,19 +123,19 @@ $selection_number[3] = 3 + $selection_numbers[0];
 $selection_number[4] = 3 + $selection_numbers[1];
 $selection_number[5] = 3 + $selection_numbers[2];
 
-echo $inner_results[$selection_number[0]]['choice_name']  . PHP_EOL; //たかわ
-echo $inner_results[$selection_number[1]]['choice_name']  . PHP_EOL; //こうわ
-echo $inner_results[$selection_number[2]]['choice_name']  . PHP_EOL; //たかなわ
-echo $inner_results[$selection_number[3]]['choice_name']  . PHP_EOL; //かめど
-echo $inner_results[$selection_number[4]]['choice_name']  . PHP_EOL; //かめいど
-echo $inner_results[$selection_number[5]]['choice_name']  . PHP_EOL; //かめと
+// echo $inner_results[$selection_number[0]]['choice_name']  . PHP_EOL; //たかわ
+// echo $inner_results[$selection_number[1]]['choice_name']  . PHP_EOL; //こうわ
+// echo $inner_results[$selection_number[2]]['choice_name']  . PHP_EOL; //たかなわ
+// echo $inner_results[$selection_number[3]]['choice_name']  . PHP_EOL; //かめど
+// echo $inner_results[$selection_number[4]]['choice_name']  . PHP_EOL; //かめいど
+// echo $inner_results[$selection_number[5]]['choice_name']  . PHP_EOL; //かめと
 
-echo $selection_number[0] . PHP_EOL; //1→たかわ
-echo $selection_number[1] . PHP_EOL; //2→こうわ
-echo $selection_number[2] . PHP_EOL; //0→たかなわ
-echo $selection_number[3] . PHP_EOL; //4→かめど
-echo $selection_number[4] . PHP_EOL; //5→かめいど
-echo $selection_number[5] . PHP_EOL; //3→かめと
+// echo $selection_number[0] . PHP_EOL; //1→たかわ
+// echo $selection_number[1] . PHP_EOL; //2→こうわ
+// echo $selection_number[2] . PHP_EOL; //0→たかなわ
+// echo $selection_number[3] . PHP_EOL; //4→かめど
+// echo $selection_number[4] . PHP_EOL; //5→かめいど
+// echo $selection_number[5] . PHP_EOL; //3→かめと
 ?>
 
 
@@ -149,16 +163,34 @@ echo $selection_number[5] . PHP_EOL; //3→かめと
             <img src= 'img/<?php echo $value['image_name']; ?>'  alt='問題 <?php echo $inner_value['image_id'] ?>の写真' width=auto>
          <!-- 選択肢↓ -->
          <!-- 1回目は0,1,2を出力したい、2回目は3,4,5を出力したい -->
-         <?php for ($i=($x-1)*3; $i < $x*3; $i++) { ?>
-               <!-- 1回目は$x=1を代入するので、($i=0; $i < 3; $i++)となり、0,1,2まで出力できる -->
-               <!-- 2回目は$x=2を代入するので、($i=3; $i < 6; $i++)となり、3,4,5まで出力できる -->
-                  <ul>
-                    <li class='buttonOfOptionNumber'><?php echo $inner_results[$selection_number[$i]]['choice_name'];?></li>
-                  </ul>
-         <?php } ?>
-         <?php $x++; ?>
-   <?php endforeach ?>
+            <?php for ($i=($x-1)*3; $i < $x*3; $i++) { ?>
+                  <!-- 1回目は$x=1を代入するので、($i=0; $i < 3; $i++)となり、0,1,2まで出力できる -->
+                  <!-- 2回目は$x=2を代入するので、($i=3; $i < 6; $i++)となり、3,4,5まで出力できる -->
+                     <ul>
+                       <li class='buttonOfOptionNumber' input type='button' value='button' onclick="clickSelectedButton()">
+                          <?php echo $inner_results[$selection_number[$i]]['choice_name'];?>
+                       </li>
+                     </ul>
+                     
+            <?php } ?>
+         <!-- 解答ボックス↓ -->
+            <div id='answerDisplay<?php echo $x; ?>' class='firstIsInvisible'>
+                  <li><span>正解!</span></li>
+                  <li>正解は <?php echo $correct_array[$x-1]; ?> です!</li>
+            </div>
+            <div id='incorrectAnswerDisplay<?php echo $x; ?>' class='incorrectFirstIsInvisible'>
+                  <li><span>不正解!</span></li>
+                  <li>正解は <?php echo $correct_array[$x-1]; ?> です!</li>
+            </div>
 
+            <?php print_r($correct_array[$x-1]); ?>
+   <?php $x++; ?>
+   <?php endforeach ?>
+   
+
+   
+   
+   
 
 </div>
 
@@ -218,9 +250,36 @@ echo $selection_number[5] . PHP_EOL; //3→かめと
       </tr>
       <?php endforeach ?>
       <th><br></th> 
-      </table>
+   </table>
+
+
+
+   <script>
+      <?php $y = 1; ?>
+      <?php foreach ($results as $value): ?>
+      <?php for ($k=($y-1)*3; $k < $y*3; $k++) {  ?>
+        
+      <?php $z = 1; ?>
+         function clickSelectedButton() {
+            <?php if ($inner_results[$selection_number[$k]]['choice_name'] == $correct_array[$y-1]){ ?>
+               document.getElementById('answerDisplay<?php echo $z ?>').style.display = 'block'; 
+                document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block'; ;
+                document.getElementById("<?php echo $correct_array[$y-1] ;?>").style.display = 'block'; 
+                document.getElementById("<?php echo $k;?>").style.display = 'block'; 
+                document.getElementById("<?php echo $y;?>").style.display = 'block'; 
+                document.getElementById("<?php echo $z;?>").style.display = 'block'; 
+            <?php } else {  ?>
+                     document.getElementById('incorrectAnswerDisplay<?php echo $z ?>').style.display = 'block';
+            <?php }  ?>
+         }
+      <?php $z++; ?>
+      <?php } ?>
+      <?php $y++; ?>
       
-
-
+      <?php endforeach ?>
+      //window.onload の時点で 
+      //  window.onload = clickSelectedButton();
+   </script>
+   
 </body>
 </html>

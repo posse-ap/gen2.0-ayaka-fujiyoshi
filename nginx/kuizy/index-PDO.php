@@ -61,3 +61,8 @@ $stmt8 = $pdo->prepare("SELECT place from place where id=?");
                 ${"data" . $i} = ${"stmt" . $i}->fetchAll();
             };
 ?>
+
+
+
+
+<?php    echo $inner_results[$selection_number[$k]]['choice_name']  . PHP_EOL; ?>
