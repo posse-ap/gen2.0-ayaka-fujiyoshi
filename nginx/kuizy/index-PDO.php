@@ -61,7 +61,7 @@ $stmt8 = $pdo->prepare("SELECT place from place where id=?");
                 ${"data" . $i} = ${"stmt" . $i}->fetchAll();
             };
 ?>
-<<<<<<< HEAD
+
 
 
 

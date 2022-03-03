@@ -75,7 +75,7 @@ try{
         'choice_valid' =>$inner_row['choice_valid']
      );
   }
-<<<<<<< HEAD
+
 
   echo $inner_results[0]['choice_name']  . PHP_EOL;
   echo $inner_results[1]['choice_name']  . PHP_EOL;
@@ -123,7 +123,6 @@ $selection_number[3] = 3 + $selection_numbers[0];
 $selection_number[4] = 3 + $selection_numbers[1];
 $selection_number[5] = 3 + $selection_numbers[2];
 
-<<<<<<< HEAD
 // echo $inner_results[$selection_number[0]]['choice_name']  . PHP_EOL; //たかわ
 // echo $inner_results[$selection_number[1]]['choice_name']  . PHP_EOL; //こうわ
 // echo $inner_results[$selection_number[2]]['choice_name']  . PHP_EOL; //たかなわ
@@ -137,23 +136,7 @@ $selection_number[5] = 3 + $selection_numbers[2];
 // echo $selection_number[3] . PHP_EOL; //4→かめど
 // echo $selection_number[4] . PHP_EOL; //5→かめいど
 // echo $selection_number[5] . PHP_EOL; //3→かめと
-=======
-echo $inner_results[$selection_number[0]]['choice_name']  . PHP_EOL; //たかわ
-echo $inner_results[$selection_number[1]]['choice_name']  . PHP_EOL; //こうわ
-echo $inner_results[$selection_number[2]]['choice_name']  . PHP_EOL; //たかなわ
-echo $inner_results[$selection_number[3]]['choice_name']  . PHP_EOL; //かめど
-echo $inner_results[$selection_number[4]]['choice_name']  . PHP_EOL; //かめいど
-echo $inner_results[$selection_number[5]]['choice_name']  . PHP_EOL; //かめと
 
-echo $selection_number[0] . PHP_EOL; //1→たかわ
-echo $selection_number[1] . PHP_EOL; //2→こうわ
-echo $selection_number[2] . PHP_EOL; //0→たかなわ
-echo $selection_number[3] . PHP_EOL; //4→かめど
-echo $selection_number[4] . PHP_EOL; //5→かめいど
-echo $selection_number[5] . PHP_EOL; //3→かめと
-=======
->>>>>>> parent of 0b69363 (シャッフルして問題が表示されるようにした)
->>>>>>> 67a8ca0c1d201a4cc830b7bf613e0c967042a105
 ?>
 
 
@@ -182,7 +165,6 @@ echo $selection_number[5] . PHP_EOL; //3→かめと
          <!-- 写真↓ -->
             <img src= 'img/<?php echo $value['image_name']; ?>'  alt='問題 <?php echo $inner_value['image_id'] ?>の写真' width=auto>
          <!-- 選択肢↓ -->
-<<<<<<< HEAD
          <!-- 1回目は0,1,2を出力したい、2回目は3,4,5を出力したい -->
             <?php for ($i=($x-1)*3; $i < $x*3; $i++) { ?>
                   <!-- 1回目は$x=1を代入するので、($i=0; $i < 3; $i++)となり、0,1,2まで出力できる -->
@@ -208,16 +190,6 @@ echo $selection_number[5] . PHP_EOL; //3→かめと
    <?php $x++; ?>
    <?php endforeach ?>
    
-=======
-              <?php for ($i=($x-1)*3; $i < $x*3; $i++) { ?>
-                  <ul>
-                    <li class='buttonOfOptionNumber'><?php echo $inner_results[$i]['choice_name'];?></li>
-                  </ul>
-         <?php } ?>
-         <?php $x++; ?>
-   <?php endforeach ?>
-  
->>>>>>> 67a8ca0c1d201a4cc830b7bf613e0c967042a105
 
    
    
