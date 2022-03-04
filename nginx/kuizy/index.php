@@ -57,6 +57,7 @@ try{
  $inner_sql = "SELECT
                questions.id AS image_id,
                questions.image AS image_name,
+               choices.selection_id AS selection_id,
                choices.name AS choice_name,
                choices.valid AS choice_valid
                FROM questions
@@ -71,6 +72,7 @@ try{
      $inner_results[]=array(
         'image_id' =>$inner_row['image_id'],
         'image_name' =>$inner_row['image_name'],
+        'selection_id' =>$inner_row['selection_id'],
         'choice_name' =>$inner_row['choice_name'],
         'choice_valid' =>$inner_row['choice_valid']
      );
@@ -163,14 +165,14 @@ $selection_number[5] = 3 + $selection_numbers[2];
          <!-- 設問番号↓ -->
             <h3><?php echo $value['image_id']; ?>.この地名はなんて読む？</h3>
          <!-- 写真↓ -->
-            <img src= 'img/<?php echo $value['image_name']; ?>'  alt='問題 <?php echo $inner_value['image_id'] ?>の写真' width=auto>
+            <img src= 'img/<?php echo $value['image_name']; ?>'  alt='問題 <?php echo $inner_value['image_id']; ?>の写真' width=auto>
          <!-- 選択肢↓ -->
          <!-- 1回目は0,1,2を出力したい、2回目は3,4,5を出力したい -->
             <?php for ($i=($x-1)*3; $i < $x*3; $i++) { ?>
                   <!-- 1回目は$x=1を代入するので、($i=0; $i < 3; $i++)となり、0,1,2まで出力できる -->
                   <!-- 2回目は$x=2を代入するので、($i=3; $i < 6; $i++)となり、3,4,5まで出力できる -->
                      <ul>
-                       <li class='buttonOfOptionNumber' input type='button' value='button' onclick="clickSelectedButton()">
+                       <li class='buttonOfOptionNumber' input type='button' value='button' onclick="clickSelectedButton<?php echo $i ;?>()" id='answerChoice<?php echo $i ;?>'>
                           <?php echo $inner_results[$selection_number[$i]]['choice_name'];?>
                        </li>
                      </ul>
@@ -197,7 +199,7 @@ $selection_number[5] = 3 + $selection_numbers[2];
 
 </div>
 
-<!-- 試しに -->
+   <!-- 試しに -->
    <th><br></th><th><br></th>
       <table>
         <tr>
@@ -258,28 +260,49 @@ $selection_number[5] = 3 + $selection_numbers[2];
 
 
    <script>
-      <?php $y = 1; ?>
-      <?php foreach ($results as $value): ?>
-      <?php for ($k=($y-1)*3; $k < $y*3; $k++) {  ?>
-        
-      <?php $z = 1; ?>
-         function clickSelectedButton() {
-            <?php if ($inner_results[$selection_number[$k]]['choice_name'] == $correct_array[$y-1]){ ?>
-               document.getElementById('answerDisplay<?php echo $z ?>').style.display = 'block'; 
-                document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block'; ;
-                document.getElementById("<?php echo $correct_array[$y-1] ;?>").style.display = 'block'; 
+      
+      <?php for ($k=0; $k < 3; $k++) {  ?>
+         let buttonOfOptionNumber<?php echo $k;?> = document.getElementById('answerChoice<?php echo $k;?>');
+         function clickSelectedButton<?php echo $k;?>() {
+            <?php if ($inner_results[$selection_number[$k]]['choice_name'] == $correct_array[0]){ ?>
+                document.getElementById('answerDisplay1').style.display = 'block'; 
+                buttonOfOptionNumber<?php echo $k;?>.classList.add('answerBox');
+                document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block';
+                document.getElementById("<?php echo $correct_array[0] ;?>").style.display = 'block'; 
                 document.getElementById("<?php echo $k;?>").style.display = 'block'; 
-                document.getElementById("<?php echo $y;?>").style.display = 'block'; 
-                document.getElementById("<?php echo $z;?>").style.display = 'block'; 
             <?php } else {  ?>
-                     document.getElementById('incorrectAnswerDisplay<?php echo $z ?>').style.display = 'block';
+                document.getElementById('incorrectAnswerDisplay1').style.display = 'block';
+                buttonOfOptionNumber<?php echo $k;?>.classList.add('incorrectAnswerBox');
+                document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block';
+                document.getElementById("<?php echo $correct_array[0] ;?>").style.display = 'block'; 
+                document.getElementById("<?php echo $k;?>").style.display = 'block'; 
             <?php }  ?>
          }
-      <?php $z++; ?>
       <?php } ?>
-      <?php $y++; ?>
+
+     
+      <?php for ($m=3; $m < 6; $m++) {  ?>
+         let buttonOfOptionNumber<?php echo $m;?> = document.getElementById('answerChoice<?php echo $m;?>');
+         function clickSelectedButton<?php echo $m;?>() {
+            <?php if ($inner_results[$selection_number[$m]]['choice_name'] == $correct_array[1]){ ?>
+                document.getElementById('answerDisplay2').style.display = 'block'; 
+                buttonOfOptionNumber<?php echo $m;?>.classList.add('answerBox');
+                document.getElementById("<?php echo $inner_results[$selection_number[$m]]['choice_name']; ?>").style.display = 'block';
+                document.getElementById("<?php echo $correct_array[1] ;?>").style.display = 'block'; 
+                document.getElementById("<?php echo $m;?>").style.display = 'block'; 
+                
+            <?php } else {  ?>
+                document.getElementById('incorrectAnswerDisplay2').style.display = 'block';
+                buttonOfOptionNumber<?php echo $m;?>.classList.add('incorrectAnswerBox');
+                document.getElementById("<?php echo $inner_results[$selection_number[$m]]['choice_name']; ?>").style.display = 'block';
+                document.getElementById("<?php echo $correct_array[1] ;?>").style.display = 'block'; 
+                document.getElementById("<?php echo $m;?>").style.display = 'block'; 
+            <?php }  ?>
+         }
+      <?php } ?>
+     
       
-      <?php endforeach ?>
+      
       //window.onload の時点で 
       //  window.onload = clickSelectedButton();
    </script>

@@ -72,3 +72,27 @@ $stmt8 = $pdo->prepare("SELECT place from place where id=?");
 <?php
  $db = new PDO($PDO_DSN,$DB_USERNAME,$DB_PASSWORD,$OPTIONS);
 // >>>>>>> 67a8ca0c1d201a4cc830b7bf613e0c967042a105
+
+?>
+<script>
+   <?php $y = 1; ?>
+     
+     <?php for ($k=($y-1)*3; $k < $y*3; $k++) {  ?>
+
+     <?php $z = 1; ?>
+        function clickSelectedButton2() {
+           <?php if ($inner_results[$selection_number[$k]]['choice_name'] == $correct_array[$y-1]){ ?>
+              document.getElementById('answerDisplay<?php echo $z ?>').style.display = 'block'; 
+               document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block'; ;
+               document.getElementById("<?php echo $correct_array[$y-1] ;?>").style.display = 'block'; 
+               document.getElementById("<?php echo $k;?>").style.display = 'block'; 
+               document.getElementById("<?php echo $y;?>").style.display = 'block'; 
+               document.getElementById("<?php echo $z;?>").style.display = 'block'; 
+           <?php } else {  ?>
+                    document.getElementById('incorrectAnswerDisplay<?php echo $z ?>').style.display = 'block';
+           <?php }  ?>
+        }
+     <?php $z++; ?>
+     <?php } ?>
+     <?php $y++; ?>
+</script>
