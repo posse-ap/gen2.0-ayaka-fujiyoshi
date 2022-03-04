@@ -79,19 +79,19 @@ try{
   }
 
 
-  echo $inner_results[0]['choice_name']  . PHP_EOL;
-  echo $inner_results[1]['choice_name']  . PHP_EOL;
-  echo $inner_results[2]['choice_name']  . PHP_EOL;
-  echo $inner_results[3]['choice_name']  . PHP_EOL;
-  echo $inner_results[4]['choice_name']  . PHP_EOL;
-  echo $inner_results[5]['choice_name']  . PHP_EOL;
+//   echo $inner_results[0]['choice_name']  . PHP_EOL;
+//   echo $inner_results[1]['choice_name']  . PHP_EOL;
+//   echo $inner_results[2]['choice_name']  . PHP_EOL;
+//   echo $inner_results[3]['choice_name']  . PHP_EOL;
+//   echo $inner_results[4]['choice_name']  . PHP_EOL;
+//   echo $inner_results[5]['choice_name']  . PHP_EOL;
 
-  echo $inner_results[0]['selection_id']  . PHP_EOL;
-  echo $inner_results[1]['selection_id']  . PHP_EOL;
-  echo $inner_results[2]['selection_id']  . PHP_EOL;
-  echo $inner_results[3]['selection_id']  . PHP_EOL;
-  echo $inner_results[4]['selection_id']  . PHP_EOL;
-  echo $inner_results[5]['selection_id']  . PHP_EOL;
+//   echo $inner_results[0]['selection_id']  . PHP_EOL;
+//   echo $inner_results[1]['selection_id']  . PHP_EOL;
+//   echo $inner_results[2]['selection_id']  . PHP_EOL;
+//   echo $inner_results[3]['selection_id']  . PHP_EOL;
+//   echo $inner_results[4]['selection_id']  . PHP_EOL;
+//   echo $inner_results[5]['selection_id']  . PHP_EOL;
 
   $correct_array = array();
   for ($j=0; $j < 6; $j++) { 
@@ -267,16 +267,23 @@ $selection_number[5] = 3 + $selection_numbers[2];
             <?php if ($inner_results[$selection_number[$k]]['choice_name'] == $correct_array[0]){ ?>
                 document.getElementById('answerDisplay1').style.display = 'block'; 
                 buttonOfOptionNumber<?php echo $k;?>.classList.add('answerBox');
-                document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block';
-                document.getElementById("<?php echo $correct_array[0] ;?>").style.display = 'block'; 
-                document.getElementById("<?php echo $k;?>").style.display = 'block'; 
+                buttonOfOptionNumber0.style.pointerEvents = 'none';
+                buttonOfOptionNumber1.style.pointerEvents = 'none';
+                buttonOfOptionNumber2.style.pointerEvents = 'none';
+               //  document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block';
+               //  document.getElementById("<?php echo $correct_array[0] ;?>").style.display = 'block'; 
+               //  document.getElementById("<?php echo $k;?>").style.display = 'block'; 
             <?php } else {  ?>
                 document.getElementById('incorrectAnswerDisplay1').style.display = 'block';
                 buttonOfOptionNumber<?php echo $k;?>.classList.add('incorrectAnswerBox');
-                document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block';
-                document.getElementById("<?php echo $correct_array[0] ;?>").style.display = 'block'; 
-                document.getElementById("<?php echo $k;?>").style.display = 'block'; 
+                buttonOfOptionNumber0.style.pointerEvents = 'none';
+                buttonOfOptionNumber1.style.pointerEvents = 'none';
+                buttonOfOptionNumber2.style.pointerEvents = 'none';
+               //  document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block';
+               //  document.getElementById("<?php echo $correct_array[0] ;?>").style.display = 'block'; 
+               //  document.getElementById("<?php echo $k;?>").style.display = 'block'; 
             <?php }  ?>
+            
          }
       <?php } ?>
 
@@ -287,16 +294,22 @@ $selection_number[5] = 3 + $selection_numbers[2];
             <?php if ($inner_results[$selection_number[$m]]['choice_name'] == $correct_array[1]){ ?>
                 document.getElementById('answerDisplay2').style.display = 'block'; 
                 buttonOfOptionNumber<?php echo $m;?>.classList.add('answerBox');
-                document.getElementById("<?php echo $inner_results[$selection_number[$m]]['choice_name']; ?>").style.display = 'block';
-                document.getElementById("<?php echo $correct_array[1] ;?>").style.display = 'block'; 
-                document.getElementById("<?php echo $m;?>").style.display = 'block'; 
+                buttonOfOptionNumber3.style.pointerEvents = 'none';
+                buttonOfOptionNumber4.style.pointerEvents = 'none';
+                buttonOfOptionNumber5.style.pointerEvents = 'none';
+               //  document.getElementById("<?php echo $inner_results[$selection_number[$m]]['choice_name']; ?>").style.display = 'block';
+               //  document.getElementById("<?php echo $correct_array[1] ;?>").style.display = 'block'; 
+               //  document.getElementById("<?php echo $m;?>").style.display = 'block'; 
                 
             <?php } else {  ?>
                 document.getElementById('incorrectAnswerDisplay2').style.display = 'block';
                 buttonOfOptionNumber<?php echo $m;?>.classList.add('incorrectAnswerBox');
-                document.getElementById("<?php echo $inner_results[$selection_number[$m]]['choice_name']; ?>").style.display = 'block';
-                document.getElementById("<?php echo $correct_array[1] ;?>").style.display = 'block'; 
-                document.getElementById("<?php echo $m;?>").style.display = 'block'; 
+                buttonOfOptionNumber3.style.pointerEvents = 'none';
+                buttonOfOptionNumber4.style.pointerEvents = 'none';
+                buttonOfOptionNumber5.style.pointerEvents = 'none';
+               //  document.getElementById("<?php echo $inner_results[$selection_number[$m]]['choice_name']; ?>").style.display = 'block';
+               //  document.getElementById("<?php echo $correct_array[1] ;?>").style.display = 'block'; 
+               //  document.getElementById("<?php echo $m;?>").style.display = 'block'; 
             <?php }  ?>
          }
       <?php } ?>
