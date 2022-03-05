@@ -1,0 +1,156 @@
+body{
+  background-color: #f5f5f8;
+}
+p{
+  margin: 0;
+}
+div{
+  margin: 0;
+}
+ul{
+  margin: 0;
+  padding: 0;
+}
+li{
+  margin: 0;
+  padding: 0;
+}
+.inner{
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* header */
+.header{
+  position: fixed;
+  height: 64px;
+  top: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  background-color: #fff;
+  z-index: 999;
+}
+.header__inner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0 30px 0;
+}
+.posse__logo{
+  height: 32px;
+  /* margin-left: 10px; */
+  background-size: cover;
+}
+.header__date{
+  font-size: 15px;
+  color: rgb(12, 154, 211);
+  margin-left: 20px;
+}
+.header__sending__button{
+  background: linear-gradient(to right, #0f71bc, #97b9d1);
+  margin-left: auto;
+  /* margin-right: 20px; */
+  color: #fff;
+  padding: 5px 40px 5px;
+  border-radius: 30px;
+  border-color: transparent;
+  box-shadow: 0 0 18px #97b9d1;
+}
+.header__sending__button a{
+  text-decoration: none;
+  color: #fff;
+}
+
+/* エラー表示 */
+main{
+  position: relative;
+}
+.modal-content-circle {
+  max-height: 80vh;
+  overflow-y: auto;
+  position: absolute;
+  left: 45%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 900px;
+  height: 700px;
+}
+
+.circle__wrap{
+	position: fixed;
+  align-items: center;
+  justify-content: center;
+  width: 900px;
+  height: 150px;
+}
+.circle {
+  background-color:rgb(240, 173, 86);
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+}
+.check__mark{
+  content: '';
+  width: 30px;
+  height: 15px;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: rotate(-45deg);
+}
+.refresh.icon {
+  color: #000;
+  position: absolute;
+  margin-left: 4px;
+  margin-top: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border-top: solid 3px #fff;
+  border-bottom: solid 3px #fff;
+  border-left: solid 3px transparent;
+  border-right: solid 3px #fff;
+  top: 28px;
+  left: 28px;
+}
+.refresh.icon:before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 25px;
+  width: 3px;
+  height: 3px;
+  border-top: solid 3px #fff;
+  border-left: solid 3px #fff;
+  -webkit-transform: rotate(-22.5deg);
+          transform: rotate(-22.5deg);
+}
+.circle__above{
+  color: rgb(240, 173, 86);
+  font-size: 15px;
+  position: absolute;
+  top: -25%;
+  left: 23px;
+}
+.error__explain1{
+  position: absolute;
+  top: 125px;
+  left: -72px;
+}
+.error__explain2{
+  position: absolute;
+  top: 150px;
+  left: -23px;
+}
+.error__explain3{
+  position: absolute;
+  top: 175px;
+  left: -43px;
+}
