@@ -114,15 +114,25 @@ try{
   }
   
 
-  // echo $results2[0]['contents_name']  . PHP_EOL;
-  // echo $results2[1]['contents_name']  . PHP_EOL;
-  // echo $results2[2]['contents_name']  . PHP_EOL;
-  // echo $results2[3]['contents_name']  . PHP_EOL;
-  // echo $results2[4]['contents_name']  . PHP_EOL;
-  // echo $results2[5]['contents_name']  . PHP_EOL;
-  // echo $results2[6]['contents_name']  . PHP_EOL;
-  // echo $results2[7]['contents_name']  . PHP_EOL;
-  // echo $results2[8]['contents_name']  . PHP_EOL;
+  echo $results2[0]['contents_name']  . PHP_EOL;
+  echo $results2[1]['contents_name']  . PHP_EOL;
+  echo $results2[2]['contents_name']  . PHP_EOL;
+  echo $results2[3]['contents_name']  . PHP_EOL;
+  echo $results2[4]['contents_name']  . PHP_EOL;
+  echo $results2[5]['contents_name']  . PHP_EOL;
+  echo $results2[6]['contents_name']  . PHP_EOL;
+  echo $results2[7]['contents_name']  . PHP_EOL;
+  echo $results2[8]['contents_name']  . PHP_EOL;
+
+  echo $results2[0]['contents_name']  . PHP_EOL;
+  echo $results2[1]['contents_name']  . PHP_EOL;
+  echo $results2[2]['contents_name']  . PHP_EOL;
+  echo $results2[3]['contents_name']  . PHP_EOL;
+  echo $results2[4]['contents_name']  . PHP_EOL;
+  echo $results2[5]['contents_name']  . PHP_EOL;
+  echo $results2[6]['contents_name']  . PHP_EOL;
+  echo $results2[7]['contents_name']  . PHP_EOL;
+  
  
   // 年別に集計
   // $sql3 = 'SELECT                                                  +------------+
@@ -136,33 +146,106 @@ try{
   //               WHERE DATE_FORMAT(study_date, '%Y') = 2022         |          3 |
   //                ';                                                +------------+
 
+  // $sql3 = 'SELECT                                                     
+  //               DATE_FORMAT(`study_date`, '%Y') as `grouping_year`,   
+  //               SUM(study_hour)                                       
+  //               FROM `study_times`                                    
+  //               GROUP BY `grouping_year`';                             
   $stmt3 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y") = DATE_FORMAT(now(), "%Y")')->fetch();
   // $stmt3 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y") = "2021"')->fetch();
-  print_r($stmt3);
-  foreach ($stmt3 as $results_year) {
-    echo $results_year."<br>";       //36   36    (2022の場合)
-  }
-  echo $results3;    //36     (2022の場合)
+  // print_r($stmt3);
+  // foreach ($stmt3 as $results_year) {
+  //   echo $results_year."<br>";       //36   36    (2022の場合)
+  // }
+  // echo $results3;    //36     (2022の場合)
 
+  // $stmt3 = $db->query('SELECT DATE_FORMAT("study_date", "%Y") as "grouping_year", SUM(study_hour) FROM "study_times" GROUP BY "grouping_year"')->fetch();     
+                                //これではだめ、ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'webapp.study_times.study_date' which is not functionally 
+                                //dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+  $stmt3_2 = $db->query('SELECT DATE_FORMAT(`study_date`, "%Y") as `grouping_year`, SUM(study_hour) FROM `study_times` GROUP BY `grouping_year`');
+  // +---------------+-----------------+
+  // | grouping_year | SUM(study_hour) |
+  // +---------------+-----------------+
+  // | 2021          |               5 |
+  // | 2022          |              36 |
+  // +---------------+-----------------+
+  $results3_2 = array();
+  while($row3_2 = $stmt3_2->fetch()) {
+     $results3_2[]=array(
+      'grouping_year' =>$row3_2['grouping_year'],
+      'SUM(study_hour)' =>$row3_2['SUM(study_hour)']
+   );
+  }
+  echo $results3_2[0]['grouping_year']  . PHP_EOL;  //2021
+  echo $results3_2[1]['grouping_year']  . "<br>";  //2022
 
   // 月別に集計
   $stmt4 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m") = DATE_FORMAT(now(), "%Y-%m")')->fetch();
   // $stmt4 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m") = "2022-02"')->fetch();
-  print_r($stmt4);
-  foreach ($stmt4 as $results_month) {
-    echo $results_month."<br>";       //6   6    (2022-03の場合)
-  }
-  echo $results_month;    //6
+  // print_r($stmt4);
+  // foreach ($stmt4 as $results_month) {
+  //   echo $results_month."<br>";       //6   6    (2022-03の場合)
+  // }
+  // echo $results_month;    //6
 
+  $stmt4_2 = $db->query('SELECT DATE_FORMAT(`study_date`, "%Y-%m") as `grouping_month`, SUM(study_hour) FROM `study_times` GROUP BY `grouping_month`');
+  // +----------------+-----------------+
+  // | grouping_month | SUM(study_hour) |
+  // +----------------+-----------------+
+  // | 2021-07        |               5 |
+  // | 2022-01        |              14 |
+  // | 2022-02        |              16 |
+  // | 2022-03        |               6 |
+  // +----------------+-----------------+
+  $results4_2 = array();
+  while($row4_2 = $stmt4_2->fetch()) {
+     $results4_2[]=array(
+      'grouping_month' =>$row4_2['grouping_month'],
+      'SUM(study_hour)' =>$row4_2['SUM(study_hour)']
+   );
+  }
+  echo $results4_2[0]['grouping_month']  . PHP_EOL;  //2021-07
+  echo $results4_2[1]['grouping_month']  . PHP_EOL;  //2022-01
+  echo $results4_2[2]['grouping_month']  . PHP_EOL;  //2022-02
+  echo $results4_2[3]['grouping_month']  . "<br>";  //2022-03
 
    // 日別に集計
    $stmt5 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = DATE_FORMAT(now(), "%Y-%m-%d")')->fetch();
    // $stmt5 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = "2022-02-09"')->fetch();
-   print_r($stmt5);
-   foreach ($stmt5 as $results_date) {
-     echo $results_date."<br>";       //3   3    (2022-03-11の場合)
+  //  print_r($stmt5);
+  //  foreach ($stmt5 as $results_date) {
+  //    echo $results_date."<br>";       //3   3    (2022-03-11の場合)
+  //  }
+  //  echo $results_date;    //3
+
+   $stmt5_2 = $db->query('SELECT DATE_FORMAT(`study_date`, "%Y-%m-%d") as `grouping_date`, SUM(study_hour) FROM `study_times` GROUP BY `grouping_date`');
+   //  +---------------+-----------------+
+   //  | grouping_date | SUM(study_hour) |
+   //  +---------------+-----------------+
+   //  | 2021-07-01    |               5 |
+   //  | 2022-01-03    |              10 |   //←ちゃんと6+4されてる
+   //  | 2022-01-06    |               4 |
+   //  | 2022-02-09    |               3 |
+   //  | 2022-02-12    |               6 |
+   //  | 2022-02-16    |               7 |
+   //  | 2022-03-08    |               3 |
+   //  | 2022-03-11    |               3 |
+   //  +---------------+-----------------+
+   $results5_2 = array();
+   while($row5_2 = $stmt5_2->fetch()) {
+      $results5_2[]=array(
+       'grouping_date' =>$row5_2['grouping_date'],
+       'SUM(study_hour)' =>$row5_2['SUM(study_hour)']
+    );
    }
-   echo $results_date;    //3
+   echo $results5_2[0]['grouping_date']  . PHP_EOL;  //2021-07-01
+   echo $results5_2[1]['grouping_date']  . PHP_EOL;  //2022-01-03
+   echo $results5_2[2]['grouping_date']  . PHP_EOL;  //2022-01-06
+   echo $results5_2[3]['grouping_date']  . PHP_EOL;  //2022-02-09
+   echo $results5_2[4]['grouping_date']  . PHP_EOL;  //2022-02-12
+   echo $results5_2[5]['grouping_date']  . PHP_EOL;  //2022-02-16
+   echo $results5_2[6]['grouping_date']  . PHP_EOL;  //2022-03-08
+   echo $results5_2[7]['grouping_date']  . PHP_EOL;  //2022-03-11
  
 ?>
 
