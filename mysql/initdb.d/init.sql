@@ -4,49 +4,104 @@ CREATE DATABASE webapp;
 USE webapp;
 
 
--- 大問テーブル
-DROP TABLE IF EXISTS big_questions;
-CREATE TABLE big_questions
+-- 学習時間・内容テーブル
+DROP TABLE IF EXISTS study_times;
+CREATE TABLE study_times
 (
-  id           INT(50),
-  name     VARCHAR(50)
+  id             INT NOT NULL,
+  study_date     DATETIME NOT NULL,
+  study_hour     INT NOT NULL,
+  languages_id   INT NOT NULL,
+  contents_id    INT NOT NULL,
+  PRIMARY KEY (id)
 );
 
-INSERT INTO big_questions (id, name) VALUES (1, "東京の難読地名クイズ");
-INSERT INTO big_questions (id, name) VALUES (2, "広島県の難読地名クイズ");
+INSERT INTO study_times (id, study_date, study_hour, languages_id, contents_id) VALUES 
+(1, '2021-07-01', 5, 2, 1),
+(2, '2022-01-03', 4, 5, 1),
+(3, '2022-01-03', 6, 3, 2),
+(4, '2022-01-06', 4, 1, 3),
+(5, '2022-02-09', 3, 4, 2),
+(6, '2022-02-12', 6, 6, 2),
+(7, '2022-02-16', 7, 7, 3),
+(8, '2022-03-08', 3, 8, 3),
+(9, '2022-03-11', 3, 8, 3);   
+-- ↑９，今日の日付にしてみる
 
 
--- 設問テーブル （写真）
-DROP TABLE IF EXISTS questions;
-CREATE TABLE questions
+-- mysql> select * from study_times;
+-- +----+---------------------+------------+--------------+-------------+
+-- | id | study_date          | study_hour | languages_id | contents_id |
+-- +----+---------------------+------------+--------------+-------------+
+-- |  1 | 2021-07-01 00:00:00 |          5 |            2 |           1 |
+-- |  2 | 2022-01-03 00:00:00 |          4 |            5 |           1 |
+-- |  3 | 2022-01-03 00:00:00 |          6 |            3 |           2 |
+-- |  4 | 2022-01-06 00:00:00 |          4 |            1 |           3 |
+-- |  5 | 2022-02-09 00:00:00 |          3 |            4 |           2 |
+-- |  6 | 2022-02-12 00:00:00 |          6 |            6 |           2 |
+-- |  7 | 2022-02-16 00:00:00 |          7 |            7 |           3 |
+-- |  8 | 2022-03-08 00:00:00 |          3 |            8 |           3 |
+-- |  9 | 2022-03-11 00:00:00 |          3 |            8 |           3 |
+-- +----+---------------------+------------+--------------+-------------+
+
+
+
+-- 学習言語テーブル
+DROP TABLE IF EXISTS study_languages;
+CREATE TABLE study_languages
 (
-  id                INT(50),
-  big_question_id   INT(50),
-  image         VARCHAR(50)
+  id               INT NOT NULL,
+  language_name    VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
 );
 
-INSERT INTO questions (id, big_question_id, image) VALUES (1, 1, "takanawa.png");
-INSERT INTO questions (id, big_question_id, image) VALUES (2, 1, "kameido.png");
-INSERT INTO questions (id, big_question_id, image) VALUES (3, 2, "mukainada.png");
+INSERT INTO study_languages (id, language_name) VALUES 
+(1, 'JavaScript'),
+(2, 'css'),
+(3, 'PHP'),
+(4, 'HTML'),
+(5, 'Laravel'),
+(6, 'SQL'),
+(7, 'SHELL'),
+(8, '情報システム基礎知識（その他）');
 
 
--- 選択肢テーブル
-DROP TABLE IF EXISTS choices;
-CREATE TABLE choices
+-- mysql> select * from study_languages;
+-- +----+-----------------------------------------------+
+-- | id | language_name                                 |
+-- +----+-----------------------------------------------+
+-- |  1 | JavaScript                                    |
+-- |  2 | css                                           |
+-- |  3 | PHP                                           |
+-- |  4 | HTML                                          |
+-- |  5 | Laravel                                       |
+-- |  6 | SQL                                           |
+-- |  7 | SHELL                                         |
+-- |  8 | 情報システム基礎知識（その他）                   |
+-- +----+-----------------------------------------------+
+
+
+
+-- 学習コンテンツテーブル
+DROP TABLE IF EXISTS study_contents;
+CREATE TABLE study_contents
 (
-  id            INT(50),
-  question_id   INT(50),
-  selection_id   INT(50),
-  name      VARCHAR(50),
-  valid         INT(50)
+  id              INT NOT NULL,
+  contents_name   VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
 );
 
-INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (1, 1, 0, "たかなわ", 1);
-INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (2, 1, 1, "たかわ", 0);
-INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (3, 1, 2, "こうわ", 0);
-INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (4, 2, 0, "かめと", 0);
-INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (5, 2, 1, "かめど", 0);
-INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (6, 2, 2, "かめいど", 1);
-INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (7, 3, 0, "むこうひら", 0);
-INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (8, 3, 1, "むきひら", 0);
-INSERT INTO choices (id, question_id, selection_id, name, valid) VALUES (9, 3, 2, "むかいなだ", 1); 
+INSERT INTO study_contents (id, contents_name) VALUES 
+(1, 'ドットインストール'),
+(2, 'N予備校'),
+(3, 'POSSE課題');
+
+
+-- mysql> select * from study_contents;
+-- +----+-----------------------------+
+-- | id | contents_name               |
+-- +----+-----------------------------+
+-- |  1 | ドットインストール           |
+-- |  2 | N予備校                     |
+-- |  3 | POSSE課題                   |
+-- +----+-----------------------------+

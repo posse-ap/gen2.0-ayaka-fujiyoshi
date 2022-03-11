@@ -17,20 +17,19 @@ try{
    // PDOインスタンスを生成
   $db = new PDO($PDO_DSN,$DB_USERNAME,$DB_PASSWORD,$OPTIONS);
  
- //大問・設問テーブルの結合、選択
-  $id = filter_input(INPUT_GET, 'id');
+ //学習時間・学習言語テーブルの結合、選択
   $sql = 'SELECT
-          big_questions.id AS big_quiz_id,
-          big_questions.name AS big_quiz_name,
-          questions.id AS image_id,
-          questions.image AS image_name
-          FROM big_questions
-          INNER JOIN questions
-          ON  big_questions.id = questions.big_question_id
-          WHERE big_questions.id= ? ';
-  $stmt = $db->prepare($sql); // SELECT文を変数に格納
-  $stmt->bindValue(1,$id);  //第一引数のパラメータID,SQL内の「?」の位置を指定
-  $stmt->execute();
+          study_times.id AS times_id,
+          study_times.study_date AS study_date,
+          study_times.study_hour AS study_hour,
+          study_times.languages_id AS languages_id,
+          study_times.contents_id AS contents_id,
+          study_languages.language_name AS language_name
+          FROM study_times
+          INNER JOIN study_languages
+          ON  study_times.languages_id = study_languages.id';
+  $stmt = $db->query($sql); // SELECT文を変数に格納
+  
   $results = array();
   echo 'DB接続成功';
 
@@ -46,277 +45,401 @@ try{
 
  while($row = $stmt->fetch()) {
    $results[]=array(
-      'big_quiz_id' =>$row['big_quiz_id'],
-      'big_quiz_name' =>$row['big_quiz_name'],
-      'image_id' =>$row['image_id'],
-      'image_name' =>$row['image_name'],
+      'times_id' =>$row['times_id'],
+      'study_date' =>$row['study_date'],
+      'study_hour' =>$row['study_hour'],
+      'languages_id' =>$row['languages_id'],
+      'contents_id' =>$row['contents_id'],
+      'language_name' =>$row['language_name']
    );
  }
 
- //設問・選択テーブルの結合、選択
- $inner_sql = "SELECT
-               questions.id AS image_id,
-               questions.image AS image_name,
-               choices.selection_id AS selection_id,
-               choices.name AS choice_name,
-               choices.valid AS choice_valid
-               FROM questions
-               INNER JOIN choices
-               ON  questions.id = choices.question_id
-               WHERE questions.big_question_id= ? ";
-  $inner_stmt = $db->prepare($inner_sql); // SELECT文を変数に格納
-  $inner_stmt->bindValue(1,$id);  //第一引数のパラメータID,SQL内の「?」の位置を指定
-  $inner_stmt->execute();
-  $inner_results = array();
-  while($inner_row = $inner_stmt->fetch()) {
-     $inner_results[]=array(
-        'image_id' =>$inner_row['image_id'],
-        'image_name' =>$inner_row['image_name'],
-        'selection_id' =>$inner_row['selection_id'],
-        'choice_name' =>$inner_row['choice_name'],
-        'choice_valid' =>$inner_row['choice_valid']
-     );
+//  print_r($results);
+ echo $results[0]['study_date']  . PHP_EOL;
+ echo $results[1]['study_date']  . PHP_EOL;
+ echo $results[2]['study_date']  . PHP_EOL;
+ echo $results[3]['study_date']  . PHP_EOL;
+ echo $results[4]['study_date']  . PHP_EOL;
+ echo $results[5]['study_date']  . PHP_EOL;
+ echo $results[6]['study_date']  . PHP_EOL;
+ echo $results[7]['study_date']  . PHP_EOL;
+ echo $results[8]['study_date']  . PHP_EOL;
+
+//  Array
+//  (
+//      [0] => Array
+//          (
+//              [times_id] => 1
+//              [study_date] => 2021-07-01 00:00:00
+//              [study_hour] => 5
+//              [languages_id] => 2
+//              [contents_id] => 1
+//              [language_name] => css
+//          )
+//  ......... 
+//  )
+//  2021-07-01 00:00:00
+//  2021-07-03 00:00:00
+//  2021-07-04 00:00:00
+//  ......... 
+
+ //学習時間・学習コンテンツテーブルの結合、選択
+ $sql2 = 'SELECT
+               study_times.id AS times_id,
+               study_times.study_date AS study_date,
+               study_times.study_hour AS study_hour,
+               study_times.languages_id AS languages_id,
+               study_times.contents_id AS contents_id,
+               study_contents.contents_name AS contents_name
+               FROM study_times
+               INNER JOIN study_contents
+               ON  study_times.contents_id = study_contents.id';
+  $stmt2 = $db->query($sql2); // SELECT文を変数に格納
+
+  $results2 = array();
+  while($row2 = $stmt2->fetch()) {
+     $results2[]=array(
+      'times_id' =>$row2['times_id'],
+      'study_date' =>$row2['study_date'],
+      'study_hour' =>$row2['study_hour'],
+      'languages_id' =>$row2['languages_id'],
+      'contents_id' =>$row2['contents_id'],
+      'contents_name' =>$row2['contents_name']
+   );
   }
 
+  $cnt = count($results2);               //results2の配列の長さ取得
+  for ($i=0; $i < $cnt; $i++) {          //その分回す
+    echo  $results2[$i]['contents_name']  . PHP_EOL;
+  }
+  
 
-//   echo $inner_results[0]['choice_name']  . PHP_EOL;
-//   echo $inner_results[1]['choice_name']  . PHP_EOL;
-//   echo $inner_results[2]['choice_name']  . PHP_EOL;
-//   echo $inner_results[3]['choice_name']  . PHP_EOL;
-//   echo $inner_results[4]['choice_name']  . PHP_EOL;
-//   echo $inner_results[5]['choice_name']  . PHP_EOL;
+  // echo $results2[0]['contents_name']  . PHP_EOL;
+  // echo $results2[1]['contents_name']  . PHP_EOL;
+  // echo $results2[2]['contents_name']  . PHP_EOL;
+  // echo $results2[3]['contents_name']  . PHP_EOL;
+  // echo $results2[4]['contents_name']  . PHP_EOL;
+  // echo $results2[5]['contents_name']  . PHP_EOL;
+  // echo $results2[6]['contents_name']  . PHP_EOL;
+  // echo $results2[7]['contents_name']  . PHP_EOL;
+  // echo $results2[8]['contents_name']  . PHP_EOL;
+ 
+  // 年別に集計
+  // $sql3 = 'SELECT                                                  +------------+
+  //               SUM(study_hour) as count_hour                      | count_hour |
+  //               FROM study_times                                   +------------+
+  //               WHERE DATE_FORMAT(study_date, '%Y') = 2021         |         38 |
+  //                ';                                                +------------+
+  // $sql3 = 'SELECT                                                  +------------+
+  //               SUM(study_hour) as count_hour                      | count_hour |
+  //               FROM study_times                                   +------------+
+  //               WHERE DATE_FORMAT(study_date, '%Y') = 2022         |          3 |
+  //                ';                                                +------------+
 
-//   echo $inner_results[0]['selection_id']  . PHP_EOL;
-//   echo $inner_results[1]['selection_id']  . PHP_EOL;
-//   echo $inner_results[2]['selection_id']  . PHP_EOL;
-//   echo $inner_results[3]['selection_id']  . PHP_EOL;
-//   echo $inner_results[4]['selection_id']  . PHP_EOL;
-//   echo $inner_results[5]['selection_id']  . PHP_EOL;
+  $stmt3 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y") = DATE_FORMAT(now(), "%Y")')->fetch();
+  // $stmt3 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y") = "2021"')->fetch();
+  print_r($stmt3);
+  foreach ($stmt3 as $results_year) {
+    echo $results_year."<br>";       //36   36    (2022の場合)
+  }
+  echo $results3;    //36     (2022の場合)
 
-  $correct_array = array();
-  for ($j=0; $j < 6; $j++) { 
-   if ($inner_results[$j]['choice_valid'] === '1'){
-      // echo $inner_results[$j]['choice_name']  . PHP_EOL;
-      // echo 'correct!' . PHP_EOL;
-      $correct_array[] = $inner_results[$j]['choice_name'];
-   } else {
-      // echo 'false...';
+
+  // 月別に集計
+  $stmt4 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m") = DATE_FORMAT(now(), "%Y-%m")')->fetch();
+  // $stmt4 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m") = "2022-02"')->fetch();
+  print_r($stmt4);
+  foreach ($stmt4 as $results_month) {
+    echo $results_month."<br>";       //6   6    (2022-03の場合)
+  }
+  echo $results_month;    //6
+
+
+   // 日別に集計
+   $stmt5 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = DATE_FORMAT(now(), "%Y-%m-%d")')->fetch();
+   // $stmt5 = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = "2022-02-09"')->fetch();
+   print_r($stmt5);
+   foreach ($stmt5 as $results_date) {
+     echo $results_date."<br>";       //3   3    (2022-03-11の場合)
    }
-  }
-//   print_r($correct_array);  // Array ( [0] => たかなわ [1] => かめいど ) 
-//   echo $correct_array[0] . PHP_EOL;  //たかなわ
-//   echo $correct_array[1] . PHP_EOL;  //かめいど
-
-
-//配列をシャッフル→選択肢の番号をシャッフルしてシャッフルした値を元に出力
-$selection_numbers = [0,1,2]; //ここで番号を用意
-shuffle($selection_numbers);
-// var_dump($selection_numbers[0]);
-// $y = 1;
-// for ($m=($y-1)*3; $m < $y*3; $m++) { 
-//    $selection_number[$m] = $y*3 + $selection_numbers[0];
-// }
-// $y++;
-
-$selection_number[0] = 0 + $selection_numbers[0];
-$selection_number[1] = 0 + $selection_numbers[1];
-$selection_number[2] = 0 + $selection_numbers[2];
-$selection_number[3] = 3 + $selection_numbers[0];
-$selection_number[4] = 3 + $selection_numbers[1];
-$selection_number[5] = 3 + $selection_numbers[2];
-
-// echo $inner_results[$selection_number[0]]['choice_name']  . PHP_EOL; //たかわ
-// echo $inner_results[$selection_number[1]]['choice_name']  . PHP_EOL; //こうわ
-// echo $inner_results[$selection_number[2]]['choice_name']  . PHP_EOL; //たかなわ
-// echo $inner_results[$selection_number[3]]['choice_name']  . PHP_EOL; //かめど
-// echo $inner_results[$selection_number[4]]['choice_name']  . PHP_EOL; //かめいど
-// echo $inner_results[$selection_number[5]]['choice_name']  . PHP_EOL; //かめと
-
-// echo $selection_number[0] . PHP_EOL; //1→たかわ
-// echo $selection_number[1] . PHP_EOL; //2→こうわ
-// echo $selection_number[2] . PHP_EOL; //0→たかなわ
-// echo $selection_number[3] . PHP_EOL; //4→かめど
-// echo $selection_number[4] . PHP_EOL; //5→かめいど
-// echo $selection_number[5] . PHP_EOL; //3→かめと
-
+   echo $results_date;    //3
+ 
 ?>
 
 
 
 <!DOCTYPE html>
-<html lang='ja'>
+<html lang="ja">
 <head>
-    <meta charset='UTF-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Kuizy</title>
-    <link href="https://unpkg.com/sanitize.css" rel="stylesheet"/>
-    <link rel='stylesheet' href='kuizy.css'>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="webapp.css">
+  <title>Posse app</title>
 </head>
 <body>
+  <!-- トップ画面 -->
+  <div class="footer__fixed">
 
-<div class='mainWrapper'>
-   <!-- タイトル↓ -->
-   <h2 class='title'>#<?php echo $results[0]['big_quiz_name']; ?></h2>
-   <!-- <?php $x = 1; ?> -->
+    <!-- ヘッダー -->
+    <header class="header">
+      <div class="inner header__inner">
+        <img class="posse__logo" src="https://posse.anti-pattern.co.jp/img/posseLogo.png" alt="posseLogo">
+        <p class="header__date">4th week</p>
+        <button class="header__sending__button"><a href="#modal">記録・投稿</a></button>
+      </div>    
+    </header>
 
-   
-   <?php foreach ($results as $value): ?>
-         <!-- 設問番号↓ -->
-            <h3><?php echo $value['image_id']; ?>.この地名はなんて読む？</h3>
-         <!-- 写真↓ -->
-            <img src= 'img/<?php echo $value['image_name']; ?>'  alt='問題 <?php echo $inner_value['image_id']; ?>の写真' width=auto>
-         <!-- 選択肢↓ -->
-         <!-- 1回目は0,1,2を出力したい、2回目は3,4,5を出力したい -->
-            <?php for ($i=($x-1)*3; $i < $x*3; $i++) { ?>
-                  <!-- 1回目は$x=1を代入するので、($i=0; $i < 3; $i++)となり、0,1,2まで出力できる -->
-                  <!-- 2回目は$x=2を代入するので、($i=3; $i < 6; $i++)となり、3,4,5まで出力できる -->
-                     <ul>
-                       <li class='buttonOfOptionNumber' input type='button' value='button' onclick="clickSelectedButton<?php echo $i ;?>()" id='answerChoice<?php echo $i ;?>'>
-                          <?php echo $inner_results[$selection_number[$i]]['choice_name'];?>
-                       </li>
-                     </ul>
-                     
-            <?php } ?>
-         <!-- 解答ボックス↓ -->
-            <div id='answerDisplay<?php echo $x; ?>' class='firstIsInvisible'>
-                  <li><span>正解!</span></li>
-                  <li>正解は <?php echo $correct_array[$x-1]; ?> です!</li>
-            </div>
-            <div id='incorrectAnswerDisplay<?php echo $x; ?>' class='incorrectFirstIsInvisible'>
-                  <li><span>不正解!</span></li>
-                  <li>正解は <?php echo $correct_array[$x-1]; ?> です!</li>
-            </div>
-
-            
-   <?php $x++; ?>
-   <?php endforeach ?>
-   
-
-   
-   
-   
-
-</div>
-
-   <!-- 試しに -->
-   <!-- <th><br></th><th><br></th>
-      <table>
-        <tr>
-          <th>big_quiz_id</th> 
-          <th>big_quiz_name</th>
-          <th>image_id</th>
-          <th>image_name</th>
-        </tr>
-       <?php foreach ($results as $value): ?>
-        <tr>
-          <td>
-           <?php echo $value['big_quiz_id']; ?> 
-          </td>
-          <td>
-           <?php echo $value['big_quiz_name']; ?>
-          </td>
-          <td>
-           <?php echo $value['image_id']; ?>
-          </td>
-          <td>
-           <?php echo $value['image_name']; ?>
-          </td>
-        </tr>
-      <?php endforeach ?>
-
-      <th><br></th>
-
-      <tr>
-          <th>image_id</th> 
-          <th>image_name</th>
-          <th>selection_id</th>
-          <th>choice_name</th>
-          <th>choice_valid</th>
-      </tr>
-      
-      <?php foreach ($inner_results as $inner_value): ?>
-       <tr>
-        <td>
-         <?php echo $inner_value['image_id'] ?>
-        </td>
-        <td>
-         <?php echo $inner_value['image_name'] ?>
-        </td>
-        <td>
-         <?php echo $inner_value['selection_id'] ?>
-        </td>
-        <td>
-         <?php echo $inner_value['choice_name'] ?>
-        </td>
-        <td>
-         <?php echo $inner_value['choice_valid'] ?>
-        </td>
-      </tr>
-      <?php endforeach ?>
-      <th><br></th> 
-   </table> -->
-
-
-
-   <script>
-      
-      <?php for ($k=0; $k < 3; $k++) {  ?>
-         let buttonOfOptionNumber<?php echo $k;?> = document.getElementById('answerChoice<?php echo $k;?>');
-         function clickSelectedButton<?php echo $k;?>() {
-            <?php if ($inner_results[$selection_number[$k]]['choice_name'] == $correct_array[0]){ ?>
-                document.getElementById('answerDisplay1').style.display = 'block'; 
-                buttonOfOptionNumber<?php echo $k;?>.classList.add('answerBox');
-                buttonOfOptionNumber0.style.pointerEvents = 'none';
-                buttonOfOptionNumber1.style.pointerEvents = 'none';
-                buttonOfOptionNumber2.style.pointerEvents = 'none';
-               //  document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block';
-               //  document.getElementById("<?php echo $correct_array[0] ;?>").style.display = 'block'; 
-               //  document.getElementById("<?php echo $k;?>").style.display = 'block'; 
-            <?php } else {  ?>
-                document.getElementById('incorrectAnswerDisplay1').style.display = 'block';
-                buttonOfOptionNumber<?php echo $k;?>.classList.add('incorrectAnswerBox');
-                buttonOfOptionNumber0.style.pointerEvents = 'none';
-                buttonOfOptionNumber1.style.pointerEvents = 'none';
-                buttonOfOptionNumber2.style.pointerEvents = 'none';
-               //  document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block';
-               //  document.getElementById("<?php echo $correct_array[0] ;?>").style.display = 'block'; 
-               //  document.getElementById("<?php echo $k;?>").style.display = 'block'; 
-            <?php }  ?>
-            
-         }
-      <?php } ?>
-
-     
-      <?php for ($m=3; $m < 6; $m++) {  ?>
-         let buttonOfOptionNumber<?php echo $m;?> = document.getElementById('answerChoice<?php echo $m;?>');
-         function clickSelectedButton<?php echo $m;?>() {
-            <?php if ($inner_results[$selection_number[$m]]['choice_name'] == $correct_array[1]){ ?>
-                document.getElementById('answerDisplay2').style.display = 'block'; 
-                buttonOfOptionNumber<?php echo $m;?>.classList.add('answerBox');
-                buttonOfOptionNumber3.style.pointerEvents = 'none';
-                buttonOfOptionNumber4.style.pointerEvents = 'none';
-                buttonOfOptionNumber5.style.pointerEvents = 'none';
-               //  document.getElementById("<?php echo $inner_results[$selection_number[$m]]['choice_name']; ?>").style.display = 'block';
-               //  document.getElementById("<?php echo $correct_array[1] ;?>").style.display = 'block'; 
-               //  document.getElementById("<?php echo $m;?>").style.display = 'block'; 
+    <!-- メイン -->
+    <main>
+      <div class="inner main__inner">
+        <section class="main__left">
+          <!-- 学習時間 -->
+          <div>
+            <ul class="main__study__number">
+              <li class="main__study__item first__item">
+                <div class="main__study__item__title">Today</div>
+                <div class="main__study__item__number">3</div>
+                <div class="main__study__item__unit">hour</div>
+              </li>
+              <li class="main__study__item">
+                <div class="main__study__item__title">Month</div>
+                <div class="main__study__item__number">120</div>
+                <div class="main__study__item__unit">hour</div>
+              </li>
+              <li class="main__study__item last__item">
+                <div class="main__study__item__title">Total</div>
+                <div class="main__study__item__number">1348</div>
+                <div class="main__study__item__unit">hour</div>
+              </li>
+            </ul>
+          </div>
+          <!-- 学習時間 棒グラフ -->
+          <div class="inner main__bar__graph">
+            <div id="barChart__div" class="barChart__div__wrapper" style="width: 96%; height: 85%;"></div>
+          </div>
+  
+        </section>
+        <section class="main__right">
+          <ul class="main__pie__chart__inner">
+            <!-- 学習言語 円グラフ -->
+            <li  class="main__pie__chart__item left__item">
+              <div class="main__pie__chart__title">学習言語</div>
+              <div id="pieChart__left" class="pieChart__position" style="width: 80%; height: 50%;"></div>
+              <div class="pie__chart__legend__wrapper">
+                <div class="pie__chart__legend__wrapper__small">
+                  <div class="pie__chart__legend__items">
+                    <div class="pie__chart__circle circle__js">
+                      <div class="pie__chart__language ">JavaScript</div>
+                    </div> 
+                  </div>
+                  <div class="pie__chart__legend__items">
+                   <div class="pie__chart__circle circle__css">
+                    <div class="pie__chart__language pie__chart__language__css">css</div>
+                   </div>
+                  </div>                
+                </div>
+                <div class="pie__chart__legend__wrapper__small">
+                  <div class="pie__chart__legend__items2">
+                    <div class="pie__chart__circle circle__php">
+                     <div class="pie__chart__language ">PHP</div>
+                    </div>
+                  </div>
+                   <div class="pie__chart__legend__items2">
+                    <div class="pie__chart__circle circle__html">
+                     <div class="pie__chart__language active">HTML</div>
+                     </div>
+                  </div>
+                  <div class="pie__chart__legend__items2">
+                    <div class="pie__chart__circle circle__laravel">
+                     <div class="pie__chart__language ">Laravel</div>
+                    </div>
+                   </div>                
+                </div>
+                <div class="pie__chart__legend__wrapper__small">
+                   <div class="pie__chart__legend__items">
+                    <div class="pie__chart__circle circle__sql">
+                     <div class="pie__chart__language ">SQL</div>
+                    </div>
+                   </div>
+                   <div class="pie__chart__legend__items">
+                    <div class="pie__chart__circle circle__shell">
+                     <div class="pie__chart__language ">SHELL</div>
+                    </div>
+                   </div>
+                </div>
                 
-            <?php } else {  ?>
-                document.getElementById('incorrectAnswerDisplay2').style.display = 'block';
-                buttonOfOptionNumber<?php echo $m;?>.classList.add('incorrectAnswerBox');
-                buttonOfOptionNumber3.style.pointerEvents = 'none';
-                buttonOfOptionNumber4.style.pointerEvents = 'none';
-                buttonOfOptionNumber5.style.pointerEvents = 'none';
-               //  document.getElementById("<?php echo $inner_results[$selection_number[$m]]['choice_name']; ?>").style.display = 'block';
-               //  document.getElementById("<?php echo $correct_array[1] ;?>").style.display = 'block'; 
-               //  document.getElementById("<?php echo $m;?>").style.display = 'block'; 
-            <?php }  ?>
-         }
-      <?php } ?>
-     
+                <div class="pie__chart__legend__items">
+                 <div class="pie__chart__circle circle__system">
+                  <div class="pie__chart__language__system ">情報システム基礎知識（その他）</div>
+                 </div>
+                </div>
+              </div>
+            </li>
+            <!-- 学習コンテンツ 円グラフ -->
+            <li  class="main__pie__chart__item right__item">
+               <div class="main__pie__chart__title">学習コンテンツ</div>
+               <div id="pieChart__right" class="pieChart__position" style="width: 80%; height: 50%;"></div>
+               <div class="pie__chart__legend__wrapper">
+                <div class="pie__chart__legend__items__right">
+                  <div class="pie__chart__circle circle__js">
+                    <div class="pie__chart__legend__contents ">ドットインストール</div>
+                  </div> 
+                </div>
+                <div class="pie__chart__legend__items__right">
+                 <div class="pie__chart__circle circle__css">
+                  <div class="pie__chart__legend__contents ">N予備校</div>
+                 </div>
+                </div>
+                <div class="pie__chart__legend__items__right">
+                 <div class="pie__chart__circle circle__php">
+                  <div class="pie__chart__legend__contents ">POSSE課題</div>
+                 </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+    
+        </section>
+      </div>    
+    </main>
 
-      
-   </script>
-   
+    <!-- モーダル画面 -->
+    <div class="modal-wrapper" id="modal">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal-window">
+        <div class="modal-content">
+          <main id="modal__main">
+            <div class="inner main__inner__ver__modal">
+              <section class="main__left__ver__modal">
+                <form action="/" name="contactForm1" class="contact__form1">
+                  <dl class="contact__form__list">
+                    <div class="contact__form__item contact__form__item__date item__title">
+                      <div  id="appendTo">
+                        <label for="study__date">学習日</label><br>                      
+                        <input type="text" name="study__date" id="study__date">
+                      </div>                  
+                    </div>
+                                      
+                    <div class="contact__form__item">
+                      <dt class="item__title">学習コンテンツ（複数選択可）</dt>
+                      <dd class="self__checkbox" data-toggle="buttons">
+                        <input type="checkbox" id="study__contents1" value="N予備校" checked><label for="study__contents1" class="btn active">N予備校</label>
+                        <input type="checkbox" id="study__contents2" value="ドットインストール"><label for="study__contents2" class="btn ">ドットインストール</label><br>
+                        <input type="checkbox" id="study__contents3" value="POSSE課題"><label for="study__contents3" class="btn ">POSSE課題</label>
+                      </dd>
+                    </div>
+                    <div class="contact__form__item">
+                      <dt class="item__title">学習言語（複数選択可）</dt>
+                      <dd class="self__checkbox" data-toggle="buttons">
+                        <input type="checkbox" id="study__language1" value="HTML" checked><label for="study__language1" class="btn active">HTML</label>
+                        <input type="checkbox" id="study__language2" value="css"><label for="study__language2" class="btn ">css</label>
+                        <input type="checkbox" id="study__language3" value="JavaScript"><label for="study__language3" class="btn ">JavaScript</label><br>
+                        <input type="checkbox" id="study__language4" value="PHP"><label for="study__language4" class="btn ">PHP</label>
+                        <input type="checkbox" id="study__language5" value="Laravel"><label for="study__language5" class="btn ">Laravel</label>
+                        <input type="checkbox" id="study__language6" value="SQL"><label for="study__language6" class="btn ">SQL</label>
+                        <input type="checkbox" id="study__language7" value="SHELL"><label for="study__language7" class="btn ">SHELL</label><br>
+                        <input type="checkbox" id="study__language8" value="情報システム基礎知識（その他）"><label for="study__language8" class="btn ">情報システム基礎知識（その他）</label>
+                      </dd>
+                    </div>
+                  </dl>
+                </form>        
+              </section>
+              <section class="main__right__ver__modal">
+                <form action="/" name="contactForm2" class="contact__form2">
+                  <dl class="contact__form__list">
+                    <div class="contact__form__item">
+                      <dt class="item__title"><label for="study__hour">学習時間</label></dt>
+                      <dd><input id="study__hour" type="text" name="study__hour"></dd>
+                    </div>
+                  
+                    <div class="contact__form__item">
+                      <dt class="item__title"><label for="twitter__contents">Twitter用コメント</label></dt>
+                      <dd><textarea id="twitter__contents" type="text" name="twitter__contents">test</textarea></dd>
+                    </div>
+                    <div class="contact__form__item">
+                      <dd class="self__checkbox" data-toggle="buttons">
+                        <input type="checkbox" id="study__twitter" name="twitterButton" value="twitter">
+                        <label for="study__twitter" class="btn twitter__wrapper">
+                          <a href="" class="contact__form__twitter item__title">Twitterにシェアする</a>
+                        </label>
+                      </dd>
+                    </div>
+                  </dl>                      
+                </form> 
+              </section>
+              
+            </div> 
+            <div class="contact__form__footer">
+              <!-- <button id="record__button" class="header__sending__button__modal"><a href="#modal__determination">記録・投稿</a></button> -->
+              <button id="record__button" class="header__sending__button__modal">記録・投稿</button>
+            </div>   
+            <!-- カレンダー画面の中に表示される決定ボタン 下一行-->
+            <button id="determination__button" class="calender__modal__determination__button"><a href="#modal">決定</a></button>
+          
+            <div class="close__button__wrap">
+              <span class="circle__background">
+                <a href="#!" class="modal-close">×</a>
+              </span>
+            </div>
+          </main>
+        </div>
+        
+        
+      </div>
+    </div>
+
+    <!-- ローディング画面 -->
+    <div class="modal-wrapper" id="modal__loading">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal-window">
+        <div class="modal-content">
+          <div class="loader-wrap">
+            <div class="loader">Loading...</div>
+          </div>          
+        </div>
+        <!-- <a href="#!" class="modal-close">×</a> -->
+      </div>
+    </div>
+
+    <!-- 記録・投稿完了画面 -->
+    <div class="modal-wrapper" id="modal__determination">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal-window">
+        <div class="modal-content-circle">
+          <div class="circle__wrap">
+            <p class="circle__above">AWESOME!</p>
+            <span class="circle">
+              <div class="check__mark"></div> 
+            </span>
+            <div class="circle__explain">記録・投稿</div>
+            <div class="circle__explain">完了しました</div>
+          </div>        
+        </div>
+        <div class="close__button__wrap">
+          <span class="circle__background">
+            <a href="#!" id="modal__determination__close" class="modal-close modal-close__responsive">×</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- フッター -->
+    <footer class="footer">
+      <div class="Arrow-Left"></div>
+      <p>2020年 10月</p>
+      <div class="Arrow-Right"></div>
+    </footer>
+    <button class="header__sending__button__responsive"><a href="#modal">記録・投稿</a></button>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="webapp.js"></script>
+</body>
+</html>
+
+
 </body>
 </html>

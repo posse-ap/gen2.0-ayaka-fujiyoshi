@@ -35,6 +35,7 @@ li{
   align-items: center;
   background-color: #fff;
   z-index: 999;
+  /* visibility: hidden; */
 }
 .header__inner{
   display: flex;
