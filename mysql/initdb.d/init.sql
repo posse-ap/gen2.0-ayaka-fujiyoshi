@@ -8,7 +8,7 @@ USE webapp;
 DROP TABLE IF EXISTS study_times;
 CREATE TABLE study_times
 (
-  id             INT NOT NULL,
+  id             INT NOT NULL AUTO_INCREMENT,
   study_date     DATETIME NOT NULL,
   study_hour     INT NOT NULL,
   languages_id   INT NOT NULL,
@@ -16,16 +16,16 @@ CREATE TABLE study_times
   PRIMARY KEY (id)
 );
 
-INSERT INTO study_times (id, study_date, study_hour, languages_id, contents_id) VALUES 
-(1, '2021-07-01', 5, 2, 1),
-(2, '2022-01-03', 4, 5, 1),
-(3, '2022-01-03', 6, 3, 2),
-(4, '2022-01-06', 4, 1, 3),
-(5, '2022-02-09', 3, 4, 2),
-(6, '2022-02-12', 6, 6, 2),
-(7, '2022-02-16', 7, 7, 3),
-(8, '2022-03-08', 3, 8, 3),
-(9, '2022-03-11', 3, 8, 3);   
+INSERT INTO study_times (study_date, study_hour, languages_id, contents_id) VALUES 
+('2021-07-01', 5, 2, 1),
+('2022-01-03', 4, 5, 1),
+('2022-01-03', 6, 3, 2),
+('2022-01-06', 4, 1, 3),
+('2022-02-09', 3, 4, 2),
+('2022-02-12', 6, 6, 2),
+('2022-02-16', 7, 7, 3),
+('2022-03-08', 3, 8, 3),
+('2022-03-14', 4, 8, 3);
 -- ↑９，今日の日付にしてみる
 
 
@@ -105,3 +105,8 @@ INSERT INTO study_contents (id, contents_name) VALUES
 -- |  2 | N予備校                     |
 -- |  3 | POSSE課題                   |
 -- +----+-----------------------------+
+
+
+
+-- mysqlのルートのところで↓
+-- mysql -u mysql -p < /docker-entrypoint-initdb.d/init.sql
