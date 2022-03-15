@@ -6,3 +6,5 @@ RUN chmod 644 /etc/mysql/conf.d/my.cnf
 CMD ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci", "--default-time-zone = 'Asia/Tokyo'"]
 CMD ["mysql", "--default-character-set=utf8"]
 CMD ["client", "--default-character-set=utf8"]
+
+# sqlのタイムゾーンを変更--default-time-zone = 'Asia/Tokyo'↑

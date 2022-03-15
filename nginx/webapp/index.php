@@ -1,27 +1,19 @@
 <?php
 require_once('config.php');
+require_once('functions.php');
 
-try {
-  $db = new PDO($PDO_DSN, $DB_USERNAME, $DB_PASSWORD, $OPTIONS);  // PDOインスタンスを生成
 
-  //学習時間・学習言語テーブルの結合、選択
-  $stmt = $db->query('SELECT
-                           study_times.id AS times_id,
-                           study_times.study_date AS study_date,
-                           study_times.study_hour AS study_hour,
-                           study_times.languages_id AS languages_id,
-                           study_times.contents_id AS contents_id,
-                           study_languages.language_name AS language_name
-                           FROM study_times
-                           INNER JOIN study_languages
-                           ON  study_times.languages_id = study_languages.id');
-  echo 'DB接続成功';
-} catch (PDOException $e) {         //エラー情報が入ったオブジェクトを e で受け取り, getMessage() というメソッドで表示
-  echo $e->getMessage() . PHP_EOL;
-  echo 'DB接続失敗';
-  exit;
-}
-
+//学習時間・学習言語テーブルの結合、選択
+$stmt = $db->query('SELECT
+                          study_times.id AS times_id,
+                          study_times.study_date AS study_date,
+                          study_times.study_hour AS study_hour,
+                          study_times.languages_id AS languages_id,
+                          study_times.contents_id AS contents_id,
+                          study_languages.language_name AS language_name
+                          FROM study_times
+                          INNER JOIN study_languages
+                          ON  study_times.languages_id = study_languages.id');
 $results = array();
 while ($row = $stmt->fetch()) {
   $results[] = array(
@@ -91,11 +83,7 @@ $piece_month = (int)$pieces[1];  //月を表示（stringからintに変換）
 
 // 日別に集計
 $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = DATE_FORMAT(now(), "%Y-%m-%d")')->fetch();  // NULL
-// ↓これらは表示できた。→ DATE_FORMAT(now(), "%Y-%m-%d") のに問題あり？
-  // $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m") = DATE_FORMAT(now(), "%Y-%m")')->fetch();   //-%d だけとってみた、表示できた
-  // $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = "2022-03-14"')->fetch();               //"2022-03-14"のデータがないのかと思ったがこれで表示できた
 foreach ($stmt as $results_date) {
-  echo $results_date;
 }
 $stmt = $db->query('SELECT DATE_FORMAT(`study_date`, "%Y-%m-%d") as `grouping_date`, SUM(study_hour) FROM `study_times` GROUP BY `grouping_date`');
 $results = array();
@@ -107,10 +95,15 @@ while ($row = $stmt->fetch()) {
 }
 
 
-for ($i = 1; $i <= date('t', strtotime(`$piece_year-$piece_month`)); $i++) {     // date('t', strtotime(`$piece_year-$piece_month`)); で月の日数分がとれる
-  $stmt = $db->prepare('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = DATE_FORMAT(now(), "%Y-%m-%d")')->fetchAll();
-  
-}
+// for ($i = 1; $i <= date('t', strtotime(`$piece_year-$piece_month`)); $i++) {     // date('t', strtotime(`$piece_year-$piece_month`)); で月の日数分がとれる
+  $stmt = $db->prepare('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = DATE_FORMAT(now(), "%Y-%m-%d")');
+  $stmt->execute();
+  $colum_graph_date = $stmt->fetchAll();
+  echo '<pre>';
+  print_r($colum_graph_date);
+  echo '</pre>';
+  // array_push($array, $colum_graph_date[0]);
+// }
 
 
 ?>
