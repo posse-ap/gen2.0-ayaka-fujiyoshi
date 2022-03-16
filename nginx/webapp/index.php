@@ -96,29 +96,32 @@ while ($row = $stmt->fetch()) {
   );
 }
 
-$i = "17";
-// for ($i = 1; $i <= date('t', strtotime(`$piece_year-$piece_month`)); $i++) {     // date('t', strtotime(`$piece_year-$piece_month`)); で月の日数分がとれる
-  $stmt = $db->prepare('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = DATE_FORMAT(now(), "%Y-%m-%d")');
-  // $stmt = $db->prepare('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = DATE_FORMAT(study_date, '+"$piece_year"+'"-"'+"$piece_month"+'"-"'+"$i"+'")"');
-  
+// $i = "17";
+$study_hour_array = array();
+
+for ($i = 1; $i <= date('t', strtotime(`$piece_year-$piece_month`)); $i++) {     // date('t', strtotime(`$piece_year-$piece_month`)); で月の日数分がとれる
+  $date = "$piece_year-$piece_month-$i";
+  $stmt = $db->prepare('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = ?');
+  $stmt->bindValue(1,$date);  //第一引数のパラメータID,SQL内の「?」の位置を指定
   $stmt->execute();
   $colum_graph_date = $stmt->fetchAll();
-  $study_hour_array = array();
-  array_push($study_hour_array, $colum_graph_date[0]);
-// // }
+  echo '<pre>';
+  echo $date . PHP_EOL;
+  var_dump($colum_graph_date[0][0]);
+  var_dump(empty($colum_graph_date[0][0]));
+  echo '</pre>';
+
+  // if ($colum_graph_date[0][0]= "NULL") {
+  if (empty($colum_graph_date[0][0])) {
+    array_push($study_hour_array, 0);
+  }else{
+    array_push($study_hour_array, $colum_graph_date[0][0]);
+  }
+}
 
 echo '<pre>';
 print_r($study_hour_array);
-// print_r($results_month_group);
-print_r($pieces);
-// echo "$piece_year"+'"-"'+"$piece_month"+'"-"'+"$i";
-echo "$piece_year". "<br>";
-// var_dump($piece_year);
-echo "$piece_month". "<br>";
-// var_dump($piece_month);
-echo "$i". "<br>";
-// var_dump($i);
-echo "$piece_year-$piece_month-$i";
+echo "$piece_year-$piece_month-$i"; //32になって初めてループが止まる、処理は31まで
 echo '</pre>';
 
 ?>
