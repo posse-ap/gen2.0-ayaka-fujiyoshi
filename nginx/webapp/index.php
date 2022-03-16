@@ -120,29 +120,18 @@ for ($i = 1; $i <= date('t', strtotime(`$piece_year-$piece_month`)); $i++) {    
   if (empty($colum_graph_date[0][0])) {   
     //empty()…変数が存在しない場合、または値が空かnullがセットされている場合にtrueを返す
     //変数が存在しない可能性、null以外の空文字列や空配列が入る可能性があり、そのあたりも「空」として判断したいので、empty関数を使った方が意図した結果となる
-    // $study_times_array = array(
-    //   array(array_push($study_times_array, $i, 0))
-    // );
     array_push($study_times_array, 0);
   }else{
-    // $study_times_array = array(
-    //   array(array_push($study_times_array, $i, $colum_graph_date[0][0]))
-    // );
     array_push($study_times_array, $colum_graph_date[0][0]);
-  }
-  
-  foreach ($study_times_array as $study_time_array) {
-  $study_date_hour_array_before = array($i, $study_time_array);
-  array_push($study_date_hour_array, $study_date_hour_array_before);
   }
 }
 
-// $d = 1;
-// foreach ($study_times_array as $study_time_array) {
-//   $study_date_hour_array_before = array($d, $study_time_array);
-//   array_push($study_date_hour_array, $study_date_hour_array_before);
-//   $d++;
-// }
+$d = 1;
+foreach ($study_times_array as $study_time_array) {
+  $study_date_hour_array_before = array($d, $study_time_array);
+  array_push($study_date_hour_array, $study_date_hour_array_before);
+  $d++;
+}
 
 echo '<pre>';
 print_r($study_times_array);
