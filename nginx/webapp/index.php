@@ -97,30 +97,57 @@ while ($row = $stmt->fetch()) {
 }
 
 // $i = "17";
-$study_hour_array = array();
+// $i = 9;
+// if(preg_match('/^([0-9]{1})$/', $i)){  //もし$iが１桁だったら
+//   $i = '0'.$i;                         //ゼロ埋めする
+//   echo $i;
+// }  else {
+//   echo '正しい';
+// }
+$study_times_array = array();
+$study_date_hour_array = array();
 
 for ($i = 1; $i <= date('t', strtotime(`$piece_year-$piece_month`)); $i++) {     // date('t', strtotime(`$piece_year-$piece_month`)); で月の日数分がとれる
+  if(preg_match('/^([0-9]{1})$/', $i)){  //もし$iが１桁だったら
+    $i = '0'.$i;                         //ゼロ埋めする
+  }                                      //それ以外はそのまま
   $date = "$piece_year-$piece_month-$i";
   $stmt = $db->prepare('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = ?');
   $stmt->bindValue(1,$date);  //第一引数のパラメータID,SQL内の「?」の位置を指定
   $stmt->execute();
   $colum_graph_date = $stmt->fetchAll();
-  echo '<pre>';
-  echo $date . PHP_EOL;
-  var_dump($colum_graph_date[0][0]);
-  var_dump(empty($colum_graph_date[0][0]));
-  echo '</pre>';
 
-  // if ($colum_graph_date[0][0]= "NULL") {
-  if (empty($colum_graph_date[0][0])) {
-    array_push($study_hour_array, 0);
+  if (empty($colum_graph_date[0][0])) {   
+    //empty()…変数が存在しない場合、または値が空かnullがセットされている場合にtrueを返す
+    //変数が存在しない可能性、null以外の空文字列や空配列が入る可能性があり、そのあたりも「空」として判断したいので、empty関数を使った方が意図した結果となる
+    // $study_times_array = array(
+    //   array(array_push($study_times_array, $i, 0))
+    // );
+    array_push($study_times_array, 0);
   }else{
-    array_push($study_hour_array, $colum_graph_date[0][0]);
+    // $study_times_array = array(
+    //   array(array_push($study_times_array, $i, $colum_graph_date[0][0]))
+    // );
+    array_push($study_times_array, $colum_graph_date[0][0]);
+  }
+  
+  foreach ($study_times_array as $study_time_array) {
+  $study_date_hour_array_before = array($i, $study_time_array);
+  array_push($study_date_hour_array, $study_date_hour_array_before);
   }
 }
 
+// $d = 1;
+// foreach ($study_times_array as $study_time_array) {
+//   $study_date_hour_array_before = array($d, $study_time_array);
+//   array_push($study_date_hour_array, $study_date_hour_array_before);
+//   $d++;
+// }
+
 echo '<pre>';
-print_r($study_hour_array);
+print_r($study_times_array);
+print_r($study_date_hour_array);
+echo "<br>";
 echo "$piece_year-$piece_month-$i"; //32になって初めてループが止まる、処理は31まで
 echo '</pre>';
 
