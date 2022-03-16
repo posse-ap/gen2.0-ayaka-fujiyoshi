@@ -68,16 +68,18 @@ $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(st
 foreach ($stmt as $results_month) {
 }
 $stmt = $db->query('SELECT DATE_FORMAT(`study_date`, "%Y-%m") as `grouping_month`, SUM(study_hour) FROM `study_times` GROUP BY `grouping_month`');
-$results = array();
+$results_month_group = array();
 while ($row = $stmt->fetch()) {
-  $results[] = array(
+  $results_month_group[] = array(
     'grouping_month' => $row['grouping_month'],
     'SUM(study_hour)' => $row['SUM(study_hour)']
   );
 }
-$pieces = explode("-", $results[0]['grouping_month']);  //年と月を分別する
-$piece_year = $pieces[0];        //年を表示
-$piece_month = (int)$pieces[1];  //月を表示（stringからintに変換）
+$pieces = explode("-", $results_month_group[3]['grouping_month']);  //年と月を分別する  //[0]2021-07, [1]2022-01, [2]2022-02, [3]2022-03  汎用性高めるならここの数字を変数に置き換える
+$piece_year = $pieces[0];            //年を表示
+$piece_year_int = (int)$pieces[0];   //年を表示（stringからintに変換）footerで表示、後々数値でデータ扱うかもだから
+$piece_month = $pieces[1];           //月を表示
+$piece_month_int = (int)$pieces[1];  //月を表示（stringからintに変換）
 
 
 
@@ -94,17 +96,30 @@ while ($row = $stmt->fetch()) {
   );
 }
 
-
+$i = "17";
 // for ($i = 1; $i <= date('t', strtotime(`$piece_year-$piece_month`)); $i++) {     // date('t', strtotime(`$piece_year-$piece_month`)); で月の日数分がとれる
   $stmt = $db->prepare('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = DATE_FORMAT(now(), "%Y-%m-%d")');
+  // $stmt = $db->prepare('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = DATE_FORMAT(study_date, '+"$piece_year"+'"-"'+"$piece_month"+'"-"'+"$i"+'")"');
+  
   $stmt->execute();
   $colum_graph_date = $stmt->fetchAll();
-  echo '<pre>';
-  print_r($colum_graph_date);
-  echo '</pre>';
-  // array_push($array, $colum_graph_date[0]);
-// }
+  $study_hour_array = array();
+  array_push($study_hour_array, $colum_graph_date[0]);
+// // }
 
+echo '<pre>';
+print_r($study_hour_array);
+// print_r($results_month_group);
+print_r($pieces);
+// echo "$piece_year"+'"-"'+"$piece_month"+'"-"'+"$i";
+echo "$piece_year". "<br>";
+// var_dump($piece_year);
+echo "$piece_month". "<br>";
+// var_dump($piece_month);
+echo "$i". "<br>";
+// var_dump($i);
+echo "$piece_year-$piece_month-$i";
+echo '</pre>';
 
 ?>
 
@@ -224,7 +239,7 @@ while ($row = $stmt->fetch()) {
                 </div>
               </div>
             </li>
-      
+
             <!-- 学習コンテンツ 円グラフ -->
             <li class="main__pie__chart__item right__item">
               <div class="main__pie__chart__title">学習コンテンツ</div>
@@ -252,150 +267,150 @@ while ($row = $stmt->fetch()) {
       </div>
     </main>
 
-  <!-- モーダル画面 -->
-  <div class="modal-wrapper" id="modal">
-    <a href="#!" class="modal-overlay"></a>
-    <div class="modal-window">
-      <div class="modal-content">
-        <main id="modal__main">
-          <div class="inner main__inner__ver__modal">
-            <section class="main__left__ver__modal">
-              <form action="/" name="contactForm1" class="contact__form1">
-                <dl class="contact__form__list">
-                  <div class="contact__form__item contact__form__item__date item__title">
-                    <div id="appendTo">
-                      <label for="study__date">学習日</label><br>
-                      <input type="text" name="study__date" id="study__date">
+    <!-- モーダル画面 -->
+    <div class="modal-wrapper" id="modal">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal-window">
+        <div class="modal-content">
+          <main id="modal__main">
+            <div class="inner main__inner__ver__modal">
+              <section class="main__left__ver__modal">
+                <form action="/" name="contactForm1" class="contact__form1">
+                  <dl class="contact__form__list">
+                    <div class="contact__form__item contact__form__item__date item__title">
+                      <div id="appendTo">
+                        <label for="study__date">学習日</label><br>
+                        <input type="text" name="study__date" id="study__date">
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="contact__form__item">
-                    <dt class="item__title">学習コンテンツ（複数選択可）</dt>
-                    <dd class="self__checkbox" data-toggle="buttons">
-                      <input type="checkbox" id="study__contents1" value="N予備校" checked><label for="study__contents1"
-                        class="btn active">N予備校</label>
-                      <input type="checkbox" id="study__contents2" value="ドットインストール"><label for="study__contents2"
-                        class="btn ">ドットインストール</label><br>
-                      <input type="checkbox" id="study__contents3" value="POSSE課題"><label for="study__contents3"
-                        class="btn ">POSSE課題</label>
-                    </dd>
-                  </div>
-                  <div class="contact__form__item">
-                    <dt class="item__title">学習言語（複数選択可）</dt>
-                    <dd class="self__checkbox" data-toggle="buttons">
-                      <input type="checkbox" id="study__language1" value="HTML" checked><label for="study__language1"
-                        class="btn active">HTML</label>
-                      <input type="checkbox" id="study__language2" value="css"><label for="study__language2"
-                        class="btn ">css</label>
-                      <input type="checkbox" id="study__language3" value="JavaScript"><label for="study__language3"
-                        class="btn ">JavaScript</label><br>
-                      <input type="checkbox" id="study__language4" value="PHP"><label for="study__language4"
-                        class="btn ">PHP</label>
-                      <input type="checkbox" id="study__language5" value="Laravel"><label for="study__language5"
-                        class="btn ">Laravel</label>
-                      <input type="checkbox" id="study__language6" value="SQL"><label for="study__language6"
-                        class="btn ">SQL</label>
-                      <input type="checkbox" id="study__language7" value="SHELL"><label for="study__language7"
-                        class="btn ">SHELL</label><br>
-                      <input type="checkbox" id="study__language8" value="情報システム基礎知識（その他）"><label for="study__language8"
-                        class="btn ">情報システム基礎知識（その他）</label>
-                    </dd>
-                  </div>
-                </dl>
-              </form>
-            </section>
-            <section class="main__right__ver__modal">
-              <form action="/" name="contactForm2" class="contact__form2">
-                <dl class="contact__form__list">
-                  <div class="contact__form__item">
-                    <dt class="item__title"><label for="study__hour">学習時間</label></dt>
-                    <dd><input id="study__hour" type="text" name="study__hour"></dd>
-                  </div>
+                    <div class="contact__form__item">
+                      <dt class="item__title">学習コンテンツ（複数選択可）</dt>
+                      <dd class="self__checkbox" data-toggle="buttons">
+                        <input type="checkbox" id="study__contents1" value="N予備校" checked><label for="study__contents1"
+                          class="btn active">N予備校</label>
+                        <input type="checkbox" id="study__contents2" value="ドットインストール"><label for="study__contents2"
+                          class="btn ">ドットインストール</label><br>
+                        <input type="checkbox" id="study__contents3" value="POSSE課題"><label for="study__contents3"
+                          class="btn ">POSSE課題</label>
+                      </dd>
+                    </div>
+                    <div class="contact__form__item">
+                      <dt class="item__title">学習言語（複数選択可）</dt>
+                      <dd class="self__checkbox" data-toggle="buttons">
+                        <input type="checkbox" id="study__language1" value="HTML" checked><label for="study__language1"
+                          class="btn active">HTML</label>
+                        <input type="checkbox" id="study__language2" value="css"><label for="study__language2"
+                          class="btn ">css</label>
+                        <input type="checkbox" id="study__language3" value="JavaScript"><label for="study__language3"
+                          class="btn ">JavaScript</label><br>
+                        <input type="checkbox" id="study__language4" value="PHP"><label for="study__language4"
+                          class="btn ">PHP</label>
+                        <input type="checkbox" id="study__language5" value="Laravel"><label for="study__language5"
+                          class="btn ">Laravel</label>
+                        <input type="checkbox" id="study__language6" value="SQL"><label for="study__language6"
+                          class="btn ">SQL</label>
+                        <input type="checkbox" id="study__language7" value="SHELL"><label for="study__language7"
+                          class="btn ">SHELL</label><br>
+                        <input type="checkbox" id="study__language8" value="情報システム基礎知識（その他）"><label
+                          for="study__language8" class="btn ">情報システム基礎知識（その他）</label>
+                      </dd>
+                    </div>
+                  </dl>
+                </form>
+              </section>
+              <section class="main__right__ver__modal">
+                <form action="/" name="contactForm2" class="contact__form2">
+                  <dl class="contact__form__list">
+                    <div class="contact__form__item">
+                      <dt class="item__title"><label for="study__hour">学習時間</label></dt>
+                      <dd><input id="study__hour" type="text" name="study__hour"></dd>
+                    </div>
 
-                  <div class="contact__form__item">
-                    <dt class="item__title"><label for="twitter__contents">Twitter用コメント</label></dt>
-                    <dd><textarea id="twitter__contents" type="text" name="twitter__contents">test</textarea></dd>
-                  </div>
-                  <div class="contact__form__item">
-                    <dd class="self__checkbox" data-toggle="buttons">
-                      <input type="checkbox" id="study__twitter" name="twitterButton" value="twitter">
-                      <label for="study__twitter" class="btn twitter__wrapper">
-                        <a href="" class="contact__form__twitter item__title">Twitterにシェアする</a>
-                      </label>
-                    </dd>
-                  </div>
-                </dl>
-              </form>
-            </section>
+                    <div class="contact__form__item">
+                      <dt class="item__title"><label for="twitter__contents">Twitter用コメント</label></dt>
+                      <dd><textarea id="twitter__contents" type="text" name="twitter__contents">test</textarea></dd>
+                    </div>
+                    <div class="contact__form__item">
+                      <dd class="self__checkbox" data-toggle="buttons">
+                        <input type="checkbox" id="study__twitter" name="twitterButton" value="twitter">
+                        <label for="study__twitter" class="btn twitter__wrapper">
+                          <a href="" class="contact__form__twitter item__title">Twitterにシェアする</a>
+                        </label>
+                      </dd>
+                    </div>
+                  </dl>
+                </form>
+              </section>
 
+            </div>
+            <div class="contact__form__footer">
+              <!-- <button id="record__button" class="header__sending__button__modal"><a href="#modal__determination">記録・投稿</a></button> -->
+              <button id="record__button" class="header__sending__button__modal">記録・投稿</button>
+            </div>
+            <!-- カレンダー画面の中に表示される決定ボタン 下一行-->
+            <button id="determination__button" class="calender__modal__determination__button"><a
+                href="#modal">決定</a></button>
+
+            <div class="close__button__wrap">
+              <span class="circle__background">
+                <a href="#!" class="modal-close">×</a>
+              </span>
+            </div>
+          </main>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- ローディング画面 -->
+    <div class="modal-wrapper" id="modal__loading">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal-window">
+        <div class="modal-content">
+          <div class="loader-wrap">
+            <div class="loader">Loading...</div>
           </div>
-          <div class="contact__form__footer">
-            <!-- <button id="record__button" class="header__sending__button__modal"><a href="#modal__determination">記録・投稿</a></button> -->
-            <button id="record__button" class="header__sending__button__modal">記録・投稿</button>
-          </div>
-          <!-- カレンダー画面の中に表示される決定ボタン 下一行-->
-          <button id="determination__button" class="calender__modal__determination__button"><a
-              href="#modal">決定</a></button>
+        </div>
+        <!-- <a href="#!" class="modal-close">×</a> -->
+      </div>
+    </div>
 
-          <div class="close__button__wrap">
-            <span class="circle__background">
-              <a href="#!" class="modal-close">×</a>
+    <!-- 記録・投稿完了画面 -->
+    <div class="modal-wrapper" id="modal__determination">
+      <a href="#!" class="modal-overlay"></a>
+      <div class="modal-window">
+        <div class="modal-content-circle">
+          <div class="circle__wrap">
+            <p class="circle__above">AWESOME!</p>
+            <span class="circle">
+              <div class="check__mark"></div>
             </span>
+            <div class="circle__explain">記録・投稿</div>
+            <div class="circle__explain">完了しました</div>
           </div>
-        </main>
-      </div>
-
-
-    </div>
-  </div>
-
-  <!-- ローディング画面 -->
-  <div class="modal-wrapper" id="modal__loading">
-    <a href="#!" class="modal-overlay"></a>
-    <div class="modal-window">
-      <div class="modal-content">
-        <div class="loader-wrap">
-          <div class="loader">Loading...</div>
         </div>
-      </div>
-      <!-- <a href="#!" class="modal-close">×</a> -->
-    </div>
-  </div>
-
-  <!-- 記録・投稿完了画面 -->
-  <div class="modal-wrapper" id="modal__determination">
-    <a href="#!" class="modal-overlay"></a>
-    <div class="modal-window">
-      <div class="modal-content-circle">
-        <div class="circle__wrap">
-          <p class="circle__above">AWESOME!</p>
-          <span class="circle">
-            <div class="check__mark"></div>
+        <div class="close__button__wrap">
+          <span class="circle__background">
+            <a href="#!" id="modal__determination__close" class="modal-close modal-close__responsive">×</a>
           </span>
-          <div class="circle__explain">記録・投稿</div>
-          <div class="circle__explain">完了しました</div>
         </div>
       </div>
-      <div class="close__button__wrap">
-        <span class="circle__background">
-          <a href="#!" id="modal__determination__close" class="modal-close modal-close__responsive">×</a>
-        </span>
-      </div>
     </div>
-  </div>
 
-  <!-- フッター -->
-  <footer class="footer">
-    <div class="Arrow-Left"></div>
-    <p>
-      <span><?php echo $piece_year; ?></span>
-      年
-      <span><?php echo $piece_month; ?></span>
-      月
-    </p>
-    <div class="Arrow-Right"></div>
-  </footer>
-  <button class="header__sending__button__responsive"><a href="#modal">記録・投稿</a></button>
+    <!-- フッター -->
+    <footer class="footer">
+      <div class="Arrow-Left"></div>
+      <p>
+        <span><?php echo $piece_year_int; ?></span>
+        年
+        <span><?php echo $piece_month_int; ?></span>
+        月
+      </p>
+      <div class="Arrow-Right"></div>
+    </footer>
+    <button class="header__sending__button__responsive"><a href="#modal">記録・投稿</a></button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -633,11 +648,6 @@ while ($row = $stmt->fetch()) {
   }
   </script>
   <script src="webapp.js?v=<?php echo date('s'); ?>"></script>
-</body>
-
-</html>
-
-
 </body>
 
 </html>
