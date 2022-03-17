@@ -122,22 +122,22 @@ for ($i = 1; $i <= date('t', strtotime(`$piece_year-$piece_month`)); $i++) {    
     //変数が存在しない可能性、null以外の空文字列や空配列が入る可能性があり、そのあたりも「空」として判断したいので、empty関数を使った方が意図した結果となる
     array_push($study_times_array, 0);
   }else{
-    array_push($study_times_array, $colum_graph_date[0][0]);
+    array_push($study_times_array, (int)$colum_graph_date[0][0]);
   }
 }
 
 $d = 1;
 foreach ($study_times_array as $study_time_array) {
-  $study_date_hour_array_before = array($d, $study_time_array);
+  $study_date_hour_array_before = array($d, $study_time_array);   // [日にち, 学習時間]
   array_push($study_date_hour_array, $study_date_hour_array_before);
   $d++;
 }
+$study_array_Json = json_encode($study_date_hour_array);
 
 echo '<pre>';
-print_r($study_times_array);
-print_r($study_date_hour_array);
-echo "<br>";
-echo "$piece_year-$piece_month-$i"; //32になって初めてループが止まる、処理は31まで
+// print_r($study_times_array);
+// print_r($study_date_hour_array);
+print_r($study_date_hour_array[0]);
 echo '</pre>';
 
 ?>
@@ -449,41 +449,11 @@ echo '</pre>';
 
     // Create the data table.
     var barChartData = new google.visualization.DataTable();
+    let study_array= <?php echo $study_array_Json?>;  //PHPからJavaScriptに多次元配列を受け渡す
+    console.log(study_array)
     barChartData.addColumn('number', 'day');
     barChartData.addColumn('number', 'time');
-    barChartData.addRows([
-      //['day', 'time']
-      [1, 3],
-      [2, 4],
-      [3, 5],
-      [4, 3],
-      [5, 0],
-      [6, 0],
-      [7, 4],
-      [8, 2],
-      [9, 2],
-      [10, 8],
-      [11, 8],
-      [12, 2],
-      [13, 2],
-      [14, 1],
-      [15, 7],
-      [16, 4],
-      [17, 4],
-      [18, 3],
-      [19, 3],
-      [20, 3],
-      [21, 2],
-      [22, 2],
-      [23, 6],
-      [24, 2],
-      [25, 2],
-      [26, 1],
-      [27, 1],
-      [28, 1],
-      [29, 7],
-      [30, 8],
-    ]);
+    barChartData.addRows( study_array );
 
     // Set chart options
     var barChartOptions = {
