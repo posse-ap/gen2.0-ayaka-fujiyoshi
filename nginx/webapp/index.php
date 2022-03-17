@@ -96,20 +96,13 @@ while ($row = $stmt->fetch()) {
   );
 }
 
-// $i = "17";
-// $i = 9;
-// if(preg_match('/^([0-9]{1})$/', $i)){  //もし$iが１桁だったら
-//   $i = '0'.$i;                         //ゼロ埋めする
-//   echo $i;
-// }  else {
-//   echo '正しい';
-// }
+//下記は後に使う空配列、ここで定義しておく
 $study_times_array = array();
 $study_date_hour_array = array();
 
 for ($i = 1; $i <= date('t', strtotime(`$piece_year-$piece_month`)); $i++) {     // date('t', strtotime(`$piece_year-$piece_month`)); で月の日数分がとれる
   if(preg_match('/^([0-9]{1})$/', $i)){  //もし$iが１桁だったら
-    $i = '0'.$i;                         //ゼロ埋めする
+    $i = '0'.$i;                         //ゼロ埋めするように'0'を.で
   }                                      //それ以外はそのまま
   $date = "$piece_year-$piece_month-$i";
   $stmt = $db->prepare('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = ?');
@@ -117,28 +110,27 @@ for ($i = 1; $i <= date('t', strtotime(`$piece_year-$piece_month`)); $i++) {    
   $stmt->execute();
   $colum_graph_date = $stmt->fetchAll();
 
-  if (empty($colum_graph_date[0][0])) {   
+  if (empty($colum_graph_date[0][0])) {   //NULLなら０を
     //empty()…変数が存在しない場合、または値が空かnullがセットされている場合にtrueを返す
     //変数が存在しない可能性、null以外の空文字列や空配列が入る可能性があり、そのあたりも「空」として判断したいので、empty関数を使った方が意図した結果となる
     array_push($study_times_array, 0);
-  }else{
+  }else{                                  //値があればそれをintに変換して$study_times_arrayに入れる
     array_push($study_times_array, (int)$colum_graph_date[0][0]);
   }
 }
-
+//このままだと学習時間だけが並んでいる配列、日にちとセットの配列がほしい
 $d = 1;
-foreach ($study_times_array as $study_time_array) {
-  $study_date_hour_array_before = array($d, $study_time_array);   // [日にち, 学習時間]
-  array_push($study_date_hour_array, $study_date_hour_array_before);
-  $d++;
+foreach ($study_times_array as $study_time_array) {  //１つ１つの学習時間に対して、日にち($d)をセットにし、array_pushで予め用意していた空配列に足していく
+  $study_date_hour_array_before = array($d, $study_time_array);   // [日にち, 学習時間]の配列を定義、ここでデータを入れる
+  array_push($study_date_hour_array, $study_date_hour_array_before); //空配列に↑の配列を代入する
+  $d++; //$study_time_arrayが回るごとに$dを増やしていく
 }
-$study_array_Json = json_encode($study_date_hour_array);
-
-echo '<pre>';
-// print_r($study_times_array);
-// print_r($study_date_hour_array);
-print_r($study_date_hour_array[0]);
-echo '</pre>';
+$study_array_Json = json_encode($study_date_hour_array);  
+  //JavaScriptにPHPの配列を渡すためには、一度配列をJson形式に配列を変換する必要がある
+  //Json形式に変換するためには、下記のようにPHPの関数を使用
+  // json_encode()
+  //引数に変換したい配列を入れることで、Json形式に変換可能
+  //これで$study_date_hour_arrayをJson形式に変換した$study_array_Jsonという配列ができた
 
 ?>
 
