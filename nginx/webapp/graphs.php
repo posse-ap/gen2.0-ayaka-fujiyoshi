@@ -60,8 +60,7 @@ $results_languages = $stmt->fetchAll();
 // echo $results_languages[0]['language_name']; //larabel
 // echo $results_languages[0]['study_hour']; //17
 // echo $results_year[0];  //103
-echo (($results_languages[0]['study_hour']/$results_year[0])*100);
-
+// echo (($results_languages[0]['study_hour']/$results_year[0])*100);
 
 $languages_name_array = [];
 for ($k=0; $k < 8; $k++) {    //$results_languages.lengthとかに後で
@@ -85,6 +84,52 @@ echo '<pre>';
 // print_r($languages_hour_array);
 // var_dump($languages_hour_array);
 // print_r($languages_name_per_array);
+echo '</pre>';
+
+
+//学習コンテンツ 円グラフ
+// // 年別に集計
+// $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y") = DATE_FORMAT(now(), "%Y")');
+// $results_year= $stmt->fetch();
+$stmt = $db->query('SELECT
+                          SUM(study_times.study_hour) AS study_hour,
+                          study_contents.contents_name AS contents_name,
+                          study_contents.contents_color AS contents_color
+                          FROM study_times
+                          INNER JOIN study_contents 
+                          ON  study_times.contents_id = study_contents.id
+                          WHERE DATE_FORMAT(study_date, "%Y-%m") = DATE_FORMAT(now(), "%Y-%m")
+                          GROUP BY study_contents.contents_name, study_contents.contents_color
+                          ORDER BY study_hour DESC
+                          ');
+$results_contents = $stmt->fetchAll();
+// echo $results_contents[0]['language_name']; //larabel
+// echo $results_contents[0]['study_hour']; //17
+// echo $results_year[0];  //103
+// echo (($results_contents[0]['study_hour']/$results_year[0])*100);
+
+$contents_name_array = [];
+for ($k=0; $k < 3; $k++) {    //$results_contents.lengthとかに後で
+  array_push($contents_name_array, $results_contents[$k]['contents_name']);
+}
+$contents_hour_array = [];
+for ($h=0; $h < 3; $h++) {    //$results_contents.lengthとかに後で
+  $contents_per = ($results_contents[$h]['study_hour']/$results_year[0])*100; // (学習時間 / 年間合計学習時間)*100にして扇形の配分出す
+  array_push($contents_hour_array, ($contents_per));  
+}
+$contents_name_per_array = [];
+$l = 0;
+  foreach ($contents_name_array as $contents_name_array) {  //１つ１つの学習言語に対して、学習時間($lで判別)をセットにし、array_pushで予め用意していた空配列に足していく
+    $contents_name_per_before = array($contents_name_array, $contents_hour_array[$l]);   // [学習言語, 学習時間]の配列を定義、ここでデータを入れる
+    array_push($contents_name_per_array, $contents_name_per_before); //空配列に↑の配列を代入する
+    $l++; //$language_name_arrayが回るごとに$lを増やしていく
+  }
+  $contents_array_Json = json_encode($contents_name_per_array);
+
+echo '<pre>';
+// print_r($languages_hour_array);
+// var_dump($contents_hour_array);
+// print_r($contents_name_per_array);
 echo '</pre>';
 
 
@@ -158,16 +203,6 @@ function drawPieLanguageChart() {
   pieChartLeftData.addColumn('string', 'Topping');
   pieChartLeftData.addColumn('number', 'Slices');
   pieChartLeftData.addRows(languages_array);
-  // pieChartLeftData.addRows([
-  //   ['HTML', 30],
-  //   ['CSS', 20],
-  //   ['JavaScript', 10],
-  //   ['PHP', 5],
-  //   ['Laravel', 5],
-  //   ['SQL', 20],
-  //   ['SHELL', 20],
-  //   ['その他', 10]
-  // ]);
 
   // Set chart options
   var pieChartLeftOptions = {
@@ -224,13 +259,10 @@ function drawPieContentsChart() {
 
   // Create the data table.
   var pieChartRightData = new google.visualization.DataTable();
+  let contents_array = <?php echo $contents_array_Json?>; //PHPからJavaScriptに多次元配列を受け渡す
   pieChartRightData.addColumn('string', 'Topping');
   pieChartRightData.addColumn('number', 'Slices');
-  pieChartRightData.addRows([
-    ['N予備校', 40],
-    ['ドットインストール', 20],
-    ['課題', 40]
-  ]);
+  pieChartRightData.addRows(contents_array);
 
   // Set chart options
   var pieChartRightOptions = {

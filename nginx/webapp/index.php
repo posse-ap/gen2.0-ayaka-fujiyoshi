@@ -7,15 +7,7 @@ require_once('graphs.php');
 
 //学習時間・学習コンテンツテーブルの結合、選択
 // $stmt = $db->query('SELECT
-//                           study_times.id AS times_id,
-//                           study_times.study_date AS study_date,
-//                           study_times.study_hour AS study_hour,
-//                           study_times.languages_id AS languages_id,
-//                           study_times.contents_id AS contents_id,
-//                           study_contents.contents_name AS contents_name
-//                           FROM study_times
-//                           INNER JOIN study_contents
-//                           ON  study_times.contents_id = study_contents.id');
+//                           
 // $results = array();
 // while ($row = $stmt->fetch()) {
 //   $results[] = array(

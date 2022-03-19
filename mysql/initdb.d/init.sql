@@ -145,17 +145,16 @@ INSERT INTO study_contents (id, contents_name, contents_color) VALUES
 -- mysql -u mysql -p < /docker-entrypoint-initdb.d/init.sql
 
 
--- -- mysql> SELECT
---                 SUM(study_times.study_hour) AS study_hour,
---                 study_languages.language_name AS language_name,
---                 study_languages.language_color AS language_color
---                 FROM study_times
---                 INNER JOIN study_languages 
---                 ON  study_times.languages_id = study_languages.id
---                 WHERE DATE_FORMAT(study_date, "%Y-%m") = DATE_FORMAT(now(), "%Y-%m")    //今年のデータ分
---                 GROUP BY study_languages.language_name, study_languages.language_color  //言語と色(この二つセットで動くから)でグループ分け
---                 ORDER BY study_hour DESC                                                //グループ分けされた後、SUMの値降順に
-
+-- mysql> SELECT
+--              SUM(study_times.study_hour) AS study_hour,
+--              study_languages.language_name AS language_name,
+--              study_languages.language_color AS language_color
+--              FROM study_times
+--              INNER JOIN study_languages 
+--              ON  study_times.languages_id = study_languages.id
+--              WHERE DATE_FORMAT(study_date, "%Y-%m") = DATE_FORMAT(now(), "%Y-%m")    //今年のデータ分
+--              GROUP BY study_languages.language_name, study_languages.language_color  //言語と色(この二つセットで動くから)でグループ分け
+--              ORDER BY study_hour DESC                                                //グループ分けされた後、SUMの値降順に
 --+------------+-----------------------------------------------+----------------+
 -- | study_hour | language_name                                 | language_color |
 -- +------------+-----------------------------------------------+----------------+
@@ -168,3 +167,21 @@ INSERT INTO study_contents (id, contents_name, contents_color) VALUES
 -- |          7 | JavaScript                                    | #0042E5        |
 -- |          6 | HTML                                          | #B29DEF        |
 -- +------------+-----------------------------------------------+----------------+
+
+-- mysql-> SELECT
+--               SUM(study_times.study_hour) AS study_hour,
+--               study_contents.contents_name AS contents_name,
+--               study_contents.contents_color AS contents_color
+--               FROM study_times
+--               INNER JOIN study_contents 
+--               ON  study_times.contents_id = study_contents.id
+--               WHERE DATE_FORMAT(study_date, "%Y-%m") = DATE_FORMAT(now(), "%Y-%m")
+--               GROUP BY study_contents.contents_name, study_contents.contents_color
+--               ORDER BY study_hour DESC
+-- +------------+-----------------------------+----------------+
+-- | study_hour | contents_name               | contents_color |
+-- +------------+-----------------------------+----------------+
+-- |         26 | ドットインストール            | #0042E5        |
+-- |         24 | POSSE課題                    | #00BDDB        |
+-- |         23 | N予備校                      | #0070B9        |
+-- +------------+-----------------------------+----------------+
