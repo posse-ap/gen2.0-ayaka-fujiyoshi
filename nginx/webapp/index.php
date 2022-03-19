@@ -4,28 +4,6 @@ require_once('functions.php');
 require_once('graphs.php');
 
 
-//学習時間・学習言語テーブルの結合、選択
-// $stmt = $db->query('SELECT
-//                           study_times.id AS times_id,
-//                           study_times.study_date AS study_date,
-//                           study_times.study_hour AS study_hour,
-//                           study_times.languages_id AS languages_id,
-//                           study_times.contents_id AS contents_id,
-//                           study_languages.language_name AS language_name
-//                           FROM study_times
-//                           INNER JOIN study_languages
-//                           ON  study_times.languages_id = study_languages.id');
-// $results = array();
-// while ($row = $stmt->fetch()) {
-//   $results[] = array(
-//     'times_id' => $row['times_id'],
-//     'study_date' => $row['study_date'],
-//     'study_hour' => $row['study_hour'],
-//     'languages_id' => $row['languages_id'],
-//     'contents_id' => $row['contents_id'],
-//     'language_name' => $row['language_name']
-//   );
-// }
 
 //学習時間・学習コンテンツテーブルの結合、選択
 // $stmt = $db->query('SELECT
@@ -119,6 +97,7 @@ foreach ($stmt as $results_date) {
             <ul class="main__study__number">
               <li class="main__study__item first__item">
                 <div class="main__study__item__title">Today</div>
+                <!-- <div class="main__study__item__title"><?php echo date('Y-m-d'); ?></div> -->
                 <!-- <div class="main__study__item__number">3</div> -->
                 <div class="main__study__item__number"><?php echo $results_date; ?></div>
                 <div class="main__study__item__unit">hour</div>
@@ -127,10 +106,12 @@ foreach ($stmt as $results_date) {
                 <div class="main__study__item__title">Month</div>
                 <!-- <div class="main__study__item__number">120</div> -->
                 <div class="main__study__item__number"><?php echo $results_month; ?></div>
+                <!-- <div class="main__study__item__title"><?php echo date('Y-m'); ?></div> -->
                 <div class="main__study__item__unit">hour</div>
               </li>
               <li class="main__study__item last__item">
                 <div class="main__study__item__title">Total</div>
+                <!-- <div class="main__study__item__title"><?php echo date('Y'); ?></div> -->
                 <!-- <div class="main__study__item__number">1348</div> -->
                 <div class="main__study__item__number"><?php echo $results_year; ?></div>
                 <div class="main__study__item__unit">hour</div>
