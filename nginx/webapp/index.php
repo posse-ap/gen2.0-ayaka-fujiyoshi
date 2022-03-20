@@ -3,35 +3,10 @@ require_once('config.php');
 require_once('functions.php');
 require_once('graphs.php');
 
-
-
-//学習時間・学習コンテンツテーブルの結合、選択
-// $stmt = $db->query('SELECT
-//                           
-// $results = array();
-// while ($row = $stmt->fetch()) {
-//   $results[] = array(
-//     'times_id' => $row['times_id'],
-//     'study_date' => $row['study_date'],
-//     'study_hour' => $row['study_hour'],
-//     'languages_id' => $row['languages_id'],
-//     'contents_id' => $row['contents_id'],
-//     'contents_name' => $row['contents_name']
-//   );
-// }
-
 // 年別に集計
 $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y") = DATE_FORMAT(now(), "%Y")')->fetch();
 foreach ($stmt as $results_year) {
 }
-// $stmt = $db->query('SELECT DATE_FORMAT(`study_date`, "%Y") as `grouping_year`, SUM(study_hour) FROM `study_times` GROUP BY `grouping_year`');
-// $results_year_group = array();
-// while ($row_year = $stmt->fetch()) {
-//   $results_year_group[] = array(
-//     'grouping_year' => $row_year['grouping_year'],
-//     'SUM(study_hour)' => $row_year['SUM(study_hour)']
-//   );
-// }
 
 // 月別に集計
 $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m") = DATE_FORMAT(now(), "%Y-%m")')->fetch();
@@ -41,15 +16,10 @@ foreach ($stmt as $results_month) {
 // 日別に集計
 $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = DATE_FORMAT(now(), "%Y-%m-%d")')->fetch();  // NULL
 foreach ($stmt as $results_date) {
+  if ($results_date == NULL) {
+    $results_date = 0;
+  }
 }
-// $stmt = $db->query('SELECT DATE_FORMAT(`study_date`, "%Y-%m-%d") as `grouping_date`, SUM(study_hour) FROM `study_times` GROUP BY `grouping_date`');
-// $results = array();
-// while ($row = $stmt->fetch()) {
-//   $results[] = array(
-//     'grouping_date' => $row['grouping_date'],
-//     'SUM(study_hour)' => $row['SUM(study_hour)']
-//   );
-// }
 
 ?>
 

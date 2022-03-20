@@ -41,6 +41,7 @@ require_once('functions.php');
                                                             //Json形式に変換するためには、PHPの関数を使用↓
                                                             // Json形式に変換した配列 = json_encode(変換したい配列) ]
 
+
 //学習言語 円グラフ
 // 年別に集計
 $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y") = DATE_FORMAT(now(), "%Y")');
@@ -57,10 +58,6 @@ $stmt = $db->query('SELECT
                           ORDER BY study_hour DESC
                           ');
 $results_languages = $stmt->fetchAll();
-// echo $results_languages[0]['language_name']; //larabel
-// echo $results_languages[0]['study_hour']; //17
-// echo $results_year[0];  //103
-// echo (($results_languages[0]['study_hour']/$results_year[0])*100);
 
 $languages_name_array = [];
 for ($k=0; $k < 8; $k++) {    //$results_languages.lengthとかに後で
@@ -71,6 +68,14 @@ for ($h=0; $h < 8; $h++) {    //$results_languages.lengthとかに後で
   $languages_per = ($results_languages[$h]['study_hour']/$results_year[0])*100; // (学習時間 / 年間合計学習時間)*100にして扇形の配分出す
   array_push($languages_hour_array, ($languages_per));  
 }
+$languages_color_array = [];
+for ($c=0; $c < 8; $c++) {    //$results_languages.lengthとかに後で
+  $language_color = $results_languages[$c]['language_color'];
+  // $language_color_obj= $c.':{color:"'.$language_color.'"},';
+  // array_push($languages_color_array, $language_color_obj);
+  array_push($languages_color_array, $language_color);
+}
+// $languages_color_Json = json_encode($languages_color_array);
 $languages_name_per_array = [];
 $l = 0;
   foreach ($languages_name_array as $language_name_array) {  //１つ１つの学習言語に対して、学習時間($lで判別)をセットにし、array_pushで予め用意していた空配列に足していく
@@ -81,16 +86,13 @@ $l = 0;
   $languages_array_Json = json_encode($languages_name_per_array);
 
 echo '<pre>';
-// print_r($languages_hour_array);
-// var_dump($languages_hour_array);
-// print_r($languages_name_per_array);
+// print_r($languages_color_array);
+// echo $language_color;
+// echo $languages_color_array[0];
 echo '</pre>';
 
 
 //学習コンテンツ 円グラフ
-// // 年別に集計
-// $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y") = DATE_FORMAT(now(), "%Y")');
-// $results_year= $stmt->fetch();
 $stmt = $db->query('SELECT
                           SUM(study_times.study_hour) AS study_hour,
                           study_contents.contents_name AS contents_name,
@@ -103,11 +105,6 @@ $stmt = $db->query('SELECT
                           ORDER BY study_hour DESC
                           ');
 $results_contents = $stmt->fetchAll();
-// echo $results_contents[0]['language_name']; //larabel
-// echo $results_contents[0]['study_hour']; //17
-// echo $results_year[0];  //103
-// echo (($results_contents[0]['study_hour']/$results_year[0])*100);
-
 $contents_name_array = [];
 for ($k=0; $k < 3; $k++) {    //$results_contents.lengthとかに後で
   array_push($contents_name_array, $results_contents[$k]['contents_name']);
@@ -116,6 +113,13 @@ $contents_hour_array = [];
 for ($h=0; $h < 3; $h++) {    //$results_contents.lengthとかに後で
   $contents_per = ($results_contents[$h]['study_hour']/$results_year[0])*100; // (学習時間 / 年間合計学習時間)*100にして扇形の配分出す
   array_push($contents_hour_array, ($contents_per));  
+}
+$contents_color_array = [];
+for ($c=0; $c < 8; $c++) {    //$results_languages.lengthとかに後で
+  $contents_color = $results_contents[$c]['contents_color'];
+  // $contents_color_obj= $c.':{color:"'.$contents_color.'"},';
+  // array_push($contents_color_array, $contents_color_obj);
+  array_push($contents_color_array, $contents_color);
 }
 $contents_name_per_array = [];
 $l = 0;
@@ -200,6 +204,7 @@ function drawPieLanguageChart() {
   // Create the data table.
   var pieChartLeftData = new google.visualization.DataTable();
   let languages_array = <?php echo $languages_array_Json?>; //PHPからJavaScriptに多次元配列を受け渡す
+  // let languages_color = <?php echo $languages_color_Json?>; //PHPからJavaScriptに多次元配列を受け渡す
   pieChartLeftData.addColumn('string', 'Topping');
   pieChartLeftData.addColumn('number', 'Slices');
   pieChartLeftData.addRows(languages_array);
@@ -213,32 +218,36 @@ function drawPieLanguageChart() {
       maxLines: 4,
       position: 'none',
     },
+    // slices: {
+    //   languages_color
+    // },
     slices: {
       0: {
-        color: '#0042E5'
+        color: '<?php echo $languages_color_array[0] ?>'
       },
       1: {
-        color: '#0070B9'
+        color: '<?php echo $languages_color_array[1] ?>'
       },
       2: {
-        color: '#00BDDB'
+        color: '<?php echo $languages_color_array[2] ?>'
       },
       3: {
-        color: '#08CDFA'
+        color: '<?php echo $languages_color_array[3] ?>'
       },
       4: {
-        color: '#B29DEF'
+        color: '<?php echo $languages_color_array[4] ?>'
       },
       5: {
-        color: '#6C43E5'
+        color: '<?php echo $languages_color_array[5] ?>'
       },
       6: {
-        color: '#4609E8'
+        color: '<?php echo $languages_color_array[6] ?>'
       },
       7: {
-        color: '#2D00BA'
+        color: '<?php echo $languages_color_array[7] ?>'
       },
     },
+    
     chartArea: {
       left: 40,
       top: 15,
@@ -275,13 +284,16 @@ function drawPieContentsChart() {
     },
     slices: {
       0: {
-        color: '#0042E5'
+        color: '<?php echo $contents_color_array[0] ?>'
+        // color: '#0042E5'
       },
       1: {
-        color: '#0070B9'
+        color: '<?php echo $contents_color_array[1] ?>'
+        // color: '#0070B9'
       },
       2: {
-        color: '#00BDDB'
+        color: '<?php echo $contents_color_array[2] ?>'
+        // color: '#00BDDB'
       },
     },
     chartArea: {
