@@ -402,6 +402,9 @@ li{
   justify-content: center;
   width: 100%;
 }
+.form_contents_wrapper {
+  display: flex;
+}
 .main__left__ver__modal{
   width: 50%;
   padding-left: 4.6rem;

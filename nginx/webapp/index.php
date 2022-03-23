@@ -21,6 +21,26 @@ foreach ($stmt as $results_date) {
   }
 }
 
+//POST形式データ受け取り
+$study__date_post = '';    //学習日
+$study_content_post = '';  //学習コンテンツ
+$study_language_post = ''; //学習言語
+$study__hour_post = '';    //学習時間
+
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+  $study__date_post = $_POST['study__date'];
+  $study_content_post = $_POST['study_content'];
+  $study_language_post = $_POST['study_language'];
+  $study__hour_post = $_POST['study__hour'];
+
+  $success_date_post = false;
+    if($study__date_post === '2022年3月24日'){
+      $success_date_post = true;
+    }
+  
+}
+
 ?>
 
 
@@ -170,6 +190,13 @@ foreach ($stmt as $results_date) {
       </div>
     </main>
 
+    <?php
+      if ($success_date_post) {
+       echo "成功";
+      } else{
+       echo "不成功"; 
+      }
+    ?>
     <!-- モーダル画面 -->
     <div class="modal-wrapper" id="modal">
       <a href="#!" class="modal-overlay"></a>
@@ -177,8 +204,11 @@ foreach ($stmt as $results_date) {
         <div class="modal-content">
           <main id="modal__main">
             <div class="inner main__inner__ver__modal">
+            <form action="" method="POST" name="contactForm" >
+              <!-- ↓のdivタグ範囲内でflexかける -->
+             <div class="form_contents_wrapper">
+               <!-- モーダル左側 -->
               <section class="main__left__ver__modal">
-                <form action="/" name="contactForm1" class="contact__form1">
                   <dl class="contact__form__list">
                     <div class="contact__form__item contact__form__item__date item__title">
                       <div id="appendTo">
@@ -190,41 +220,40 @@ foreach ($stmt as $results_date) {
                     <div class="contact__form__item">
                       <dt class="item__title">学習コンテンツ（複数選択可）</dt>
                       <dd class="self__checkbox" data-toggle="buttons">
-                        <input type="checkbox" id="study__contents1" value="N予備校" checked><label for="study__contents1"
+                        <input type="checkbox" id="study__contents1" name="study_content" value="N予備校" checked><label for="study__contents1"
                           class="btn active">N予備校</label>
-                        <input type="checkbox" id="study__contents2" value="ドットインストール"><label for="study__contents2"
+                        <input type="checkbox" id="study__contents2" name="study_content" value="ドットインストール"><label for="study__contents2"
                           class="btn ">ドットインストール</label><br>
-                        <input type="checkbox" id="study__contents3" value="POSSE課題"><label for="study__contents3"
+                        <input type="checkbox" id="study__contents3" name="study_content" value="POSSE課題"><label for="study__contents3"
                           class="btn ">POSSE課題</label>
                       </dd>
                     </div>
                     <div class="contact__form__item">
                       <dt class="item__title">学習言語（複数選択可）</dt>
                       <dd class="self__checkbox" data-toggle="buttons">
-                        <input type="checkbox" id="study__language1" value="HTML" checked><label for="study__language1"
+                        <input type="checkbox" id="study__language1" name="study_language" value="HTML" checked><label for="study__language1"
                           class="btn active">HTML</label>
-                        <input type="checkbox" id="study__language2" value="css"><label for="study__language2"
+                        <input type="checkbox" id="study__language2" name="study_language" value="css"><label for="study__language2"
                           class="btn ">css</label>
-                        <input type="checkbox" id="study__language3" value="JavaScript"><label for="study__language3"
+                        <input type="checkbox" id="study__language3" name="study_language" value="JavaScript"><label for="study__language3"
                           class="btn ">JavaScript</label><br>
-                        <input type="checkbox" id="study__language4" value="PHP"><label for="study__language4"
+                        <input type="checkbox" id="study__language4" name="study_language" value="PHP"><label for="study__language4"
                           class="btn ">PHP</label>
-                        <input type="checkbox" id="study__language5" value="Laravel"><label for="study__language5"
+                        <input type="checkbox" id="study__language5" name="study_language" value="Laravel"><label for="study__language5"
                           class="btn ">Laravel</label>
-                        <input type="checkbox" id="study__language6" value="SQL"><label for="study__language6"
+                        <input type="checkbox" id="study__language6" name="study_language" value="SQL"><label for="study__language6"
                           class="btn ">SQL</label>
-                        <input type="checkbox" id="study__language7" value="SHELL"><label for="study__language7"
+                        <input type="checkbox" id="study__language7" name="study_language" value="SHELL"><label for="study__language7"
                           class="btn ">SHELL</label><br>
-                        <input type="checkbox" id="study__language8" value="情報システム基礎知識（その他）"><label
+                        <input type="checkbox" id="study__language8" name="study_language" value="情報システム基礎知識（その他）"><label
                           for="study__language8" class="btn ">情報システム基礎知識（その他）</label>
                       </dd>
                     </div>
                   </dl>
-                </form>
+            <!-- モーダル右側 -->
               </section>
               <section class="main__right__ver__modal">
-                <form action="/" name="contactForm2" class="contact__form2">
-                  <dl class="contact__form__list">
+                 <dl class="contact__form__list">
                     <div class="contact__form__item">
                       <dt class="item__title"><label for="study__hour">学習時間</label></dt>
                       <dd><input id="study__hour" type="text" name="study__hour"></dd>
@@ -243,14 +272,18 @@ foreach ($stmt as $results_date) {
                       </dd>
                     </div>
                   </dl>
-                </form>
               </section>
+              </div>
+              <!-- flexここまで -->
 
-            </div>
-            <div class="contact__form__footer">
-              <!-- <button id="record__button" class="header__sending__button__modal"><a href="#modal__determination">記録・投稿</a></button> -->
-              <button id="record__button" class="header__sending__button__modal">記録・投稿</button>
-            </div>
+              <div class="contact__form__footer">
+               <input type="submit" value="記録・投稿" id="record__button" class="header__sending__button__modal">
+              </div>
+
+            </form>
+
+          </div>
+            
             <!-- カレンダー画面の中に表示される決定ボタン 下一行-->
             <button id="determination__button" class="calender__modal__determination__button"><a
                 href="#modal">決定</a></button>
