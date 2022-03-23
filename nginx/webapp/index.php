@@ -22,24 +22,26 @@ foreach ($stmt as $results_date) {
 }
 
 //POST形式データ受け取り
-$study__date_post = '';    //学習日
-$study_content_post = '';  //学習コンテンツ
-$study_language_post = ''; //学習言語
-$study__hour_post = '';    //学習時間
+// $study__date_post = '';    //学習日
+$study_date_post = $_POST['study__date'];    //学習日
+// define($study__date_post , '');    //学習日
+$study_content_post = $_POST['study_content'];  //学習コンテンツ checkbox
+$study_language_post = $_POST['study_language'];//学習言語 checkbox
+$study_hour_post = $_POST['study__hour'];    //学習時間
+
+// $study_content_post = implode('_',$_POST['study_content']);//_で連結
+// $study_language_post = implode('_',$_POST['study_language']);//_で連結
+
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-
-  $study__date_post = $_POST['study__date'];
-  $study_content_post = $_POST['study_content'];
-  $study_language_post = $_POST['study_language'];
-  $study__hour_post = $_POST['study__hour'];
-
-  $success_date_post = false;
-    if($study__date_post === '2022年3月24日'){
-      $success_date_post = true;
-    }
+  // $study__date_post = $_POST['study__date'];    //学習日
+  // $success_date_post = false;
+  //   if($study__date_post === '2022年3月24日'){
+  //     $success_date_post = true;
+  //   }
   
 }
+
 
 ?>
 
@@ -191,11 +193,27 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     </main>
 
     <?php
-      if ($success_date_post) {
-       echo "成功";
-      } else{
-       echo "不成功"; 
+      // if ($success_date_post) {
+      //  echo "成功"."<br>";
+      // } else{
+      //  echo "不成功"."<br>"; 
+      // } 
+      if(isset($study_date_post)){
+        print_r($study_date_post)."<br>";
+      } else {
+        echo "date 不成功"."<br>";
       }
+      if(isset($study_content_post)){
+        print_r($study_content_post)."<br>";
+      }
+      if(isset($study_language_post)){
+        print_r($study_language_post)."<br>";
+      }
+      if(isset($study_hour_post)){
+        print_r($study_hour_post)."<br>";
+      }
+      // echo $study_content_post;
+      // echo $study_language_post;
     ?>
     <!-- モーダル画面 -->
     <div class="modal-wrapper" id="modal">
@@ -220,33 +238,33 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     <div class="contact__form__item">
                       <dt class="item__title">学習コンテンツ（複数選択可）</dt>
                       <dd class="self__checkbox" data-toggle="buttons">
-                        <input type="checkbox" id="study__contents1" name="study_content" value="N予備校" checked><label for="study__contents1"
+                        <input type="checkbox" id="study__contents1" name="study_content[]" value="2" checked><label for="study__contents1"
                           class="btn active">N予備校</label>
-                        <input type="checkbox" id="study__contents2" name="study_content" value="ドットインストール"><label for="study__contents2"
+                        <input type="checkbox" id="study__contents2" name="study_content[]" value="1"><label for="study__contents2"
                           class="btn ">ドットインストール</label><br>
-                        <input type="checkbox" id="study__contents3" name="study_content" value="POSSE課題"><label for="study__contents3"
+                        <input type="checkbox" id="study__contents3" name="study_content[]" value="3"><label for="study__contents3"
                           class="btn ">POSSE課題</label>
                       </dd>
                     </div>
                     <div class="contact__form__item">
                       <dt class="item__title">学習言語（複数選択可）</dt>
                       <dd class="self__checkbox" data-toggle="buttons">
-                        <input type="checkbox" id="study__language1" name="study_language" value="HTML" checked><label for="study__language1"
+                        <input type="checkbox" id="study__language1" name="study_language[]" value="4" checked><label for="study__language1"
                           class="btn active">HTML</label>
-                        <input type="checkbox" id="study__language2" name="study_language" value="css"><label for="study__language2"
+                        <input type="checkbox" id="study__language2" name="study_language[]" value="2"><label for="study__language2"
                           class="btn ">css</label>
-                        <input type="checkbox" id="study__language3" name="study_language" value="JavaScript"><label for="study__language3"
+                        <input type="checkbox" id="study__language3" name="study_language[]" value="1"><label for="study__language3"
                           class="btn ">JavaScript</label><br>
-                        <input type="checkbox" id="study__language4" name="study_language" value="PHP"><label for="study__language4"
+                        <input type="checkbox" id="study__language4" name="study_language[]" value="3"><label for="study__language4"
                           class="btn ">PHP</label>
-                        <input type="checkbox" id="study__language5" name="study_language" value="Laravel"><label for="study__language5"
+                        <input type="checkbox" id="study__language5" name="study_language[]" value="5"><label for="study__language5"
                           class="btn ">Laravel</label>
-                        <input type="checkbox" id="study__language6" name="study_language" value="SQL"><label for="study__language6"
+                        <input type="checkbox" id="study__language6" name="study_language[]" value="6"><label for="study__language6"
                           class="btn ">SQL</label>
-                        <input type="checkbox" id="study__language7" name="study_language" value="SHELL"><label for="study__language7"
+                        <input type="checkbox" id="study__language7" name="study_language[]" value="7"><label for="study__language7"
                           class="btn ">SHELL</label><br>
-                        <input type="checkbox" id="study__language8" name="study_language" value="情報システム基礎知識（その他）"><label
-                          for="study__language8" class="btn ">情報システム基礎知識（その他）</label>
+                        <input type="checkbox" id="study__language8" name="study_language[]" value="8"><label for="study__language8"
+                          class="btn ">情報システム基礎知識（その他）</label>
                       </dd>
                     </div>
                   </dl>
