@@ -1,7 +1,5 @@
 <?php
 
-
-
 $DATABASE_NAME = "quiz";
 $CHARACTER_CODE = "charset=utf8mb4";
 $PDO_DSN = "mysql:host=mysql;dbname=" . $DATABASE_NAME . ";" . $CHARACTER_CODE . ";";
@@ -78,45 +76,16 @@ try{
      );
   }
 
-
-//   echo $inner_results[0]['choice_name']  . PHP_EOL;
-//   echo $inner_results[1]['choice_name']  . PHP_EOL;
-//   echo $inner_results[2]['choice_name']  . PHP_EOL;
-//   echo $inner_results[3]['choice_name']  . PHP_EOL;
-//   echo $inner_results[4]['choice_name']  . PHP_EOL;
-//   echo $inner_results[5]['choice_name']  . PHP_EOL;
-
-//   echo $inner_results[0]['selection_id']  . PHP_EOL;
-//   echo $inner_results[1]['selection_id']  . PHP_EOL;
-//   echo $inner_results[2]['selection_id']  . PHP_EOL;
-//   echo $inner_results[3]['selection_id']  . PHP_EOL;
-//   echo $inner_results[4]['selection_id']  . PHP_EOL;
-//   echo $inner_results[5]['selection_id']  . PHP_EOL;
-
   $correct_array = array();
   for ($j=0; $j < 6; $j++) { 
    if ($inner_results[$j]['choice_valid'] === '1'){
-      // echo $inner_results[$j]['choice_name']  . PHP_EOL;
-      // echo 'correct!' . PHP_EOL;
       $correct_array[] = $inner_results[$j]['choice_name'];
-   } else {
-      // echo 'false...';
    }
   }
-//   print_r($correct_array);  // Array ( [0] => たかなわ [1] => かめいど ) 
-//   echo $correct_array[0] . PHP_EOL;  //たかなわ
-//   echo $correct_array[1] . PHP_EOL;  //かめいど
-
 
 //配列をシャッフル→選択肢の番号をシャッフルしてシャッフルした値を元に出力
 $selection_numbers = [0,1,2]; //ここで番号を用意
 shuffle($selection_numbers);
-// var_dump($selection_numbers[0]);
-// $y = 1;
-// for ($m=($y-1)*3; $m < $y*3; $m++) { 
-//    $selection_number[$m] = $y*3 + $selection_numbers[0];
-// }
-// $y++;
 
 $selection_number[0] = 0 + $selection_numbers[0];
 $selection_number[1] = 0 + $selection_numbers[1];
@@ -125,19 +94,6 @@ $selection_number[3] = 3 + $selection_numbers[0];
 $selection_number[4] = 3 + $selection_numbers[1];
 $selection_number[5] = 3 + $selection_numbers[2];
 
-// echo $inner_results[$selection_number[0]]['choice_name']  . PHP_EOL; //たかわ
-// echo $inner_results[$selection_number[1]]['choice_name']  . PHP_EOL; //こうわ
-// echo $inner_results[$selection_number[2]]['choice_name']  . PHP_EOL; //たかなわ
-// echo $inner_results[$selection_number[3]]['choice_name']  . PHP_EOL; //かめど
-// echo $inner_results[$selection_number[4]]['choice_name']  . PHP_EOL; //かめいど
-// echo $inner_results[$selection_number[5]]['choice_name']  . PHP_EOL; //かめと
-
-// echo $selection_number[0] . PHP_EOL; //1→たかわ
-// echo $selection_number[1] . PHP_EOL; //2→こうわ
-// echo $selection_number[2] . PHP_EOL; //0→たかなわ
-// echo $selection_number[3] . PHP_EOL; //4→かめど
-// echo $selection_number[4] . PHP_EOL; //5→かめいど
-// echo $selection_number[5] . PHP_EOL; //3→かめと
 
 ?>
 
@@ -243,71 +199,7 @@ $selection_number[5] = 3 + $selection_numbers[2];
    <?php $x++; ?>
    <?php endforeach ?>
    
-
-   
-   
-   
-
 </div>
-
-   <!-- 試しに -->
-   <!-- <th><br></th><th><br></th>
-      <table>
-        <tr>
-          <th>big_quiz_id</th> 
-          <th>big_quiz_name</th>
-          <th>image_id</th>
-          <th>image_name</th>
-        </tr>
-       <?php foreach ($results as $value): ?>
-        <tr>
-          <td>
-           <?php echo $value['big_quiz_id']; ?> 
-          </td>
-          <td>
-           <?php echo $value['big_quiz_name']; ?>
-          </td>
-          <td>
-           <?php echo $value['image_id']; ?>
-          </td>
-          <td>
-           <?php echo $value['image_name']; ?>
-          </td>
-        </tr>
-      <?php endforeach ?>
-
-      <th><br></th>
-
-      <tr>
-          <th>image_id</th> 
-          <th>image_name</th>
-          <th>selection_id</th>
-          <th>choice_name</th>
-          <th>choice_valid</th>
-      </tr>
-      
-      <?php foreach ($inner_results as $inner_value): ?>
-       <tr>
-        <td>
-         <?php echo $inner_value['image_id'] ?>
-        </td>
-        <td>
-         <?php echo $inner_value['image_name'] ?>
-        </td>
-        <td>
-         <?php echo $inner_value['selection_id'] ?>
-        </td>
-        <td>
-         <?php echo $inner_value['choice_name'] ?>
-        </td>
-        <td>
-         <?php echo $inner_value['choice_valid'] ?>
-        </td>
-      </tr>
-      <?php endforeach ?>
-      <th><br></th> 
-   </table> -->
-
 
 
    <script>
@@ -321,18 +213,12 @@ $selection_number[5] = 3 + $selection_numbers[2];
                 buttonOfOptionNumber0.style.pointerEvents = 'none';
                 buttonOfOptionNumber1.style.pointerEvents = 'none';
                 buttonOfOptionNumber2.style.pointerEvents = 'none';
-               //  document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block';
-               //  document.getElementById("<?php echo $correct_array[0] ;?>").style.display = 'block'; 
-               //  document.getElementById("<?php echo $k;?>").style.display = 'block'; 
             <?php } else {  ?>
                 document.getElementById('incorrectAnswerDisplay1').style.display = 'block';
                 buttonOfOptionNumber<?php echo $k;?>.classList.add('incorrectAnswerBox');
                 buttonOfOptionNumber0.style.pointerEvents = 'none';
                 buttonOfOptionNumber1.style.pointerEvents = 'none';
                 buttonOfOptionNumber2.style.pointerEvents = 'none';
-               //  document.getElementById("<?php echo $inner_results[$selection_number[$k]]['choice_name']; ?>").style.display = 'block';
-               //  document.getElementById("<?php echo $correct_array[0] ;?>").style.display = 'block'; 
-               //  document.getElementById("<?php echo $k;?>").style.display = 'block'; 
             <?php }  ?>
             
          }
@@ -348,19 +234,13 @@ $selection_number[5] = 3 + $selection_numbers[2];
                 buttonOfOptionNumber3.style.pointerEvents = 'none';
                 buttonOfOptionNumber4.style.pointerEvents = 'none';
                 buttonOfOptionNumber5.style.pointerEvents = 'none';
-               //  document.getElementById("<?php echo $inner_results[$selection_number[$m]]['choice_name']; ?>").style.display = 'block';
-               //  document.getElementById("<?php echo $correct_array[1] ;?>").style.display = 'block'; 
-               //  document.getElementById("<?php echo $m;?>").style.display = 'block'; 
-                
+             
             <?php } else {  ?>
                 document.getElementById('incorrectAnswerDisplay2').style.display = 'block';
                 buttonOfOptionNumber<?php echo $m;?>.classList.add('incorrectAnswerBox');
                 buttonOfOptionNumber3.style.pointerEvents = 'none';
                 buttonOfOptionNumber4.style.pointerEvents = 'none';
                 buttonOfOptionNumber5.style.pointerEvents = 'none';
-               //  document.getElementById("<?php echo $inner_results[$selection_number[$m]]['choice_name']; ?>").style.display = 'block';
-               //  document.getElementById("<?php echo $correct_array[1] ;?>").style.display = 'block'; 
-               //  document.getElementById("<?php echo $m;?>").style.display = 'block'; 
             <?php }  ?>
          }
       <?php } ?>
@@ -368,9 +248,6 @@ $selection_number[5] = 3 + $selection_numbers[2];
 
       //サイドメニューの開閉
       function hamburger() {
-        //document.getElementById('line1').classList.toggle('line_1');
-        //document.getElementById('line2').classList.toggle('line_2');
-        //document.getElementById('line3').classList.toggle('line_3');
         document.getElementById('menu').classList.toggle('in');
       }
       document.getElementById('hamburger').addEventListener('click' , function () {
