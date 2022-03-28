@@ -1,0 +1,13 @@
+{
+  "name": "foo",
+  "config": {
+    "foo": "bar",
+    "dev": {
+      "port": 8080
+    }
+  },
+  "scripts": {
+    "start": "node ./index.js",
+    "dev": "http-server -p $npm_package_config_dev_port"
+  }
+}

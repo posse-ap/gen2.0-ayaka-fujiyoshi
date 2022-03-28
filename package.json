@@ -1,0 +1,23 @@
+{
+  "name": "js-http",
+  "version": "1.0.0",
+  "main": "kuizy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/posse-ap/gen2.0-ayaka-fujiyoshi.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/posse-ap/gen2.0-ayaka-fujiyoshi/issues"
+  },
+  "homepage": "https://github.com/posse-ap/gen2.0-ayaka-fujiyoshi#readme",
+  "description": "",
+  "devDependencies": {
+    "jsdoc": "^3.6.10"
+  }
+}

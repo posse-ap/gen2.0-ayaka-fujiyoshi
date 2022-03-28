@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: kuizy.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: kuizy.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/**
+ * 問題の選択肢と写真の配列
+ */
+
+const optionGroups = [
+['たかなわ', 'たかわ', 'こうわ'],
+['かめいど', 'かめど', 'かめと'],
+['こうじまち', 'かゆまち', 'おかとまち'],
+['おなりもん', 'ごせいもん', 'おかどもん'],
+['とどろき', 'たたら', 'たたりき'],
+['しゃくじい', 'せきこうい', 'いじい'],
+['ぞうしき', 'ざっしき', 'ざっしょく'],
+['おかちまち', 'みとちょう', 'ごしろちょう'],
+['ししぼね', 'ろっこつ', 'しこね'],
+['こぐれ', 'こばく', 'こしゃく'],
+];
+
+/**
+ *  問題の正解の配列
+ */
+const answerGroups = ["たかなわ","かめいど","こうじまち","おなりもん","とどろき","しゃくじい","ぞうしき","おかちまち","ししぼね","こぐれ"]
+
+/**
+ * 問題の写真の配列
+ */
+let questionPhotos = [
+['img/takanawa.png'],
+['img/kameido.png'],
+['img/koujimachi.png'],
+['img/onarimon.png'],
+['img/todoroki.png'],
+['img/syakujii.png'],
+['img/zoshiki.png'],
+['img/okachimachi.png'],
+['img/shishibone.png'],
+['img/kogure.png'],
+];
+
+/**
+ * シャッフル関数、フィッシャー・イェーツのシャッフル
+ * @param {Array} arr シャッフル前の問題の配列
+ * @return {Array} シャッフル後の問題の配列
+ */
+function shuffle(arr){ 
+	for (let k = arr.length - 1; k > 0; k--){
+		const j = Math.floor(Math.random() * (k + 1));
+		[arr[j],arr[k]] = [arr[k],arr[j]];
+	}
+	return arr;
+}
+optionGroups.map(shuffle);
+
+
+/**
+ * 問題作成の空
+ */
+let main = '';
+
+for(let i = 0; i&lt;optionGroups.length; i++){
+	main+=`&lt;div class='mainWrapper'>`
+	     +`&lt;h3>${i+1}.この地名はなんて読む？&lt;/h3>`
+         +`&lt;img src= "${questionPhotos[i]}"  alt='問題${i+1}の写真' width=auto>`
+         +`&lt;ul>`
+         +`&lt;li class='buttonOfOptionNumber' id = 'answerChoice_${i}_0' input type='button' value='button' onclick="clickSelectedButton(${i},0)">${optionGroups[i][0]}&lt;/li>`
+         +`&lt;li class='buttonOfOptionNumber' id = 'answerChoice_${i}_1' input type='button' value='button' onclick="clickSelectedButton(${i},1)">${optionGroups[i][1]}&lt;/li>`
+         +`&lt;li class='buttonOfOptionNumber' id = 'answerChoice_${i}_2' input type='button' value='button' onclick="clickSelectedButton(${i},2)">${optionGroups[i][2]}&lt;/li>`
+         +`&lt;div id='answerDisplay${[i]}' class='firstIsInvisible'>`
+         +`&lt;li>&lt;span>正解!&lt;/span>&lt;/li>`
+         +`&lt;li>正解は ${answerGroups[i]} です!&lt;/li>`
+         +`&lt;/div>`
+         +`&lt;div id='incorrectAnswerDisplay${[i]}' class='incorrectFirstIsInvisible'>`
+         +`&lt;li>&lt;span>不正解!&lt;/span>&lt;/li>`
+         +`&lt;li>正解は ${answerGroups[i]} です!&lt;/li>`
+         +`&lt;/div>`
+         +`&lt;/ul>`
+		 +`&lt;/div>`
+
+loop.innerHTML = main;
+};
+
+
+/**
+ * 以下で各設問のボタンクリックによって（）内の引数を呼び出す
+ * @param {number} questionNumber 大問番号
+ * @param {number} optionNumberOfQuestions 選択肢番号
+ * @return {Array} シャッフル後の問題の配列
+ */
+function clickSelectedButton(questionNumber, optionNumberOfQuestions) {
+	
+	/**
+	 * クリックしたらとりあえず全て赤にする
+   * ボタン表示
+   */
+	let buttonOfOptionNumber = document.getElementById('answerChoice_'+ questionNumber +'_'+ optionNumberOfQuestions);
+	buttonOfOptionNumber.classList.add('incorrectAnswerBox');
+
+	for (let d = 0; d &lt; 3; d++) {
+		if (optionGroups[questionNumber][d] === answerGroups[questionNumber]) {
+			let trueChoice = document.getElementById('answerChoice_'+ questionNumber +'_'+ d);
+			trueChoice.classList.add('answerBox');
+			trueChoice.classList.remove('incorrectAnswerBox');
+		}
+	}
+
+	
+	if (optionGroups[questionNumber][optionNumberOfQuestions] === answerGroups[questionNumber]) {
+		document.getElementById('answerDisplay'+ questionNumber).style.display = 'block';
+	} else {
+		document.getElementById('incorrectAnswerDisplay'+ questionNumber).style.display = 'block';
+	}
+
+	document.getElementById('answerChoice_'+ questionNumber +'_0').style.pointerEvents = 'none';
+	document.getElementById('answerChoice_'+ questionNumber +'_1').style.pointerEvents = 'none';
+	document.getElementById('answerChoice_'+ questionNumber +'_2').style.pointerEvents = 'none';
+}
+
+
+/**
+ * サイドメニューの開閉
+ * @return {void} - コンソールに表示
+ */
+function hamburger() {
+  document.getElementById('menu').classList.toggle('in');
+}
+document.getElementById('hamburger').addEventListener('click' , function () {
+  hamburger();
+} );
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#answerGroups">answerGroups</a></li><li><a href="global.html#clickSelectedButton">clickSelectedButton</a></li><li><a href="global.html#hamburger">hamburger</a></li><li><a href="global.html#main">main</a></li><li><a href="global.html#optionGroups">optionGroups</a></li><li><a href="global.html#questionPhotos">questionPhotos</a></li><li><a href="global.html#shuffle">shuffle</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue Mar 29 2022 05:48:09 GMT+0900 (日本標準時)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
