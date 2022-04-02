@@ -6,9 +6,11 @@ require_once('functions.php');
   // 月別に集計
   $stmt = $db->query('SELECT DATE_FORMAT(`study_date`, "%Y-%m") as `grouping_month`, SUM(study_hour) FROM `study_times` GROUP BY `grouping_month`');
   $results_month_group = $stmt->fetchAll();
-  $pieces = explode("-", $results_month_group[3]['grouping_month']);  //年と月を分別する  //[0]2021-07, [1]2022-01, [2]2022-02, [3]2022-03  汎用性高めるならここの数字を変数に置き換える
-  $piece_year = $pieces[0];            //年を表示
-  $piece_month = $pieces[1];           //月を表示
+  for ($i=0; $i <count($results_month_group); $i++) {  //count($results_month_group)でfor文を要素数までで終わらせる
+    $pieces = explode("-", $results_month_group[$i]['grouping_month']);   //$iが最新の月まで回って終わるから、必ずpiecesは最新の月になる
+  }
+  $piece_year = $pieces[0];     //年を表示
+  $piece_month = $pieces[1];    //月を表示
   
   //下記は後に使う空配列、ここで定義しておく
   $study_times_array = array();
@@ -18,9 +20,9 @@ require_once('functions.php');
     if(preg_match('/^([0-9]{1})$/', $i)){  //もし$iが１桁だったら
       $i = '0'.$i;                         //ゼロ埋めするように'0'を.で
     }                                      //それ以外はそのまま
-    $date = "$piece_year-$piece_month-$i";
+    $date = "$piece_year-$piece_month-$i";  //上で抽出した年月とiで表した日で日付を表す
     $stmt = $db->prepare('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m-%d") = ?');
-    $stmt->bindValue(1,$date);  //第一引数のパラメータID,SQL内の「?」の位置を指定
+    $stmt->bindValue(1,$date);  //
     $stmt->execute();
     $colum_graph_date = $stmt->fetchAll();
   
@@ -41,11 +43,13 @@ require_once('functions.php');
                                                             //Json形式に変換するためには、PHPの関数を使用↓
                                                             // Json形式に変換した配列 = json_encode(変換したい配列) ]
 
-
-//学習言語 円グラフ
+//円グラフ
 // 年別に集計
 $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y") = DATE_FORMAT(now(), "%Y")');
 $results_year= $stmt->fetch();
+
+//学習言語 円グラフ
+//↓ WHERE DATE_FORMAT(study_date, "%Y")にしたので年別の円グラフができるようにした
 $stmt = $db->query('SELECT
                           SUM(study_times.study_hour) AS study_hour,
                           study_languages.language_name AS language_name,
@@ -53,29 +57,26 @@ $stmt = $db->query('SELECT
                           FROM study_times
                           INNER JOIN study_languages 
                           ON  study_times.languages_id = study_languages.id
-                          WHERE DATE_FORMAT(study_date, "%Y-%m") = DATE_FORMAT(now(), "%Y-%m")
+                          WHERE DATE_FORMAT(study_date, "%Y") = DATE_FORMAT(now(), "%Y")
                           GROUP BY study_languages.language_name, study_languages.language_color
                           ORDER BY study_hour DESC
                           ');
 $results_languages = $stmt->fetchAll();
 
 $languages_name_array = [];
-for ($k=0; $k < 8; $k++) {    //$results_languages.lengthとかに後で
+for ($k=0; $k < count($results_languages); $k++) {
   array_push($languages_name_array, $results_languages[$k]['language_name']);
 }
 $languages_hour_array = [];
-for ($h=0; $h < 8; $h++) {    //$results_languages.lengthとかに後で
+for ($h=0; $h < count($results_languages); $h++) {
   $languages_per = ($results_languages[$h]['study_hour']/$results_year[0])*100; // (学習時間 / 年間合計学習時間)*100にして扇形の配分出す
   array_push($languages_hour_array, ($languages_per));  
 }
 $languages_color_array = [];
-for ($c=0; $c < 8; $c++) {    //$results_languages.lengthとかに後で
+for ($c=0; $c < count($results_languages); $c++) {
   $language_color = $results_languages[$c]['language_color'];
-  // $language_color_obj= $c.':{color:"'.$language_color.'"},';
-  // array_push($languages_color_array, $language_color_obj);
   array_push($languages_color_array, $language_color);
 }
-// $languages_color_Json = json_encode($languages_color_array);
 $languages_name_per_array = [];
 $l = 0;
   foreach ($languages_name_array as $language_name_array) {  //１つ１つの学習言語に対して、学習時間($lで判別)をセットにし、array_pushで予め用意していた空配列に足していく
@@ -101,19 +102,17 @@ $stmt = $db->query('SELECT
                           ');
 $results_contents = $stmt->fetchAll();
 $contents_name_array = [];
-for ($k=0; $k < 3; $k++) {    //$results_contents.lengthとかに後で
+for ($k=0; $k < count($results_contents); $k++) {
   array_push($contents_name_array, $results_contents[$k]['contents_name']);
 }
 $contents_hour_array = [];
-for ($h=0; $h < 3; $h++) {    //$results_contents.lengthとかに後で
+for ($h=0; $h < count($results_contents); $h++) {
   $contents_per = ($results_contents[$h]['study_hour']/$results_year[0])*100; // (学習時間 / 年間合計学習時間)*100にして扇形の配分出す
   array_push($contents_hour_array, ($contents_per));  
 }
 $contents_color_array = [];
-for ($c=0; $c < 8; $c++) {    //$results_languages.lengthとかに後で
+for ($c=0; $c < count($results_contents); $c++) {
   $contents_color = $results_contents[$c]['contents_color'];
-  // $contents_color_obj= $c.':{color:"'.$contents_color.'"},';
-  // array_push($contents_color_array, $contents_color_obj);
   array_push($contents_color_array, $contents_color);
 }
 $contents_name_per_array = [];
@@ -124,13 +123,6 @@ $l = 0;
     $l++; //$language_name_arrayが回るごとに$lを増やしていく
   }
   $contents_array_Json = json_encode($contents_name_per_array);
-
-echo '<pre>';
-// print_r($languages_hour_array);
-// var_dump($contents_hour_array);
-// print_r($contents_name_per_array);
-echo '</pre>';
-
 
 ?>
 
@@ -277,15 +269,12 @@ function drawPieContentsChart() {
     slices: {
       0: {
         color: '<?php echo $contents_color_array[0] ?>'
-        // color: '#0042E5'
       },
       1: {
         color: '<?php echo $contents_color_array[1] ?>'
-        // color: '#0070B9'
       },
       2: {
         color: '<?php echo $contents_color_array[2] ?>'
-        // color: '#00BDDB'
       },
     },
     chartArea: {

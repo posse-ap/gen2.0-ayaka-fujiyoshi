@@ -1,0 +1,1117 @@
+html{
+  font-size: 1vw;
+}
+body{
+  background-color: #f5f5f8;
+}
+p{
+  margin: 0;
+}
+div{
+  margin: 0;
+}
+ul{
+  margin: 0;
+  padding: 0;
+}
+li{
+  margin: 0;
+  padding: 0;
+}
+
+.inner{
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+
+/* header */
+.header{
+  position: fixed;
+  height: 64px;
+  top: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  background-color: #fff;
+  z-index: 999;
+  /* visibility: hidden; */
+}
+.header__inner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0 3rem 0;
+}
+.posse__logo{
+  height: 2.5rem;
+  /* margin-left: 10px; */
+  background-size: cover;
+}
+.header__date{
+  font-size: 1.3rem;
+  color: #97b9d1;
+  margin-left: 2rem;
+}
+.header__sending__button{
+  /* background: linear-gradient(to right, #0f71bc, #8bd8f7); */
+  background-image: linear-gradient( 135deg, #0f71bc 10%, #8bd8f7 100%);;
+  margin-left: auto;
+  /* margin-right: 20px; */
+  color: #fff;
+  padding: 0.5rem 4rem 0.5rem;
+    border-radius: 30rem;
+  border-color: #0f71bc;
+  box-shadow: 0 0 18px #97b9d1;
+}
+
+/* main  */
+.main__inner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin: 10px auto; */
+  margin-top: 84px;
+  width: 98%;
+}
+.main__left{
+  width: 47%;
+}
+.main__right{
+  width: 47%;
+}
+
+/* main__study__number */
+.main__study__number{
+  display: flex;
+  list-style: none;
+}
+.main__study__item{
+  text-align: center;
+  background-color: #fff;
+  border-radius: 3rem;
+  padding: 2rem 0 1rem;
+  width: 100%;
+  height: 11.5rem;
+  box-shadow: 0 0.4rem 1.1rem rgb(0 0 0 / 15%);
+}
+.main__study__item + .main__study__item{
+  margin-left: 2rem;
+}
+.main__study__item__title{
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0f71bc;
+}
+.main__study__item__number{
+  font-size: 4.2rem;
+  font-weight: bold;
+}
+.main__study__item__unit{
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #97b9d1;
+}
+
+/* main__bar__graph */
+.main__bar__graph{
+  width: 50rem;
+  height: 25rem;
+  margin-top: 2rem;
+  background-color: #fff;
+  border-radius: 3rem;
+  box-shadow: 0 0.4rem 1.1rem rgb(0 0 0 / 15%);
+}
+.barChart__div__wrapper{
+  position: relative;
+  top: 0.8rem;
+  left: 0.9rem;
+  width: 43rem;
+  height: 23rem;
+}
+
+/* main__pie__chart */
+.main__pie__chart__title{
+  position: relative;
+  top: 1.2rem;
+  left: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.main__pie__chart__inner{
+  display: flex;
+  list-style: none;
+  margin-left: 2rem;
+}
+.main__pie__chart__item + .main__pie__chart__item{
+  margin-left: 2rem;
+}
+.main__pie__chart__item{
+  width: 22rem;
+  height: 42rem;
+  background-color: #fff;
+  border-radius: 3rem;
+  box-shadow: 0 0.4rem 1.1rem rgb(0 0 0 / 15%);
+}
+.pieChart__position{
+  position: relative;
+  top: 1.2rem;  
+  width: 20rem;
+  height: 27rem;
+}
+.pie__chart__legend__wrapper{
+  position: fixed;
+  /* display: flex;  */
+	/* align-items: center;
+  justify-content: center;*/
+  width: 20rem;
+  height: 12rem;
+}
+.pie__chart__legend__wrapper__small{
+  display: flex;
+}
+.pie__chart__legend__items{
+  width: 4rem;
+  height: 1.5rem;
+}
+.pie__chart__legend__items + .pie__chart__legend__items{
+  margin-left: 4rem;
+}
+.pie__chart__legend__items2{
+  width: 4rem;
+  height: 1.5rem;
+}
+.pie__chart__legend__items2 + .pie__chart__legend__items2{
+  margin-left: 1.5rem;
+}
+.pie__chart__legend__items__right{
+  width: 4rem;
+  height: 1.5rem;
+}
+.pie__chart__circle {
+  /* background-color:#bde360; */
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  border-radius: 50%;
+  padding: 0;
+  margin:  0 2rem 0;
+  /*position: relative;*/
+}
+.circle__js{
+  background-color:#0042E5;
+}
+.circle__css{
+  background-color:#0070B9;
+}
+.circle__php{
+  background-color:#00BDDB;
+}
+.circle__html{
+  background-color:#B29DEF;
+}
+.circle__laravel{
+  background-color:#6C43E5;
+}
+.circle__sql{
+  background-color:#B29DEF;
+}
+.circle__shell{
+  background-color:#4609E8;
+}
+.circle__system{
+  background-color:#2D00BA;
+}
+.pie__chart__language{
+  margin:  0 2rem 0;
+  padding: 0;
+  width: 10rem;
+  height: 1rem;
+}
+.pie__chart__language__system{
+  margin:  0 2rem 0;
+  padding: 0;
+  width: 15rem;
+  height: 1rem;
+}
+.pie__chart__legend__contents{
+  margin:  0 2rem 0;
+  padding: 0;
+  width: 10rem;
+  height: 1rem;
+}
+
+
+/* footer */
+.footer__fixed{
+  display: flex;
+  flex-direction: column;
+  min-height: 97vh;
+}
+.footer {
+  margin-top: auto;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+.Arrow-Right {
+  border-top: solid 0.2rem #97b9d1;
+  border-right: solid 0.2rem #97b9d1;
+  width: 1.2rem;
+  height: 1.2rem;
+  transform: rotate(45deg);
+}
+.Arrow-Left {
+  border-bottom: solid 0.2rem #0f71bc;
+  border-left: solid 0.2rem #0f71bc;
+  width: 1.2rem;
+  height: 1.2rem;
+  transform: rotate(45deg);
+}
+.header__sending__button__responsive{
+  display: none;
+
+}
+
+/*モーダルウィンドウを動かしているcss*/
+.modal-wrapper:not(:target) {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+.modal-wrapper:target {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .4s, visibility .4s;
+}
+
+.header__sending__button a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.modal-wrapper {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+.modal-wrapper:not(:target) {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+.modal-wrapper:target {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .4s, visibility .4s;
+}
+.modal-wrapper::after {
+  display: inline-block;
+  height: 100%;
+  margin-left: -.05em;
+  vertical-align: middle;
+  content: ""
+}
+.modal-wrapper .modal-window {
+  box-sizing: border-box;
+  display: inline-block;
+  z-index: 1010;
+  position: relative;
+  width: 80rem;
+  height: 44rem;
+  /*max-width: 600px;  /* 600 */
+  padding: 2rem 0 2rem;  /* 30px 30px 15px; */
+  background: #fff;
+  border-radius: 4rem;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, .6);
+  vertical-align: middle
+}
+.modal-wrapper .modal-window .modal-content {
+  max-height: 80vh;
+  /* overflow-y: auto; */
+  text-align: left
+}
+.modal-overlay {
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(85, 84, 84, 0.8);
+  /* background: rgba(85, 84, 84, 0.8); */
+}
+.close__button__wrap{
+	/* position: fixed; */
+	align-items: center;
+  justify-content: center;
+  width: 81rem;
+  /* top: 14rem; */
+}
+.circle__background{
+  z-index: 10;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 3.8rem;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.5rem;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0;
+  background-color:#f5f5f8;
+  display: inline-block;
+  border-radius: 50%;
+}
+.modal-wrapper .modal-close {
+  z-index: 20;
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 3.5rem;
+  color: #95979c !important;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.5rem;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0;
+}
+.modal-wrapper .modal-close:hover {
+  color: #2b2e38 !important
+}
+
+/* ここからモーダルの中身 */
+.item__title{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.main__inner__ver__modal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.form_contents_wrapper {
+  display: flex;
+}
+.main__left__ver__modal{
+  width: 50%;
+  padding-left: 4.6rem;
+}
+.main__right__ver__modal{
+  width: 50%;
+  padding-right: 4.6rem;
+}
+.main__left__ver__modal + .main__right__ver__modal{
+  margin-left: 2rem;
+}
+.contact__form__item__date{
+  margin-bottom: 1rem;
+}
+.contact__form__item__date input{
+  margin-top: 0.5rem;
+}
+.contact__form__item dd {
+  margin: 0  0 1rem;
+  border-radius: 0.5rem;
+}
+.main__left__ver__modal .contact__form__item dd label{ /選択肢
+  background-color: #f5f5f8;
+  padding: 0.6rem 0.4rem 0.6rem;
+  margin: 0.4rem 0 0.4rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.contact__form__item dd input{ /* checkbox */
+  margin: 1rem 0.6rem 1rem 1rem;
+}
+.contact__form__item input[type=text]{
+  background-color: #f5f5f8;
+  border: transparent;
+  height: 3rem;
+  width: 35rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem
+}
+.contact__form__item textarea[type=text]{
+  background-color: #f5f5f8;
+  border: transparent;
+  width: 35rem;
+  height: 17rem;
+  border-radius: 0.5px;
+  margin-top: 0.5rem;
+  position: relative;
+  left: 1rem;
+}
+.contact__form__footer {
+  text-align: center;
+  margin-top: 3.5rem;
+}
+.twitter__wrapper{
+  border-radius: 5rem;
+}
+.contact__form__twitter{
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.header__sending__button__modal a{
+  text-decoration: none;
+  color: #fff;
+}
+.header__sending__button__modal{
+  background: linear-gradient(to right, #0f71bc, #8bd8f7);
+  margin-left: auto;
+  /* margin-right: 20px; */
+  color: #fff;
+  padding: 0.5rem 4rem 0.5rem;
+  border-radius: 30rem;
+  border-color: #0f71bc;
+  box-shadow: 0 0 18px #8bd8f7;
+}
+
+/* calender */
+.custom{
+  color: #0f71bc;
+}
+/* .flatpickr-current-month-mine {
+  display: flex;
+  justify-content: center;
+}
+.cur-year-mine {
+  order: 1
+}
+.cur-month-mine:before  {
+   content: "年 "
+}
+.cur-month-mine {
+  order: 2
+} */
+
+/* チェックボックスの見た目 */
+.self__checkbox input[type="checkbox"]{ /* 元々のチェックボックス（非表示） */
+  display: none;
+}
+.self__checkbox input[type="checkbox"]+label{ /* チェックボックスの代わりを成すラベル */
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  padding-left: 2.5rem;
+  padding-right: 1rem;
+}
+.self__checkbox input[type="checkbox"]+label::before{ /* ラベルの左に表示させるボックス〇 */
+  content: "";
+  position: absolute;
+  /* display: block; */
+  box-sizing: border-box;
+  width: 2rem;
+  height: 2rem;
+  margin-top: -1rem;
+  left: 0.2rem;
+  top: 50%;
+  /* border: 1px solid; */
+  border-radius: 50%;
+  border-color: #ccc; /* 枠の色変更 お好きな色を blue #0F71BD */
+  background-color: #ccc; /* 背景の色変更 お好きな色を */   
+}
+.self__checkbox input[type="checkbox"]+label::after{ /* チェックが入った時のレ点 */
+  content: "";
+  position: absolute;
+  /* display: block; */
+  box-sizing: border-box;
+  width: 1.4rem;
+  height: 1rem;
+  margin-top: -0.8rem;
+  top: 50%;
+  left: 0.5rem;
+  transform: rotate(-45deg);
+  border-bottom: 0.2rem solid;
+  border-left: 0.2rem solid;
+  border-color: #fff; /* チェックの色変更 お好きな色を */
+}
+.self__checkbox input[type="checkbox"]:checked +label::before{
+  border-color: #0F71BD; /* 枠の色変更 お好きな色を */
+  background-color: #0F71BD; /* 背景の色変更 お好きな色を */   
+}
+.self__checkbox input[type="checkbox"]:checked + label{
+  background-color: #E7F5FF;
+}
+
+
+/* modal__loading */
+.loader-wrap {
+	position: fixed;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82rem;
+  height: 44rem;
+  /* background: #000; */
+}
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+.loader {
+  margin: 60px auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  /* border-right: 1.1em solid #8ccfee; */
+  border-right: 1.1em solid #8ccfee;
+  border-bottom: 1.1em solid #58bedd;
+  border-left: 1.1em solid #04a1df;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* Twitterへ飛ぶリンク */
+.twitter__send__href{
+  display: none;
+}
+
+/* 記録・投稿完了画面 */
+.circle__wrap{
+	position: fixed;
+	/* display: flex; */
+  align-items: center;
+  justify-content: center;
+  width: 82rem;
+  height: 25rem;
+  /* background: #000;*/
+}
+.circle {
+  background-color:#bde360;
+  width: 10rem;
+  height: 10rem;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+}
+.check__mark{
+  content: '';
+  width: 3rem;
+  height: 1.5rem;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  /* transform: translate(-50%, -50%); */
+  border-left: 0.3rem solid #fff;
+  border-bottom: 0.3rem solid #fff;
+  transform: rotate(-45deg);
+}
+.circle__above{
+  color: #bde360;
+  font-size: 1.5rem;
+  /* position: absolute;
+  top: -10%; */
+}
+.modal-wrapper .modal-window .modal-content-circle {
+  /* max-height: 80vh;
+  overflow-y: auto; */
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 81rem;
+  height: 47rem;
+}
+.circle__wrap .circle__explain{
+  margin: 0.15rem 0 0.15rem;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* カレンダー画面 */
+.flex__title{
+  display: flex;
+}
+/* #appendTo{
+  margin-left: 20rem;
+} */
+.calender__modal__determination__button{
+  visibility: hidden;
+  background: linear-gradient(to right, #0f71bc, #8bd8f7);
+  color: #fff;
+  padding: 0.5rem 4rem 0.5rem;
+  border-radius: 30rem;
+  border-color: transparent;
+  box-shadow: 0 0 18px #8bd8f7;
+  position: absolute;
+  left: 35.4rem;
+  bottom: 2rem;
+  z-index: 9999;
+}
+.calender__modal__determination__button a{
+  text-decoration: none;
+  color: #fff;
+}
+
+
+@media screen and (max-width:375px){
+  /*画面幅が414pxまでの時 iPhoneX*/
+  /* topPage */
+  .posse__logo{
+    height: 6.5rem;
+  }
+  .main__inner{
+    display: block;
+  }
+  .main__left , .main__right{
+    width: 100%;
+  }
+  .main__study__item{
+    padding: 3.5rem 9.5rem 8.5rem 8rem;
+    height: 14rem;
+  }
+  .main__study__item__title, .main__study__item__unit{
+    font-size: 4rem;
+  }
+  .main__study__item__number{
+    font-size: 6rem;
+  }
+  /* .first__item{
+    margin-left: 4rem;
+  }
+  .last__item{
+    margin-right: 4rem;
+  } */
+  .main__study__item + .main__study__item {
+    margin-left: 4rem;
+  }
+  .main__bar__graph{
+    width: 93rem;
+    height: 40rem;
+    margin: 6.2rem 0.2rem 4.6rem;
+  }
+  .main__pie__chart__inner {
+   margin-left: 0;
+  }
+  .main__pie__chart__item + .main__pie__chart__item {
+    margin-left: 16px;
+  }
+  .main__pie__chart__item{
+    width: 44rem;
+    height: 72rem;
+  }
+  .left__item{
+    margin-left: 0.5rem;
+  }
+  /* .right__item{
+    margin-right: 20px;
+  } */
+  .footer{
+    margin-top: 4rem;
+  }
+  .Arrow-Right {
+    border-top: solid 0.7rem #97b9d1;
+    border-right: solid 0.7rem #97b9d1;
+    width: 3rem;
+    height: 3rem;
+    
+  }
+  .Arrow-Left {
+    border-bottom: solid 0.7rem #0f71bc;
+    border-left: solid 0.7rem #0f71bc;
+    width: 3rem;
+    height: 3rem;
+  }
+  .footer p{
+    font-size: 2.8rem;
+  }
+  .header__inner{
+    justify-content:left;
+  }
+  .header__sending__button{
+    display: none;
+  }
+  .header__sending__button__responsive a {
+    text-decoration: none;
+    color: #fff;
+  }
+  .footer__fixed{
+    position: relative;
+  }
+  
+  .header__sending__button__responsive{
+    display: block;
+    background: linear-gradient(to right, #0f71bc, #8bd8f7);
+    color: #fff;
+    padding: 0.5rem 4rem 0.5rem;
+    border-radius: 30rem;
+    border-color: #0f71bc;
+    box-shadow: 0 0 5.8rem #97b9d1;
+    position: absolute;
+    bottom: 0.2rem;
+    height: 12rem;
+    width: 100%;
+  }
+  /* topPage ここまで */
+  /* モーダルPage */
+   .modal-wrapper .modal-window{
+    width: 100%;
+    height: 700px;
+    margin-top: 14rem;
+  }
+  .main__inner__ver__modal{
+    width: 100%;
+    display: grid;
+    justify-content: start;
+    margin-top: 12rem;
+  }
+  .main__left__ver__modal{
+    width: 98rem;
+    padding-left: 4.6rem;
+    /* height: 65rem; */
+  }
+  .main__right__ver__modal{
+    width: 98rem;
+    padding-right: 0;
+  }
+  .main__left__ver__modal + .main__right__ver__modal {
+    margin-left: 5rem;
+  }
+  /* dd{
+    margin: 1rem 1rem 1rem 1rem;
+  } */
+  .main__left__ver__modal .contact__form__item dd label {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 1rem 1rem 1rem 1rem;
+    font-size: 2.2rem;
+  }
+  .item__title{
+    margin-top: 5rem;
+  }
+  .contact__form__item input[type=text]{
+    width: 90%;
+    height: 10rem;
+    border-radius: 1rem;
+  }
+  .contact__form__item textarea[type=text]{
+    width: 90%;
+    height: 24rem;
+    border-radius: 1rem;
+    margin-bottom: 5rem;
+  }
+  .circle__background{
+    top: 3rem;
+    right: 3rem;
+    width: 6.8rem;
+    height: 6.8rem;
+  }
+  .modal-wrapper .modal-close{
+    top: 1.5rem;
+    font-size: 6rem;
+  }
+  .contact__form__footer{
+    margin-top: 13.5rem;
+    width: 90rem;
+    height: 14rem;
+    font-size: 5rem;
+  }
+  .modal-wrapper .modal-window .modal-content-circle {
+    width: 99rem;
+    height: 170rem;
+  }
+  /* 記録・投稿完了画面 */
+  .circle{
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 3rem;
+  }
+  .circle__wrap .circle__explain{
+    font-size: 4rem;
+    font-weight: bold;
+  }
+  .circle__above{
+    font-size: 3.5rem;
+  }
+  .check__mark{
+    width: 5rem;
+    height: 2.5rem;
+    border-left: 0.7rem solid #fff;
+    border-bottom: 0.7rem solid #fff;    
+  }
+} 
+
+@media screen and (max-width:414px){
+  /*画面幅が414px-767pxまでの時 iPhone 6/7/8 Plus*/
+  /* topPage */
+  .posse__logo{
+    height: 6.5rem;
+  }
+  .main__inner{
+    display: block;
+  }
+  .main__left , .main__right{
+    width: 100%;
+  }
+  .main__study__item{
+    padding: 3.5rem 9.5rem 8.5rem 8rem;
+    height: 14rem;
+  }
+  .main__study__item__title, .main__study__item__unit{
+    font-size: 4rem;
+  }
+  .main__study__item__number{
+    font-size: 6rem;
+  }
+  /* .first__item{
+    margin-left: 4rem;
+  }
+  .last__item{
+    margin-right: 4rem;
+  } */
+  .main__study__item + .main__study__item {
+    margin-left: 4rem;
+  }
+  .main__bar__graph{
+    width: 93rem;
+    height: 40rem;
+    margin: 6.2rem 0.2rem 4.6rem;
+  }
+  .main__pie__chart__inner {
+   margin-left: 0;
+  }
+  .pie__chart__legend__items + .pie__chart__legend__items {
+    margin-left: 13rem;
+    margin-bottom: 1rem;
+  }
+  .pie__chart__legend__items2 + .pie__chart__legend__items2 {
+    margin-left: 5.5rem;
+    margin-bottom: 3rem;
+  }
+  .main__pie__chart__item{
+    width: 44rem;
+    height: 72rem;
+  }
+  .left__item{
+    margin-left: 0.5rem;
+  }
+  /* .right__item{
+    margin-right: 20px;
+  } */
+  .pie__chart__legend__wrapper{
+    width: 44rem;
+    height: 29rem;
+    /* background-color: pink; */
+    /* top: 124rem; */
+  }
+  .pie__chart__legend__items{
+    height: 3.5rem;
+  }
+  .pie__chart__legend__contents{
+    width: 24rem;
+    margin-bottom: 3rem;
+  }
+  .pie__chart__language__system{
+    width: 38rem;
+  }
+  .pie__chart__legend__items__right {
+    height: 4.5rem;
+  }
+  .footer{
+    margin-top: 4rem;
+  }
+  .Arrow-Right {
+    border-top: solid 0.7rem #97b9d1;
+    border-right: solid 0.7rem #97b9d1;
+    width: 3rem;
+    height: 3rem;
+    
+  }
+  .Arrow-Left {
+    border-bottom: solid 0.7rem #0f71bc;
+    border-left: solid 0.7rem #0f71bc;
+    width: 3rem;
+    height: 3rem;
+  }
+  .footer p{
+    font-size: 2.8rem;
+  }
+  .header__inner{
+    justify-content:left;
+  }
+  .header__sending__button{
+    display: none;
+  }
+  .header__sending__button__responsive a {
+    text-decoration: none;
+    color: #fff;
+  }
+  .footer__fixed{
+    position: relative;
+  }
+  
+  .header__sending__button__responsive{
+    display: block;
+    background: linear-gradient(to right, #0f71bc, #8bd8f7);
+    color: #fff;
+    padding: 0.5rem 4rem 0.5rem;
+    border-radius: 30rem;
+    border-color: #0f71bc;
+    box-shadow: 0 0 5.8rem #97b9d1;
+    position: absolute;
+    bottom: 0.2rem;
+    height: 12rem;
+    width: 100%;
+  }
+  /* topPage ここまで */
+  /* モーダルPage */
+   .modal-wrapper .modal-window{
+    width: 100%;
+    height: 700px;
+    margin-top: 14rem;
+  }
+  .main__inner__ver__modal{
+    width: 100%;
+    display: grid;
+    justify-content: start;
+    margin-top: 12rem;
+  }
+  .main__left__ver__modal{
+    width: 98rem;
+    padding-left: 4.6rem;
+    /* height: 65rem; */
+  }
+  .main__right__ver__modal{
+    width: 98rem;
+    padding-right: 0;
+  }
+  .main__left__ver__modal + .main__right__ver__modal {
+    margin-left: 5rem;
+  }
+  /* dd{
+    margin: 1rem 1rem 1rem 1rem;
+  } */
+  .main__left__ver__modal .contact__form__item dd label {
+    padding: 0.5rem 1rem 0.5rem 3rem;
+    margin: 1rem 1rem 1rem 1rem;
+    font-size: 2.2rem;
+  }
+  .item__title{
+    margin-top: 5rem;
+  }
+  .contact__form__item input[type=text]{
+    width: 90%;
+    height: 10rem;
+    border-radius: 1rem;
+  }
+  .contact__form__item textarea[type=text]{
+    width: 90%;
+    height: 24rem;
+    border-radius: 1rem;
+    margin-bottom: 5rem;
+  }
+  .circle__background{
+    top: 3rem;
+    right: 3rem;
+    width: 6.8rem;
+    height: 6.8rem;
+  }
+  .modal-wrapper .modal-close{
+    top: 1.5rem;
+    font-size: 6rem;
+  }
+  .contact__form__footer{
+    margin-top: 13.5rem;
+    width: 90rem;
+    height: 14rem;
+    font-size: 5rem;
+  }
+  .main__study__item{
+    padding: 0.5rem 6.5rem 8.5rem 7rem;
+  }
+  .main__bar__graph{
+    height: 35rem;
+  }
+  .main__pie__chart__item{
+    height: 63rem;
+  }
+  .footer{
+    margin-bottom: 11rem;
+  }
+  .footer p{
+    font-size: 1.8rem;
+  }
+  .Arrow-Left , .Arrow-Right{
+    width: 2rem;
+    height: 2rem;
+  }
+  .header__sending__button__responsive{
+    height: 10rem;
+  }
+  /* 記録・投稿完了画面 */
+  .circle{
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 3rem;
+  }
+  .circle__wrap .circle__explain{
+    font-size: 4rem;
+    font-weight: bold;
+  }
+  .circle__above{
+    font-size: 3.5rem;
+  }
+  .check__mark{
+    width: 5rem;
+    height: 2.5rem;
+    border-left: 0.7rem solid #fff;
+    border-bottom: 0.7rem solid #fff;    
+  }
+}
+
+@media screen and (max-width:768px){
+  /*画面幅が768px以上の時 iPad*/
+  .footer__fixed{
+    min-height: 79vh;
+  }
+  #appendTo{
+    left: 16rem;
+    top: -2.9rem;
+  }
+  .calender__modal__determination__button{
+    left: 62.4rem;
+    bottom: 3rem;
+  }
+}
+  

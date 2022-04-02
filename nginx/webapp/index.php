@@ -6,11 +6,17 @@ require_once('graphs.php');
 // 年別に集計
 $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y") = DATE_FORMAT(now(), "%Y")')->fetch();
 foreach ($stmt as $results_year) {
+  if ($results_year == NULL) {
+    $results_year = 0;
+  }
 }
 
 // 月別に集計
 $stmt = $db->query('SELECT SUM(study_hour) FROM study_times WHERE DATE_FORMAT(study_date, "%Y-%m") = DATE_FORMAT(now(), "%Y-%m")')->fetch();
 foreach ($stmt as $results_month) {
+  if ($results_month == NULL) {
+    $results_month = 0;
+  }
 }
 
 // 日別に集計
@@ -34,7 +40,6 @@ $study_hour_post = $_POST['study__hour'];    //学習時間
 
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -42,7 +42,10 @@ INSERT INTO study_times (study_date, study_hour, languages_id, contents_id) VALU
 ('2022-03-23', 6, 6, 2),
 ('2022-03-25', 3, 5, 1),
 ('2022-03-28', 7, 7, 3),
-('2022-03-30', 4, 8, 3);
+('2022-03-30', 4, 8, 3),
+('2022-04-01', 3, 4, 2),
+('2022-04-10', 2, 7, 3),
+('2022-04-10', 2, 3, 1);
 
 
 -- mysql> select * from study_times;
