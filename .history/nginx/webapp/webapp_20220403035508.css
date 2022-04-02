@@ -40,14 +40,12 @@ li{
 .header__inner{
   display: flex;
   align-items: center;
-  justify-content: center;
   height: 100%;
   margin: 0 3rem 0;
 }
 .posse__logo{
   height: 2.5rem;
-  /* margin-left: 10px; */
-  background-size: cover;
+  /* background-size: cover; */
 }
 .header__date{
   font-size: 1.3rem;
@@ -55,13 +53,11 @@ li{
   margin-left: 2rem;
 }
 .header__sending__button{
-  /* background: linear-gradient(to right, #0f71bc, #8bd8f7); */
   background-image: linear-gradient( 135deg, #0f71bc 10%, #8bd8f7 100%);;
   margin-left: auto;
-  /* margin-right: 20px; */
   color: #fff;
   padding: 0.5rem 4rem 0.5rem;
-    border-radius: 30rem;
+  border-radius: 30rem;
   border-color: #0f71bc;
   box-shadow: 0 0 18px #97b9d1;
 }
@@ -71,7 +67,6 @@ li{
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin: 10px auto; */
   margin-top: 84px;
   width: 98%;
 }
@@ -162,9 +157,6 @@ li{
 }
 .pie__chart__legend__wrapper{
   position: fixed;
-  /* display: flex;  */
-	/* align-items: center;
-  justify-content: center;*/
   width: 20rem;
   height: 12rem;
 }
@@ -190,14 +182,12 @@ li{
   height: 1.5rem;
 }
 .pie__chart__circle {
-  /* background-color:#bde360; */
   width: 1rem;
   height: 1rem;
   display: inline-block;
   border-radius: 50%;
   padding: 0;
   margin:  0 2rem 0;
-  /*position: relative;*/
 }
 .circle__js{
   background-color:#0042E5;
@@ -293,7 +283,6 @@ li{
   text-decoration: none;
   color: #fff;
 }
-
 .modal-wrapper {
   z-index: 9999;
   position: fixed;
@@ -328,8 +317,7 @@ li{
   position: relative;
   width: 80rem;
   height: 44rem;
-  /*max-width: 600px;  /* 600 */
-  padding: 2rem 0 2rem;  /* 30px 30px 15px; */
+  padding: 2rem 0 2rem;
   background: #fff;
   border-radius: 4rem;
   box-shadow: 0 0 2rem rgba(0, 0, 0, .6);
@@ -337,7 +325,6 @@ li{
 }
 .modal-wrapper .modal-window .modal-content {
   max-height: 80vh;
-  /* overflow-y: auto; */
   text-align: left
 }
 .modal-overlay {
@@ -348,14 +335,11 @@ li{
   bottom: 0;
   left: 0;
   background-color: rgba(85, 84, 84, 0.8);
-  /* background: rgba(85, 84, 84, 0.8); */
 }
 .close__button__wrap{
-	/* position: fixed; */
 	align-items: center;
   justify-content: center;
   width: 81rem;
-  /* top: 14rem; */
 }
 .circle__background{
   z-index: 10;
@@ -426,7 +410,7 @@ li{
   margin: 0  0 1rem;
   border-radius: 0.5rem;
 }
-.main__left__ver__modal .contact__form__item dd label{ /*選択肢*/
+.main__left__ver__modal .contact__form__item dd label{ /* 選択肢 */
   background-color: #f5f5f8;
   padding: 0.6rem 0.4rem 0.6rem;
   margin: 0.4rem 0 0.4rem;
@@ -475,7 +459,6 @@ li{
 .header__sending__button__modal{
   background: linear-gradient(to right, #0f71bc, #8bd8f7);
   margin-left: auto;
-  /* margin-right: 20px; */
   color: #fff;
   padding: 0.5rem 4rem 0.5rem;
   border-radius: 30rem;
@@ -487,19 +470,6 @@ li{
 .custom{
   color: #0f71bc;
 }
-/* .flatpickr-current-month-mine {
-  display: flex;
-  justify-content: center;
-}
-.cur-year-mine {
-  order: 1
-}
-.cur-month-mine:before  {
-   content: "年 "
-}
-.cur-month-mine {
-  order: 2
-} */
 
 /* チェックボックスの見た目 */
 .self__checkbox input[type="checkbox"]{ /* 元々のチェックボックス（非表示） */
@@ -515,14 +485,12 @@ li{
 .self__checkbox input[type="checkbox"]+label::before{ /* ラベルの左に表示させるボックス〇 */
   content: "";
   position: absolute;
-  /* display: block; */
   box-sizing: border-box;
   width: 2rem;
   height: 2rem;
   margin-top: -1rem;
   left: 0.2rem;
   top: 50%;
-  /* border: 1px solid; */
   border-radius: 50%;
   border-color: #ccc; /* 枠の色変更 お好きな色を blue #0F71BD */
   background-color: #ccc; /* 背景の色変更 お好きな色を */   
@@ -530,7 +498,6 @@ li{
 .self__checkbox input[type="checkbox"]+label::after{ /* チェックが入った時のレ点 */
   content: "";
   position: absolute;
-  /* display: block; */
   box-sizing: border-box;
   width: 1.4rem;
   height: 1rem;
@@ -559,7 +526,6 @@ li{
   justify-content: center;
   width: 82rem;
   height: 44rem;
-  /* background: #000; */
 }
 .loader,
 .loader:after {
@@ -573,7 +539,6 @@ li{
   position: relative;
   text-indent: -9999em;
   border-top: 1.1em solid rgba(255, 255, 255, 0.2);
-  /* border-right: 1.1em solid #8ccfee; */
   border-right: 1.1em solid #8ccfee;
   border-bottom: 1.1em solid #58bedd;
   border-left: 1.1em solid #04a1df;
@@ -611,12 +576,10 @@ li{
 /* 記録・投稿完了画面 */
 .circle__wrap{
 	position: fixed;
-	/* display: flex; */
   align-items: center;
   justify-content: center;
   width: 82rem;
   height: 25rem;
-  /* background: #000;*/
 }
 .circle {
   background-color:#bde360;
@@ -633,7 +596,6 @@ li{
   position: absolute;
   top: 35%;
   left: 35%;
-  /* transform: translate(-50%, -50%); */
   border-left: 0.3rem solid #fff;
   border-bottom: 0.3rem solid #fff;
   transform: rotate(-45deg);
@@ -641,12 +603,8 @@ li{
 .circle__above{
   color: #bde360;
   font-size: 1.5rem;
-  /* position: absolute;
-  top: -10%; */
 }
 .modal-wrapper .modal-window .modal-content-circle {
-  /* max-height: 80vh;
-  overflow-y: auto; */
   align-items: center;
   justify-content: center;
   display: flex;
@@ -664,9 +622,6 @@ li{
 .flex__title{
   display: flex;
 }
-/* #appendTo{
-  margin-left: 20rem;
-} */
 .calender__modal__determination__button{
   visibility: hidden;
   background: linear-gradient(to right, #0f71bc, #8bd8f7);
@@ -708,12 +663,6 @@ li{
   .main__study__item__number{
     font-size: 6rem;
   }
-  /* .first__item{
-    margin-left: 4rem;
-  }
-  .last__item{
-    margin-right: 4rem;
-  } */
   .main__study__item + .main__study__item {
     margin-left: 4rem;
   }
@@ -735,9 +684,6 @@ li{
   .left__item{
     margin-left: 0.5rem;
   }
-  /* .right__item{
-    margin-right: 20px;
-  } */
   .footer{
     margin-top: 4rem;
   }
@@ -746,7 +692,6 @@ li{
     border-right: solid 0.7rem #97b9d1;
     width: 3rem;
     height: 3rem;
-    
   }
   .Arrow-Left {
     border-bottom: solid 0.7rem #0f71bc;
@@ -800,7 +745,6 @@ li{
   .main__left__ver__modal{
     width: 98rem;
     padding-left: 4.6rem;
-    /* height: 65rem; */
   }
   .main__right__ver__modal{
     width: 98rem;
@@ -809,9 +753,6 @@ li{
   .main__left__ver__modal + .main__right__ver__modal {
     margin-left: 5rem;
   }
-  /* dd{
-    margin: 1rem 1rem 1rem 1rem;
-  } */
   .main__left__ver__modal .contact__form__item dd label {
     padding: 0.5rem 1rem 0.5rem 1rem;
     margin: 1rem 1rem 1rem 1rem;
@@ -894,12 +835,6 @@ li{
   .main__study__item__number{
     font-size: 6rem;
   }
-  /* .first__item{
-    margin-left: 4rem;
-  }
-  .last__item{
-    margin-right: 4rem;
-  } */
   .main__study__item + .main__study__item {
     margin-left: 4rem;
   }
@@ -926,14 +861,9 @@ li{
   .left__item{
     margin-left: 0.5rem;
   }
-  /* .right__item{
-    margin-right: 20px;
-  } */
   .pie__chart__legend__wrapper{
     width: 44rem;
     height: 29rem;
-    /* background-color: pink; */
-    /* top: 124rem; */
   }
   .pie__chart__legend__items{
     height: 3.5rem;
@@ -1019,9 +949,6 @@ li{
   .main__left__ver__modal + .main__right__ver__modal {
     margin-left: 5rem;
   }
-  /* dd{
-    margin: 1rem 1rem 1rem 1rem;
-  } */
   .main__left__ver__modal .contact__form__item dd label {
     padding: 0.5rem 1rem 0.5rem 3rem;
     margin: 1rem 1rem 1rem 1rem;
