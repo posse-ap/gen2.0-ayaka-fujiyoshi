@@ -7,10 +7,47 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script> -->
   <title>Schedule | POSSE</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+<body class="bg-gray-100 h-auto">
+  <header class="h-16 bg-white m-0 p-5">
+    <div class="flex justify-between items-center">
+      <div>
+        <img src="./img/posseLogo.png" alt="posseLogo" class="h-6">
+      </div>
+      <div class="text-gray-400">ログアウト</div>
+    </div>
+  </header>
+  <main class="m-0 p-5">
+    <h1 class="text-base mb-5">
+      ようこそ POSSE1:2.0期生 藤吉彩花さん
+    </h1>
+    <div class="max-w-3xl mx-auto">
+      <button class="p-2 font-bold mb-5 rounded-md shadow-md posse-color text-white">
+        リアルイベント
+      </button>
+      <div>
+        <button class="p-2 font-bold mr-2 mb-5 rounded-md shadow-md posse-color text-white">全て</button>
+        <button class="p-2 font-bold mr-2 mb-5 rounded-md shadow-md bg-white">参加</button>
+        <button class="p-2 font-bold mr-2 mb-5 rounded-md shadow-md bg-white">不参加</button>
+        <button class="p-2 font-bold mr-2 mb-5 rounded-md shadow-md bg-white">提出済み</button>
+        <button class="p-2 font-bold mr-2 mb-5 rounded-md shadow-md bg-white">未回答</button>
+      </div>
+      <div>
+        <h2 class="font-bold mb-4">一覧</h2>
+        <div class="p-2 mr-2 mb-5 bg-white shadow-md rounded-md">
+          <div class="flex p-2">
+            <div class="font-bold mr-2 text-lg">課題全力サポート会</div>
+            <button class="px-2 py-1 text-xs rounded-md shadow-md posse-color text-white">全期生</button>
+          </div>
+          <div class="p-2">
+            <p>2022年11月26日(土)</p>
+            <p class="text-xs text-gray-500">10:00~11:30</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
 </body>
 </html>
