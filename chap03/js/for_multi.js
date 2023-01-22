@@ -22,6 +22,11 @@ Vue.createApp({
           lyrics: '烏 なぜ啼くの 烏は山に...',
           composer: '本居長世'
         },
+        {
+          title: 'ドラえもん',
+          lyrics: 'あんなこといいな　できたらいいな',
+          composer: '藤子不二雄'
+        },
       ]
     };
   }

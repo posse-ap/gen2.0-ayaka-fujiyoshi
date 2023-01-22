@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vue.js App</title>
+  <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+  <!-- ↓アプリケーションを紐付ける要素 #app を作成 -->
+  <div id="app">
+    <h1>チュートリアルToDoリスト</h1>
+
+    <!-- ★STEP11 インスタンスの作成-->
+    <!-- options リストを <label> タグで繰り返し描画し、
+           内側の <input> タグの value 属性には、データ側の label.value データをバインド -->
+    <!-- v-model ディレクティブを使って、ラジオボタンの選択値と current データを同期 -->
+    <label v-for="label in options" >
+      <input type="radio"
+        v-model="current"
+        v-bind:value="label.value">{{ label.label }}
+    </label>
+      
+    <!-- ★STEP12 -->
+    ({{ computedTodos.length }} 件を表示）
+
+    <!-- ★STEP4 リスト用テーブル -->
+    <!-- ToDo リストデータを表示するテーブルの枠組みを作成 -->
+    <table>
+      <!-- テーブルヘッダー -->
+      <thead v-pre>
+        <tr>
+          <th class="id">ID</th>
+          <th class="comment">コメント</th>
+          <th class="state">状態</th>
+          <th class="button">-</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ★STEP5 ToDo の要素をループ -->
+        <!--  <tr> で ToDo の要素を1行づつ繰り返し表示 -->
+          <!-- v-for="各要素の一時的な名前 in 繰り返したい配列やオブジェクト" -->
+        <!-- ★STEP12 一覧表示テーブルの v-for ディレクティブで使用している todos の部分を computedTodos に置き換え -->
+        <!-- 「◯件見つかりました」という結果の要素数を表示したいとき
+                    {{ computedTodos.length }} 件を表示中  で出来る -->
+        <tr
+          v-for="item in computedTodos"
+          v-bind:key="item.id"
+          v-bind:class="{done:item.state}">
+          <th>{{ item.id }}</th>
+          <td>{{ item.comment }}</td>
+          <td class="state">
+            <!-- ★STEP10 状態変更ボタン -->
+            <!-- ★STEP13 Mustache で labels オブジェクトを通すように変更 -->
+            <button v-on:click="doChangeState(item)">
+              {{ labels[item.state] }}
+            </button>
+          </td>
+          <td class="button">
+            <!-- ★STEP10 削除ボタン -->
+            <!-- 削除」は注意するべき操作のため、キー修飾子 .ctrl を使って
+                「コントロールキーを押しながらクリック」しなければ呼び出されないように -->
+            <button v-on:click.ctrl="doRemove(item)">
+              削除
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>※削除ボタンはコントロールキーを押しながらクリックして下さい</p>
+
+    <!-- ★STEP6 新しいToDoをリストへ追加するための入力フォーム-->
+    <h2>新しい作業の追加</h2>
+    <!-- v-on ディレクティブ→フォームのサブミットが行われると、
+                           それをハンドリングして doAdd メソッドが呼び出されるようになる -->
+    <form class="add-form" v-on:submit.prevent="doAdd">
+      <!-- コメント入力フォーム -->
+         <!-- ref 属性を使って参照するための名前をタグに付けておくと、その DOM に直接アクセスできる -->
+                     <!-- (メソッド内から    this.$refs.名前   で使用できる)(step7)-->
+      コメント <input type="text" ref="comment">
+      <!-- 追加ボタンのモック -->
+      <button type="submit">追加</button>
+    </form>
+  </div>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> 
+  <script src="./main.js"></script> -->
+  <!-- バージョン3系を取得してたりしない？ と思って、特定のバージョンを指定して取得する方法を検索。 
+       https://minamino-heya.com/2022/03/resolving-vue-is-not-a-constructor/  で動いた！！-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> 
+  <script src="./main.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@3.2.29/dist/vue.global.js"></script>
+  <script src="./main.js"></script> -->
+</body>
+</html>
