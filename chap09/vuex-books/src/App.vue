@@ -12,7 +12,7 @@
   <hr />
     <p>書籍は全部で{{booksCount}}冊あります。</p>
     <ul v-for="b of getBooksByPrice(2500)" v-bind:key="b.isbn">
-      <li>{{b.title}}（{{b.price}}円）<br />ISBN：{{b.isbn}}</li>
+      <li>{{b.title}}（{{b.price}}円）<br />ISBN：{{b.isbn}} <br /><a href="">編集</a></li>
     </ul>
     <!-- <p>3000円未満の書籍は全部で{{booksCount3000}}冊あります。</p> -->
   </div>
